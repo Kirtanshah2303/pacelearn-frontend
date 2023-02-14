@@ -2,20 +2,32 @@ import React from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { handleLogin } from "@/utils/auth";
-import baseUrl from "@/utils/baseUrl";
+import baseUrl2 from "@/utils/baseUrl2";
 import { useRouter } from "next/router";
 import Button from "../../utils/Button";
 import { motion } from "framer-motion";
 
+// const INITIAL_USER = {
+// 	first_name: "",
+// 	last_name: "",
+// 	email: "",
+// 	password: "",
+// };
 const INITIAL_USER = {
-	first_name: "",
-	last_name: "",
-	email: "",
+	login: "",
 	password: "",
+	firstName: "",
+	lastName: "",
+	email : "",
+	imageUrl : "",
+	langKey : "en",
+	authorities : [""]
+
 };
 
 const RegisterForm = () => {
 	const [user, setUser] = React.useState(INITIAL_USER);
+	const [value,setValue] = React.useState("");
 	const [disabled, setDisabled] = React.useState(true);
 	const [loading, setLoading] = React.useState(false);
 	const router = useRouter();
@@ -29,12 +41,18 @@ const RegisterForm = () => {
 		const { name, value } = e.target;
 		setUser((prevState) => ({ ...prevState, [name]: value }));
 	};
+	
+	const handleChangeROLE = (event) => {
+
+		setValue(event.target.value);
+	 
+	  };
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
 			setLoading(true);
-			const url = `${baseUrl}/api/users/signup`;
+			const url = `${baseUrl2}/api/register`;
 			const payload = { ...user };
 			const response = await axios.post(url, payload);
 			handleLogin(response.data.edmy_users_token, router);
@@ -82,9 +100,19 @@ const RegisterForm = () => {
 				<input
 					type="text"
 					className="form-control"
+					placeholder="login"
+					name="login"
+					value={user.login}
+					onChange={handleChange}
+				/>
+			</div>
+			<div className="form-group">
+				<input
+					type="text"
+					className="form-control"
 					placeholder="First Name"
-					name="first_name"
-					value={user.first_name}
+					name="firstName"
+					value={user.firstName}
 					onChange={handleChange}
 				/>
 			</div>
@@ -93,8 +121,8 @@ const RegisterForm = () => {
 					type="text"
 					className="form-control"
 					placeholder="Last Name"
-					name="last_name"
-					value={user.last_name}
+					name="lastName"
+					value={user.lastName}
 					onChange={handleChange}
 				/>
 			</div>
@@ -110,6 +138,16 @@ const RegisterForm = () => {
 			</div>
 			<div className="form-group">
 				<input
+					type="text"
+					className="form-control"
+					placeholder="imageUrl"
+					name="imageUrl"
+					value={user.imageUrl}
+					onChange={handleChange}
+				/>
+			</div>
+			<div className="form-group">
+				<input
 					type="password"
 					className="form-control"
 					placeholder="Password"
@@ -117,6 +155,27 @@ const RegisterForm = () => {
 					value={user.password}
 					onChange={handleChange}
 				/>
+			</div>
+			
+			<div className="form-group">
+				{/* <input
+					type="select"
+					className="form-control"
+					placeholder="Last Name"
+					name="authority"
+					value={user.last_name}
+					onChange={handleChange}
+				/> */}
+				<select 
+				
+					value={value} onChange={handleChangeROLE}
+					
+					className="form-control">
+
+					<option value={"ROLE_STUDENT"}>ROLE_STUDENT</option>
+					<option value={"ROLE_FACULTY"}>ROLE_FACULTY</option>
+
+				</select>
 			</div>
 
 			<Button
