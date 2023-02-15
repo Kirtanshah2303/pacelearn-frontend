@@ -93,18 +93,18 @@ const CourseCard = ({ course, onFav, onUnFav, userId, onAddCart }) => {
 
 				</div>
 
-				{/* <div className="courses-hover-content"> */}
-				{/* <div className="sk">
+				<div className="courses-hover-content">
+					<div className="sk">
 						<div>
 							<h3>
-								<Link href={`/course/${slug}`}>
+								<Link href={`/course/${id}`}>
 									<a>{courseTitle}</a>
 								</Link>
 							</h3>
 							<p>{courseDescription.slice(0, 108)}</p>
 
 							<div className="courses-btn d-flex justify-content-between align-items-center">
-								{buy ? (
+								{/* {buy ? (
 									<button
 										className="default-btn"
 										onClick={() =>
@@ -115,9 +115,9 @@ const CourseCard = ({ course, onFav, onUnFav, userId, onAddCart }) => {
 									>
 										View My Course
 									</button>
-								) : (
-									<>
-										{add ? (
+								) */}
+								<>
+									{/* {add ? (
 											<button
 												className="default-btn"
 												onClick={() =>
@@ -126,19 +126,19 @@ const CourseCard = ({ course, onFav, onUnFav, userId, onAddCart }) => {
 											>
 												View Cart
 											</button>
-										) : (
-											<button
-												className="default-btn"
-												onClick={() =>
-													onAddCart(course)
-												}
-											>
-												Add To Cart
-											</button>
-										)}
-									</>
-								)}
-								{fav ? (
+										) : ( */}
+									<button
+										className="default-btn"
+										onClick={() =>
+											onAddCart(course)
+										}
+									>
+										Add To Cart
+									</button>
+									{/* )} */}
+								</>
+								{/* )} */}
+								{/* {fav ? (
 									<motion.button
 										whileTap={{ scale: 3 }}
 										transition={{ duration: 0.5 }}
@@ -164,11 +164,11 @@ const CourseCard = ({ course, onFav, onUnFav, userId, onAddCart }) => {
 										<i className="ri-heart-line"></i>
 										<i className="ri-heart-fill hover"></i>
 									</motion.button>
-								)}
+								)} */}
 							</div>
 						</div>
-					</div> */}
-				{/* </div> */}
+					</div>
+				</div>
 			</div>
 		</div>
 	);
