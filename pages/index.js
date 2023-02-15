@@ -39,7 +39,7 @@ const index = ({ courses, categories, user }) => {
 						<span className="top-title">Popular Courses</span>
 						<h2>Expand Your Career Opportunity With Our Courses</h2>
 					</motion.div>
-					{/* <CoursesList courses={courses} user={user} /> */}
+					<CoursesList courses={courses} user={user} />
 				</div>
 			</div>
 
@@ -59,7 +59,7 @@ const index = ({ courses, categories, user }) => {
 							<a className="default-btn">View All</a>
 						</Link>
 					</div>
-					{/* <CoursesList courses={courses} user={user} /> */}
+					<CoursesList courses={courses} user={user} />
 				</div>
 
 				<img
@@ -87,7 +87,7 @@ const index = ({ courses, categories, user }) => {
 							<a className="default-btn">View All</a>
 						</Link>
 					</div>
-					{/* <CoursesList courses={courses} user={user} /> */}
+					<CoursesList courses={courses} user={user} />
 				</div>
 			</div>
 

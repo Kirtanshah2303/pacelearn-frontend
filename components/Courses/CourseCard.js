@@ -9,95 +9,99 @@ import { motion } from "framer-motion";
 const CourseCard = ({ course, onFav, onUnFav, userId, onAddCart }) => {
 	const cartItems = useSelector((state) => state.cart.cartItems);
 	const router = useRouter();
+	// const {
+	// 	id,
+	// 	title,
+	// 	slug,
+	// 	courseDescription,
+	// 	latest_price,
+	// 	before_price,
+	// 	lessons,
+	// 	image,
+	// 	user,
+	// 	enrollments = [],
+	// } = course;
 	const {
 		id,
-		title,
-		slug,
-		short_desc,
-		latest_price,
-		before_price,
-		lessons,
-		image,
+		courseTitle,
+		courseDescription,
+		courseLogo,
 		user,
-		enrollments = [],
 	} = course;
-	const [fav, setfavs] = useState(false);
-	const [add, setAdd] = useState(false);
-	const [buy, setBuy] = useState(false);
+	// const [fav, setfavs] = useState(false);
+	// const [add, setAdd] = useState(false);
+	// const [buy, setBuy] = useState(false);
 
-	useEffect(() => {
-		setAdd(cartItems.some((cart) => cart.id === id));
-		if (userId && course && id) {
-			const payload = {
-				params: { userId: userId, courseId: id },
-			};
-			const url = `${baseUrl}/api/courses/course/exist`;
-			axios.get(url, payload).then((result) => {
-				if (result && result.data.enroll === true)
-					setBuy(result.data.enroll);
-			});
-		}
-	}, [course, cartItems]);
+	// useEffect(() => {
+	// 	setAdd(cartItems.some((cart) => cart.id === id));
+	// 	if (userId && course && id) {
+	// 		const payload = {
+	// 			params: { userId: userId, courseId: id },
+	// 		};
+	// 		const url = `${baseUrl}/api/courses/course/exist`;
+	// 		axios.get(url, payload).then((result) => {
+	// 			if (result && result.data.enroll === true)
+	// 				setBuy(result.data.enroll);
+	// 		});
+	// 	}
+	// }, [course, cartItems]);
 
-	useEffect(() => {
-		if (userId) {
-			const payload = {
-				params: {
-					userId: userId,
-					courseId: id,
-				},
-			};
+	// useEffect(() => {
+	// 	if (userId) {
+	// 		const payload = {
+	// 			params: {
+	// 				userId: userId,
+	// 				courseId: id,
+	// 			},
+	// 		};
 
-			const url = `${baseUrl}/api/favourites/new`;
-			axios.get(url, payload).then((result) => {
-				setfavs(result.data);
-			});
-		} else {
-			setfavs(false);
-		}
-	}, [fav]);
+	// 		const url = `${baseUrl}/api/favourites/new`;
+	// 		axios.get(url, payload).then((result) => {
+	// 			setfavs(result.data);
+	// 		});
+	// 	} else {
+	// 		setfavs(false);
+	// 	}
+	// }, [fav]);
 
 	return (
 		<div className="col-lg-3 col-md-6">
 			<div className="single-courses">
 				<div className="courses-main-img">
-					<img src={image} alt="Image" />
+					<img src={courseLogo} alt="Image" />
 				</div>
 				<div className="courses-content">
-					<h3>{title}</h3>
+					<h3>{courseTitle}</h3>
 					<ul className="admin">
 						<li>
 							<img
 								src={
-									user.profile_photo
-										? user.profile_photo
+									user.imageUrl
+										? user.imageUrl
 										: "/images/admin-1.jpg"
 								}
 								className="rounded-circle"
-								alt={user.first_name}
+								alt={user.firstName}
 								style={{ height: "25px", width: "25px" }}
 							/>
 						</li>
 						<li>
 							<span>By</span>
 						</li>
-						<li>{`${user.first_name} ${user.last_name}`}</li>
+						<li>{`${user.firstName} ${user.lastName}`}</li>
 					</ul>
-					<h4>
-						{before_price > 0 && <del>${before_price}</del>} $
-						{latest_price}
-					</h4>
+
 				</div>
 
-				<div className="courses-hover-content">
-					<div className="sk">
+				{/* <div className="courses-hover-content"> */}
+				{/* <div className="sk">
 						<div>
 							<h3>
 								<Link href={`/course/${slug}`}>
-									<a>{title}</a>
+									<a>{courseTitle}</a>
 								</Link>
 							</h3>
-							<p>{short_desc.slice(0, 108)}</p>
+							<p>{courseDescription.slice(0, 108)}</p>
 
 							<div className="courses-btn d-flex justify-content-between align-items-center">
 								{buy ? (
@@ -163,8 +167,8 @@ const CourseCard = ({ course, onFav, onUnFav, userId, onAddCart }) => {
 								)}
 							</div>
 						</div>
-					</div>
-				</div>
+					</div> */}
+				{/* </div> */}
 			</div>
 		</div>
 	);
