@@ -5,6 +5,8 @@ import baseUrl from "@/utils/baseUrl";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
+import Cookies from 'js-cookie'
+import toast from "react-hot-toast";
 
 const CourseCard = ({ course, onFav, onUnFav, userId, onAddCart }) => {
 	const cartItems = useSelector((state) => state.cart.cartItems);
@@ -31,6 +33,71 @@ const CourseCard = ({ course, onFav, onUnFav, userId, onAddCart }) => {
 	// const [fav, setfavs] = useState(false);
 	// const [add, setAdd] = useState(false);
 	// const [buy, setBuy] = useState(false);
+
+	const enroll = (courseID) => {
+
+		const cookies = Cookies.get("edmy_users_token")
+
+		if(cookies){
+			let bearer = 'Bearer ';
+			let token = cookies;
+			console.log("Token is -->" + token);
+			bearer = bearer+token;
+
+			fetch(`http://localhost:8080/api/courses/enroll`, {
+				method: 'POST',
+				headers: {
+					accept: '*/*',
+					Authorization: bearer,
+				},
+				body: courseID,
+			})
+				.then(response => response.json())
+				.then(result => {
+					if(result.status === "FORBIDDEN"){
+						toast.error("Access Denied for this action", {
+							style: {
+								border: "1px solid #ff0033",
+								padding: "16px",
+								color: "#ff0033",
+							},
+							iconTheme: {
+								primary: "#ff0033",
+								secondary: "#FFFAEE",
+							},
+						});
+						console.log("Access Denied")
+						return false;
+					}
+					toast.success("Course enrolled successfully", {
+						style: {
+							border: "1px solid #4BB543",
+							padding: "16px",
+							color: "#4BB543",
+						},
+						iconTheme: {
+							primary: "#4BB543",
+							secondary: "#FFFAEE",
+						},
+					});
+					window.location.href = '/';
+					console.log(result.status);
+					console.log('Demo passed enrolled');
+					// console.log(this.state);
+					return true;
+				})
+				.catch(error => {
+					console.log(error);
+					return false;
+				});
+
+			return true;
+
+		}else{
+			window.location.href = '/auth';
+		}
+
+	}
 
 	// useEffect(() => {
 	// 	setAdd(cartItems.some((cart) => cart.id === id));
@@ -130,10 +197,10 @@ const CourseCard = ({ course, onFav, onUnFav, userId, onAddCart }) => {
 									<button
 										className="default-btn"
 										onClick={() =>
-											onAddCart(course)
+											enroll(id)
 										}
 									>
-										Add To Cart
+										Enroll
 									</button>
 									{/* )} */}
 								</>
