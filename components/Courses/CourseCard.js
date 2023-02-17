@@ -52,7 +52,27 @@ const CourseCard = ({ course, onFav, onUnFav, userId, onAddCart }) => {
 				},
 				body: courseID,
 			})
-				.then(response => response.json())
+				// .then(response => response.json())
+				.then((response) => {
+					// if(!response.ok) throw new Error(response.status);
+					if (response.status === 400) {
+							toast.error("Already Enrolled", {
+								style: {
+									border: "1px solid #ff0033",
+									padding: "16px",
+									color: "#ff0033",
+								},
+								iconTheme: {
+									primary: "#ff0033",
+									secondary: "#FFFAEE",
+								},
+							});
+							console.log("Already Enrolled")
+							throw new Error(response.status);
+					}
+					else return response.json();
+
+				})
 				.then(result => {
 					if(result.status === "FORBIDDEN"){
 						toast.error("Access Denied for this action", {

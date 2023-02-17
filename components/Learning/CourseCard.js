@@ -1,62 +1,62 @@
 import React from "react";
 import Link from "next/link";
 
-const CourseCard = ({ course: { user, image, title, slug, is_class } }) => {
+const CourseCard = ({ course: { user, courseLogo, courseTitle, id} }) => {
 	return (
 		<div className="col-lg-4 col-md-6">
 			<div className="single-courses-box style-2">
 				<div className="courses-image">
-					{is_class ? (
-						<Link href={`/learning/course/class/${slug}`}>
+					{/*	{is_class ? (*/}
+					{/*	<Link href={`/learning/course/class/${id}`}>*/}
+					{/*		<a className="d-block image">*/}
+					{/*			<img src={courseLogo} alt={courseTitle} />*/}
+					{/*		</a>*/}
+					{/*	</Link>*/}
+					{/*	) : (*/}
+						<Link href={`/learning/course/${id}`}>
 							<a className="d-block image">
-								<img src={image} alt={title} />
+								<img src={courseLogo} alt={courseTitle} />
 							</a>
 						</Link>
-					) : (
-						<Link href={`/learning/course/${slug}`}>
-							<a className="d-block image">
-								<img src={image} alt={title} />
-							</a>
-						</Link>
-					)}
+					{/*)	}*/}
 
 					<div className="video_box">
 						<div className="d-table">
 							<div className="d-table-cell">
-								{is_class ? (
-									<Link
-										href={`/learning/course/class/${slug}`}
-									>
+								{/*	{is_class ? (*/}
+								{/*	<Link*/}
+								{/*		href={`/learning/course/class/${id}`}*/}
+								{/*	>*/}
+								{/*		<a>*/}
+								{/*			<i className="bx bx-play"></i>*/}
+								{/*		</a>*/}
+								{/*	</Link>*/}
+								{/*) : (*/}
+									<Link href={`/learning/course/${id}`}>
 										<a>
 											<i className="bx bx-play"></i>
 										</a>
 									</Link>
-								) : (
-									<Link href={`/learning/course/${slug}`}>
-										<a>
-											<i className="bx bx-play"></i>
-										</a>
-									</Link>
-								)}
+								{/*	)}*/}
 							</div>
 						</div>
 					</div>
 				</div>
 				<div className="courses-content">
 					<h3>
-						{is_class ? (
-							<Link href={`/learning/course/class/${slug}`}>
-								<a>{title}</a>
+						{/*	{is_class ? (*/}
+						{/*	<Link href={`/learning/course/class/${id}`}>*/}
+						{/*		<a>{courseTitle}</a>*/}
+						{/*	</Link>*/}
+						{/*) : (*/}
+							<Link href={`/learning/course/${id}`}>
+								<a>{courseTitle}</a>
 							</Link>
-						) : (
-							<Link href={`/learning/course/${slug}`}>
-								<a>{title}</a>
-							</Link>
-						)}
+						{/*	)}*/}
 					</h3>
 
 					<div className="course-author d-flex justify-content-between">
-						<span>{`${user.first_name} ${user.last_name}`}</span>
+						<span>{`${user.firstName}`}</span>
 						<p>Start Course</p>
 					</div>
 				</div>

@@ -5,7 +5,7 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { parseCookies } from "nookies";
-import baseUrl from "@/utils/baseUrl";
+import baseUrl2 from "@/utils/baseUrl2";
 import GeneralLoader from "@/utils/GeneralLoader";
 import CourseCard from "@/components/Learning/CourseCard";
 
@@ -17,15 +17,39 @@ const Index = ({ user }) => {
 	useEffect(() => {
 		const fetchEnrols = async () => {
 			setLoading(true);
+			let bearer = 'Bearer ';
+			let token = edmy_users_token;
+			// console.log("Token is -->" + token);
+			bearer = bearer+token;
 			const payload = {
-				headers: { Authorization: edmy_users_token },
+				headers: { Authorization: bearer },
 			};
-			const response = await axios.get(
-				`${baseUrl}/api/learnings`,
-				payload
-			);
+			console.log("Payload is --> "+payload);
+			// const response = await axios.get(
+			// 	// `${baseUrl}/api/learnings`,
+			// 	`${baseUrl2}/api/courses/enrolled`,
+			// 	payload
+			// )
+			const response = fetch(`${baseUrl2}/api/courses/enrolled`,{
+				method : "GET",
+				headers : {
+					Authorization: bearer
+				}
+			}).then(response => response.json())
+				.then(result => {
+					console.log("Results is ==> "+result)
+					const {enrolments} = result
+					setEnrolments(enrolments)
+					console.log("Response is = "+ enrolments)
+				})
+			// console.log("Response is = "+ (await response).json())
+			// const {enrolments} = (await response).json();
+			// console.log("Response is = "+ enrolments)
+			// console.log("Enrollment details is --> "+ enrolments)
+			// setEnrolments(response.data.enrolments);
 
-			setEnrolments(response.data.enrolments);
+
+
 			setLoading(false);
 		};
 
@@ -60,7 +84,9 @@ const Index = ({ user }) => {
 							<>
 								{enrolments &&
 									enrolments.map((enrol) => (
-										<CourseCard key={enrol.id} {...enrol} />
+										// <CourseCard key={enrol.id} {...enrol} />
+										<CourseCard key={enrol.id} course={enrol} />
+										// <CourseCard key={id} {...enrol} />
 									))}
 								{/* <div className="col-lg-12 col-md-12">
 									<div className="pagination-area text-center">
