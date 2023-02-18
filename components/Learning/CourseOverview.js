@@ -1,10 +1,11 @@
 import React from "react";
 
-const CourseOverview = ({ overview }) => {
+const CourseOverview = ( overview ) => {
 	return (
 		<div className="tab-pane fade show active">
 			<div className="course-contents">
-				<div dangerouslySetInnerHTML={{ __html: overview }}></div>
+				{/*<div dangerouslySetInnerHTML={{ __html: overview }}></div>*/}
+				<h1 defaultValue={overview}></h1>
 			</div>
 		</div>
 	);

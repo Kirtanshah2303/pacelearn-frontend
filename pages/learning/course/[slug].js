@@ -4,7 +4,7 @@ import Footer from "@/components/_App/Footer";
 import StickyBox from "react-sticky-box";
 import Player from "@/components/Learning/Player";
 import { useRouter } from "next/router";
-import baseUrl from "@/utils/baseUrl";
+import baseUrl2 from "@/utils/baseUrl2";
 import axios from "axios";
 import VideoList from "@/components/Learning/VideoList";
 import ProgressManager from "@/components/Learning/ProgressManager";
@@ -17,7 +17,7 @@ import CourseFeedback from "@/components/Learning/CourseFeedback";
 
 const Index = ({ user }) => {
 	const [videos, setVideos] = useState([]);
-	const [course, setCourse] = useState({});
+	const [videoDescription, setVideoDescription] = useState("");
 	const [selectedVideo, setSelectedVideo] = useState("");
 	const [active, setActive] = useState("");
 	const [tab, setTab] = useState("overview");
@@ -25,37 +25,38 @@ const Index = ({ user }) => {
 		query: { slug },
 	} = useRouter();
 
-	// const fetchVideos = async () => {
-	// 	const url = `${baseUrl}/api/learnings/videos/${slug}`;
-	// 	const response = await axios.get(url);
-	// 	setVideos(response.data.videos);
-	// 	setSelectedVideo(response.data.videos[0].video);
-	// 	setActive(response.data.videos[0].id);
-	// 	setCourse(response.data.course);
-	// };
+	const fetchVideos = async () => {
+		const url = `${baseUrl2}/api/videoSessions/${slug}`;
+		const response = await axios.get(url);
+		setVideos(response.data.video);
+		setSelectedVideo(response.data.video[0].sessionVideo);
+		setActive(response.data.video[0].id);
+		setVideoDescription(response.data.video[0].sessionDescription);
+	};
 
-	// useEffect(() => {
-	// 	fetchVideos();
-	// }, [slug]);
+	useEffect(() => {
+		fetchVideos();
+	}, [slug]);
 
-	// const selectVideo = async (videoId) => {
+	// const selectVideo = (videoId) => {
 	// 	// console.log(videoId);
 	// 	try {
-	// 		const payload = {
-	// 			params: { userId: user.id, courseId: course.id },
-	// 		};
-	// 		const url = `${baseUrl}/api/learnings/video/${videoId}`;
-	// 		const response = await axios.get(url, payload);
+	// 		// const payload = {
+	// 		// 	params: { userId: user.id, courseId: course.id },
+	// 		// };
+	// 		const url = `${baseUrl2}/api/course-sessions/${videoId}`;
+	// 		const response = axios.get(url, payload);
 	// 		const {
-	// 			data: { video },
+	// 			data: { sessionVideo },
 	// 		} = response;
 	//
-	// 		setSelectedVideo(video.video);
-	// 		setActive(video.id);
+	// 		setSelectedVideo(sessionVideo.video);
+	// 		setActive(sessionVideo.id);
+	// 		setCourse(sessionVideo.sessionDescription)
 	//
 	// 		// console.log(video);
 	// 	} catch (err) {
-	// 		console.log(err.response.data);
+	// 		// console.log(err.response.data);
 	// 	}
 	// };
 
@@ -91,114 +92,119 @@ const Index = ({ user }) => {
 											</a>
 										</Link>
 									</li>
-									<li>
-										<Link href={`/learning/course/${slug}`}>
-											<a
-												onClick={(e) => {
-													e.preventDefault();
-													setTab("asset");
-												}}
-												className={
-													tab == "asset"
-														? "active"
-														: ""
-												}
-											>
-												Assets
-											</a>
-										</Link>
-									</li>
-									<li>
-										<Link href={`/learning/course/${slug}`}>
-											<a
-												onClick={(e) => {
-													e.preventDefault();
-													setTab("discussion");
-												}}
-												className={
-													tab == "discussion"
-														? "active"
-														: ""
-												}
-											>
-												Discussion
-											</a>
-										</Link>
-									</li>
-									<li>
-										<Link href={`/learning/course/${slug}`}>
-											<a
-												onClick={(e) => {
-													e.preventDefault();
-													setTab("rating");
-												}}
-												className={
-													tab == "rating"
-														? "active"
-														: ""
-												}
-											>
-												Leave a rating
-											</a>
-										</Link>
-									</li>
-									<li>
-										<Link href={`/learning/course/${slug}`}>
-											<a
-												onClick={(e) => {
-													e.preventDefault();
-													setTab("feedback");
-												}}
-												className={
-													tab == "feedback"
-														? "active"
-														: ""
-												}
-											>
-												Leave a feedback
-											</a>
-										</Link>
-									</li>
+									{/*<li>*/}
+									{/*	<Link href={`/learning/course/${slug}`}>*/}
+									{/*		<a*/}
+									{/*			onClick={(e) => {*/}
+									{/*				e.preventDefault();*/}
+									{/*				setTab("asset");*/}
+									{/*			}}*/}
+									{/*			className={*/}
+									{/*				tab == "asset"*/}
+									{/*					? "active"*/}
+									{/*					: ""*/}
+									{/*			}*/}
+									{/*		>*/}
+									{/*			Assets*/}
+									{/*		</a>*/}
+									{/*	</Link>*/}
+									{/*</li>*/}
+									{/*<li>*/}
+									{/*	<Link href={`/learning/course/${slug}`}>*/}
+									{/*		<a*/}
+									{/*			onClick={(e) => {*/}
+									{/*				e.preventDefault();*/}
+									{/*				setTab("discussion");*/}
+									{/*			}}*/}
+									{/*			className={*/}
+									{/*				tab == "discussion"*/}
+									{/*					? "active"*/}
+									{/*					: ""*/}
+									{/*			}*/}
+									{/*		>*/}
+									{/*			Discussion*/}
+									{/*		</a>*/}
+									{/*	</Link>*/}
+									{/*</li>*/}
+									{/*<li>*/}
+									{/*	<Link href={`/learning/course/${slug}`}>*/}
+									{/*		<a*/}
+									{/*			onClick={(e) => {*/}
+									{/*				e.preventDefault();*/}
+									{/*				setTab("rating");*/}
+									{/*			}}*/}
+									{/*			className={*/}
+									{/*				tab == "rating"*/}
+									{/*					? "active"*/}
+									{/*					: ""*/}
+									{/*			}*/}
+									{/*		>*/}
+									{/*			Leave a rating*/}
+									{/*		</a>*/}
+									{/*	</Link>*/}
+									{/*</li>*/}
+									{/*<li>*/}
+									{/*	<Link href={`/learning/course/${slug}`}>*/}
+									{/*		<a*/}
+									{/*			onClick={(e) => {*/}
+									{/*				e.preventDefault();*/}
+									{/*				setTab("feedback");*/}
+									{/*			}}*/}
+									{/*			className={*/}
+									{/*				tab == "feedback"*/}
+									{/*					? "active"*/}
+									{/*					: ""*/}
+									{/*			}*/}
+									{/*		>*/}
+									{/*			Leave a feedback*/}
+									{/*		</a>*/}
+									{/*	</Link>*/}
+									{/*</li>*/}
 								</ul>
 
-								{course && tab == "asset" ? (
-									<CourseAsset {...course} />
-								) : tab == "discussion" ? (
-									<CourseDiscussion {...course} />
-								) : tab == "rating" ? (
-									<CourseRating {...course} />
-								) : tab == "feedback" ? (
-									<CourseFeedback {...course} />
-								) : (
-									<CourseOverview {...course} />
-								)}
+								{/*{course && tab == "asset" ? (*/}
+								{/*	<CourseAsset {...course} />*/}
+								{/*) : tab == "discussion" ? (*/}
+								{/*	<CourseDiscussion {...course} />*/}
+								{/*) : tab == "rating" ? (*/}
+								{/*	<CourseRating {...course} />*/}
+								{/*) : tab == "feedback" ? (*/}
+								{/*	<CourseFeedback {...course} />*/}
+								{/*) : (*/}
+								{/*	<CourseOverview overview={videoDescription} />*/}
+								<text>{videoDescription}</text>
+								{/*)}*/}
 							</div>
 						</div>
 
 						<div className="col-lg-3 col-md-4">
 							<StickyBox offsetTop={20} offsetBottom={20}>
 								<div className="video-sidebar">
-									<ProgressManager
-										videos_count={videos.length}
-										userId={user.id}
-										courseId={course.id}
-										selectedVideo={selectedVideo}
-									/>
+									{/*<ProgressManager*/}
+									{/*	videos_count={videos.length}*/}
+									{/*	userId={user.id}*/}
+									{/*	courseId={course.id}*/}
+									{/*	selectedVideo={selectedVideo}*/}
+									{/*/>*/}
 
 									<div className="course-video-list">
-										<h4 className="title mb-3">
-											{course && course.title}
-										</h4>
+										{/*<h4 className="title mb-3">*/}
+										{/*	{course && course.title}*/}
+										{/*</h4>*/}
 										<ul>
 											{videos.length > 0 &&
-												videos.map((video) => (
+											videos.map((video) => (
 													<VideoList
 														key={video.id}
 														{...video}
-														onPlay={() =>
-															selectVideo(
-																video.id
-															)
+														onPlay={() =>{
+															setSelectedVideo(video.sessionVideo)
+															setVideoDescription(video.sessionDescription)
+														}
+															// selectVideo(
+															// 	video.id
+															// )
+
 														}
 														activeClass={active}
 													/>

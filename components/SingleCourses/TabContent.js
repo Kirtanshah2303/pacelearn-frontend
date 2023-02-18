@@ -26,24 +26,24 @@ const TabContent = ({
 						Overview
 					</button>
 				</li>
-				<li className="nav-item">
-					<button
-						className={`nav-link ${
-							tab == "requirements" ? "active" : ""
-						}`}
-						onClick={() => setTab("requirements")}
-					>
-						Requirements
-					</button>
-				</li>
-				<li className="nav-item">
-					<button
-						className={`nav-link ${tab == "witcf" ? "active" : ""}`}
-						onClick={() => setTab("witcf")}
-					>
-						Who Is This Course For
-					</button>
-				</li>
+				{/*<li className="nav-item">*/}
+				{/*	<button*/}
+				{/*		className={`nav-link ${*/}
+				{/*			tab == "requirements" ? "active" : ""*/}
+				{/*		}`}*/}
+				{/*		onClick={() => setTab("requirements")}*/}
+				{/*	>*/}
+				{/*		Requirements*/}
+				{/*	</button>*/}
+				{/*</li>*/}
+				{/*<li className="nav-item">*/}
+				{/*	<button*/}
+				{/*		className={`nav-link ${tab == "witcf" ? "active" : ""}`}*/}
+				{/*		onClick={() => setTab("witcf")}*/}
+				{/*	>*/}
+				{/*		Who Is This Course For*/}
+				{/*	</button>*/}
+				{/*</li>*/}
 			</ul>
 
 			<div className="tab-content">

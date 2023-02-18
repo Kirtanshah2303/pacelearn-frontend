@@ -3,7 +3,7 @@ import { secondsToHms } from "@/utils/helper";
 
 const VideoList = ({
 	id,
-	title,
+    sessionTitle,
 	short_id,
 	video_length,
 	onPlay,
@@ -14,11 +14,11 @@ const VideoList = ({
 			className={activeClass === id ? "active" : ""}
 			onClick={() => onPlay(id)}
 		>
-			{short_id}. {title}
-			<span className="d-block text-muted fs-13 mt-1">
-				<i className="bx bx-play-circle"></i>{" "}
-				{secondsToHms(video_length)}
-			</span>
+			{id}. {sessionTitle}
+			{/*<span className="d-block text-muted fs-13 mt-1">*/}
+			{/*	<i className="bx bx-play-circle"></i>{" "}*/}
+			{/*	{secondsToHms(video_length)}*/}
+			{/*</span>*/}
 		</li>
 	);
 };

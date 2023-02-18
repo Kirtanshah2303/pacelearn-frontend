@@ -12,6 +12,7 @@ const courseDeatails = ({ user }) => {
 	const [course, setCourse] = useState({});
 	const router = useRouter();
 	const { slug } = router.query;
+	const [cnt,setCnt]=useState(10);
 
 	useEffect(() => {
 		const fetchCourse = async () => {
@@ -20,6 +21,23 @@ const courseDeatails = ({ user }) => {
 					params: { slug: slug },
 				};
 				const url = `${baseUrl2}/api/courses/${slug}`;
+
+				fetch(`http://localhost:8080/api/courses/${slug}/student-count`, {
+					method: 'GET',
+					headers: {
+						accept: '*/*',
+						// Authorization: bearer,
+					}
+				})
+					.then(response =>{
+						// response.json()
+						console.log("HAHA -> "+response.json().then(result => {
+							// console.log(result.studentCount)
+							setCnt(result.studentCount)
+							console.log("COunt --> "+cnt)
+						}))
+					} )
+
 				const response = await axios.get(url);
 				console.log("Response in slug.js file -->"+response)
 				setCourse(response.data.course);
@@ -55,7 +73,8 @@ const courseDeatails = ({ user }) => {
 				homePageText="Courses"
 				activePageText={course && course.title}
 			/>
-			{course && <CoursesDetailsContent user={user} course={course} />}
+			{/*{<CoursesDetailsContent user={user} course={course} studentCount={cnt} />}*/}
+			{course && <CoursesDetailsContent user={user} course={course} studentCount={cnt} />}
 			<Footer />
 		</>
 	);

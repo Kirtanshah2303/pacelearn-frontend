@@ -6,7 +6,7 @@ import InstructorProfile from "../Course/InstructorProfile";
 import { formatDate } from "@/utils/helper";
 import TabContent from "./TabContent";
 
-const CoursesDetailsContent = ({ user: current_user, course }) => {
+const CoursesDetailsContent = ({ user: current_user, course , studentCount }) => {
 	// const {
 	// 	title,
 	// 	slug,
@@ -32,6 +32,9 @@ const CoursesDetailsContent = ({ user: current_user, course }) => {
 		courseUpdatedOn,
 		user,
 	} = course;
+
+	console.log("ID --> "+id)
+	console.log("courseTitle is  --> "+courseTitle)
 
 	return (
 		<div className="course-details-area ptb-100">
@@ -76,10 +79,10 @@ const CoursesDetailsContent = ({ user: current_user, course }) => {
 
 							<TabContent
 								overview={courseDescription}
-								courseSlug={id}
-								//requirements={requirements}
-								instructor={user}
-								who_is_this_course_for={courseObjectives}
+								// courseSlug={id}
+								// //requirements={requirements}
+								// instructor={user}
+								// who_is_this_course_for={courseObjectives}
 								//is_class={is_class}
 							/>
 						</div>
@@ -88,7 +91,8 @@ const CoursesDetailsContent = ({ user: current_user, course }) => {
 					<CoursesDetailsSidebar
 						current_user={current_user}
 						course={course}
-						course_id={id}
+						// course_id={id}
+						studentCount = {studentCount}
 					/>
 				</div>
 			</div>

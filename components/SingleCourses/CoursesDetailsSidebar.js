@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import BuyCourseBtn from "./BuyCourseBtn";
 import { calculateDiscount } from "@/utils/helper";
 
-const CoursesDetailsSidebar = ({ current_user, course , course_id }) => {
+const CoursesDetailsSidebar = ({ current_user, course , studentCount }) => {
 	// console.log(course);
 	const cartItems = useSelector((state) => state.cart.cartItems);
 	const dispatch = useDispatch();
@@ -17,29 +17,29 @@ const CoursesDetailsSidebar = ({ current_user, course , course_id }) => {
 	const [apply, setApplyCoupon] = useState(false);
 	const [coupon, setCoupon] = useState({ coupon: "" });
 	const discount = useSelector((state) => state.cart.discount);
-	const [cnt,setCnt]=useState(10);
+	// const [cnt,setCnt]=useState(10);
 	// useEffect(()=>{
 
 	// })
 
-	const cntStud =(courseID) => {
-		console.log("--------------->"+course_id);
-		fetch(`http://localhost:8080/api/courses/${course_id}/student-count`, {
-			method: 'GET',
-			headers: {
-				accept: '*/*',
-				// Authorization: bearer,
-			}
-		})
-			.then(response =>{
-				// response.json()
-				console.log("HAHA -> "+response.json().then(result => {
-					// console.log(result.studentCount)
-					setCnt(result.studentCount)
-					console.log("COunt --> "+cnt)
-				}))
-			} )
-	}
+	// const cntStud =(courseID) => {
+	// 	console.log("--------------->"+course_id);
+	// 	fetch(`http://localhost:8080/api/courses/${course_id}/student-count`, {
+	// 		method: 'GET',
+	// 		headers: {
+	// 			accept: '*/*',
+	// 			// Authorization: bearer,
+	// 		}
+	// 	})
+	// 		.then(response =>{
+	// 			// response.json()
+	// 			console.log("HAHA -> "+response.json().then(result => {
+	// 				// console.log(result.studentCount)
+	// 				setCnt(result.studentCount)
+	// 				console.log("COunt --> "+cnt)
+	// 			}))
+	// 		} )
+	// }
 	// useEffect(() => {
 	// 	// const courseExist = cartItems.find((cart) => {
 	// 	// 	return course.id === cart.id;
@@ -189,7 +189,7 @@ const CoursesDetailsSidebar = ({ current_user, course , course_id }) => {
 							<i className="ri-group-line"></i>
 							Enrolled
 							<span>
-								  {console.log("$$Course ID ="+course.id)}{cntStud(course.id)}{cnt}{" "}
+								  {studentCount}{" "}
 								Students
 							</span>
 						</li>
