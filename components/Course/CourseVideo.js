@@ -1,4 +1,4 @@
-import baseUrl from "@/utils/baseUrl";
+import baseUrl2 from "@/utils/baseUrl";
 import { secondsToHms } from "@/utils/helper";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
@@ -11,7 +11,7 @@ const CourseVideo = ({ courseSlug }) => {
 	const [toggler, setToggler] = useState(false);
 	useEffect(() => {
 		const fetchVideos = async () => {
-			const url = `${baseUrl}/api/learnings/videos/${courseSlug}`;
+			const url = `${baseUrl2}/api/learnings/videos/${courseSlug}`;
 			const response = await axios.get(url);
 			setVideos(response.data.videos);
 		};

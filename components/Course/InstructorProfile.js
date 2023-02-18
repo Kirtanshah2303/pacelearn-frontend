@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 const InstructorProfile = ({ instructor }) => {
-	const { first_name, last_name, profile_photo } = instructor;
+	const { firstName, lastName, imageUrl } = instructor;
 	// console.log(instructor);
 	return (
 		<div className="admin-info d-flex align-items-center">
@@ -10,18 +10,18 @@ const InstructorProfile = ({ instructor }) => {
 				<a>
 					<img
 						src={
-							profile_photo
-								? profile_photo
+							imageUrl
+								? imageUrl
 								: "/images/admin/admin-10.jpg"
 						}
-						alt={first_name}
+						alt={firstName}
 					/>
 				</a>
 			</Link>
 			<span>Created By </span>{" "}
 			<Link href="/instructor">
 				<a>
-					{first_name} {last_name}
+					{firstName} {lastName}
 				</a>
 			</Link>
 		</div>

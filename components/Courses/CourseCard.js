@@ -27,12 +27,19 @@ const CourseCard = ({ course, onFav, onUnFav, userId, onAddCart }) => {
 		id,
 		courseTitle,
 		courseDescription,
+		courseCategory,
+		courseLength,
 		courseLogo,
+		enrolledUsersLists,
+		courseObjectives,
+		courseUpdatedOn,
 		user,
 	} = course;
 	// const [fav, setfavs] = useState(false);
 	// const [add, setAdd] = useState(false);
 	// const [buy, setBuy] = useState(false);
+
+
 
 	const enroll = (courseID) => {
 

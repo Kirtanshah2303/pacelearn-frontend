@@ -25,39 +25,39 @@ const Index = ({ user }) => {
 		query: { slug },
 	} = useRouter();
 
-	const fetchVideos = async () => {
-		const url = `${baseUrl}/api/learnings/videos/${slug}`;
-		const response = await axios.get(url);
-		setVideos(response.data.videos);
-		setSelectedVideo(response.data.videos[0].video);
-		setActive(response.data.videos[0].id);
-		setCourse(response.data.course);
-	};
+	// const fetchVideos = async () => {
+	// 	const url = `${baseUrl}/api/learnings/videos/${slug}`;
+	// 	const response = await axios.get(url);
+	// 	setVideos(response.data.videos);
+	// 	setSelectedVideo(response.data.videos[0].video);
+	// 	setActive(response.data.videos[0].id);
+	// 	setCourse(response.data.course);
+	// };
 
-	useEffect(() => {
-		fetchVideos();
-	}, [slug]);
+	// useEffect(() => {
+	// 	fetchVideos();
+	// }, [slug]);
 
-	const selectVideo = async (videoId) => {
-		// console.log(videoId);
-		try {
-			const payload = {
-				params: { userId: user.id, courseId: course.id },
-			};
-			const url = `${baseUrl}/api/learnings/video/${videoId}`;
-			const response = await axios.get(url, payload);
-			const {
-				data: { video },
-			} = response;
-
-			setSelectedVideo(video.video);
-			setActive(video.id);
-
-			// console.log(video);
-		} catch (err) {
-			console.log(err.response.data);
-		}
-	};
+	// const selectVideo = async (videoId) => {
+	// 	// console.log(videoId);
+	// 	try {
+	// 		const payload = {
+	// 			params: { userId: user.id, courseId: course.id },
+	// 		};
+	// 		const url = `${baseUrl}/api/learnings/video/${videoId}`;
+	// 		const response = await axios.get(url, payload);
+	// 		const {
+	// 			data: { video },
+	// 		} = response;
+	//
+	// 		setSelectedVideo(video.video);
+	// 		setActive(video.id);
+	//
+	// 		// console.log(video);
+	// 	} catch (err) {
+	// 		console.log(err.response.data);
+	// 	}
+	// };
 
 	return (
 		<>

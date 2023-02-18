@@ -5,7 +5,7 @@ import PageBanner from "@/components/Common/PageBanner";
 import CoursesDetailsContent from "@/components/SingleCourses/CoursesDetailsContent";
 import Footer from "@/components/_App/Footer";
 import axios from "axios";
-import baseUrl from "@/utils/baseUrl";
+import baseUrl2 from "@/utils/baseUrl2";
 import toast from "react-hot-toast";
 
 const courseDeatails = ({ user }) => {
@@ -19,8 +19,9 @@ const courseDeatails = ({ user }) => {
 				const payload = {
 					params: { slug: slug },
 				};
-				const url = `${baseUrl}/api/courses/course`;
-				const response = await axios.get(url, payload);
+				const url = `${baseUrl2}/api/courses/${slug}`;
+				const response = await axios.get(url);
+				console.log("Response in slug.js file -->"+response)
 				setCourse(response.data.course);
 			} catch (err) {
 				let {

@@ -7,18 +7,30 @@ import { formatDate } from "@/utils/helper";
 import TabContent from "./TabContent";
 
 const CoursesDetailsContent = ({ user: current_user, course }) => {
+	// const {
+	// 	title,
+	// 	slug,
+	// 	overview,
+	// 	what_you_will_learn,
+	// 	who_is_this_course_for,
+	// 	requirements,
+	// 	is_class,
+	// 	updated_at,
+	// 	category,
+	// 	user,
+	// 	enrolments,
+	// } = course;
 	const {
-		title,
-		slug,
-		overview,
-		what_you_will_learn,
-		who_is_this_course_for,
-		requirements,
-		is_class,
-		updated_at,
-		category,
+		id,
+		courseTitle,
+		courseDescription,
+		courseCategory,
+		courseLength,
+		courseLogo,
+		courseObjectives,
+		enrolledUsersLists,
+		courseUpdatedOn,
 		user,
-		enrolments,
 	} = course;
 
 	return (
@@ -27,26 +39,26 @@ const CoursesDetailsContent = ({ user: current_user, course }) => {
 				<div className="row">
 					<div className="col-lg-8">
 						<div className="course-details-content">
-							<h2 className="title">{title}</h2>
+							<h2 className="title">{courseTitle}</h2>
 							<ul className="best-seller">
-								{category && (
+								{courseCategory && (
 									<li>
 										<Link
-											href={`/category/${category.slug}`}
+											href={`/category/${courseCategory.id}`}
 										>
-											<a>{category.name}</a>
+											<a>{courseCategory.courseCategoryTitle}</a>
 										</Link>
 									</li>
 								)}
 								<li>
 									<span>
-										{enrolments && enrolments.length}
+										{enrolledUsersLists && enrolledUsersLists.length}
 									</span>{" "}
 									Students
 								</li>
 								<li>
 									Last Updated{" "}
-									<span>{formatDate(updated_at)}</span>
+									<span>{formatDate(courseUpdatedOn)}</span>
 								</li>
 							</ul>
 
@@ -57,18 +69,18 @@ const CoursesDetailsContent = ({ user: current_user, course }) => {
 							<div className="gap-mb-30"></div>
 
 							<WhatYouWillLearn
-								what_you_will_learn={what_you_will_learn}
+								what_you_will_learn={courseObjectives}
 							/>
 
 							<div className="gap-mb-50"></div>
 
 							<TabContent
-								overview={overview}
-								courseSlug={slug}
-								requirements={requirements}
+								overview={courseDescription}
+								courseSlug={id}
+								//requirements={requirements}
 								instructor={user}
-								who_is_this_course_for={who_is_this_course_for}
-								is_class={is_class}
+								who_is_this_course_for={courseObjectives}
+								//is_class={is_class}
 							/>
 						</div>
 					</div>
@@ -76,6 +88,7 @@ const CoursesDetailsContent = ({ user: current_user, course }) => {
 					<CoursesDetailsSidebar
 						current_user={current_user}
 						course={course}
+						course_id={id}
 					/>
 				</div>
 			</div>
