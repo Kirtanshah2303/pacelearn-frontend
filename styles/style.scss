@@ -2412,10 +2412,13 @@ Footer Area Style
 Pages Banner Area Style
 ======================================================*/
 .pages-banner-area {
-	background: linear-gradient(96.41deg, #6CC17E 10.61%, #098B99 70.66%);
+	background: linear-gradient(96.41deg, #9fccfa 10.61%, #0974f1 70.66%);
+	// background: linear-gradient(96.41deg, red 10.61%, #0974f1 70.66% !important);
+
 	position: relative;
 	z-index: 1;
 	overflow: hidden;
+
 	&::before {
 		content: "";
 		position: absolute;
@@ -2460,6 +2463,7 @@ Pages Banner Area Style
 			animation: off-on 15s infinite linear;
 		}
 	}
+
 }
 .pages-banner-content {
 	text-align: center;
@@ -3082,6 +3086,7 @@ Contact Info Area Style
 	}
 	&.bg-a8e3da {
 		background-color: #a8e3da;
+
 	}
 	img {
 		margin-right: 20px;

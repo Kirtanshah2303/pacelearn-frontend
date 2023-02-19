@@ -58,12 +58,15 @@ const RegisterForm = () => {
 			handleLogin(response.data.edmy_users_token, router);
 			toast.success(response.data.message, {
 				style: {
-					border: "1px solid #4BB543",
+					border: "1px solid #9fccfa",
 					padding: "16px",
-					color: "#4BB543",
+					// color: "#4BB543",
+					color: "#9fccfa",
+
 				},
 				iconTheme: {
-					primary: "#4BB543",
+					// primary: "#4BB543",
+					primary: "#9fccfa",
 					secondary: "#FFFAEE",
 				},
 			});

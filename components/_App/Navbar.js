@@ -49,7 +49,7 @@ const Navbar = ({ user }) => {
 									onClick={toggleNavbar}
 									className="navbar-brand"
 								>
-									<img src="/images/logo.png" alt="logo" />
+									<img src="/images/tmp-logo.png" alt="logo" />
 								</a>
 							</Link>
 
