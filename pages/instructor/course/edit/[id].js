@@ -5,7 +5,7 @@ import CourseUpdateForm from "@/components/Instructor/CourseUpdateForm";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { parseCookies } from "nookies";
-import baseUrl from "@/utils/baseUrl";
+import baseUrl2 from "@/utils/baseUrl2";
 import PageNavigation from "../../../../components/Instructor/PageNavigation";
 
 const Create = ({ user }) => {
@@ -17,9 +17,9 @@ const Create = ({ user }) => {
 	useEffect(() => {
 		const fetchCourse = async () => {
 			const payload = {
-				headers: { Authorization: edmy_users_token },
+				headers: { Authorization:"Bearer "+ edmy_users_token },
 			};
-			const url = `${baseUrl}/api/courses/course/${courseId}`;
+			const url = `${baseUrl2}/api/courses/${courseId}`;
 			const response = await axios.get(url, payload);
 			setCourse(response.data.course);
 		};
