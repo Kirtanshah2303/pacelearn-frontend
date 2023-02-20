@@ -48,6 +48,17 @@ const PageNavigation = ({ courseId, activeClassname }) => {
 					</Link>
 				</li>
 				<li>
+					<Link href={`/instructor/course/section/${courseId}`}>
+						<a
+							className={
+								activeClassname == "section" ? "active" : ""
+							}
+						>
+							Course Section
+						</a>
+					</Link>
+				</li>
+				<li>
 					<Link href={`/instructor/course/upload/${courseId}`}>
 						<a
 							className={
