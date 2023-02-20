@@ -112,8 +112,8 @@ export async function getServerSideProps() {
 	// const { courses, categories } = await res.json();
 	const {courses} = await res.json();
 	const {categories} = await res2.json();
-	console.log("HAHA Courses is --> "+courses);
-	console.log("HAHA Categories is -->	 "+categories);
+	// console.log("HAHA Courses is --> "+courses);
+	// console.log("HAHA Categories is -->	 "+categories);
 
 	// Pass data to the page via props
 	return { props: { courses,categories} };

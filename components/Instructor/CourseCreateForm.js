@@ -11,6 +11,8 @@ import baseUrl2 from "@/utils/baseUrl2";
 import toast from "react-hot-toast";
 import { useRouter } from "next/router";
 import Button from "@/utils/Button";
+import * as S3 from 'aws-sdk/clients/s3';
+// import {handleImageUpload} from "@/utils/handleImageUpload";
 
 const INITIAL_VALUE = {
 	id : "",
@@ -23,7 +25,8 @@ const INITIAL_VALUE = {
 	courseLevel : {},
 	courseParentCategory : {},
 	courseCategory : {},
-	courseType : {}
+	courseType : {},
+	image : {}
 	// requirements: "",
 	// what_you_will_learn: "",
 	// who_is_this_course_for: "",
@@ -95,7 +98,7 @@ const CourseCreateForm = ({ btnText, is_class , parentCategories , level }) => {
 	const handleChange = (e) => {
 		const { name, value, files } = e.target;
 
-		if (name === "image") {
+		if (name === "courseLogo") {
 			const image = files[0].size / 1024 / 1024;
 			if (image > 2) {
 				toast.error(
@@ -163,30 +166,59 @@ const CourseCreateForm = ({ btnText, is_class , parentCategories , level }) => {
 
 	};
 
-	// const handleImageUpload = async () => {
-	// 	const data = new FormData();
-	// 	data.append("file", course.courseLogo);
-	// 	data.append("upload_preset", process.env.UPLOAD_PRESETS);
-	// 	data.append("cloud_name", process.env.CLOUD_NAME);
-	// 	let response;
-	// 	if (course.image) {
-	// 		response = await axios.post(process.env.CLOUDINARY_URL, data);
-	// 	}
-	// 	const imageUrl = response.data.url;
-	//
-	// 	return imageUrl;
-	// };
+	const handleImageUpload = async () => {
+		// const data = new FormData();
+		// data.append("file", course.courseLogo);
+		// data.append("upload_preset", process.env.UPLOAD_PRESETS);
+		// data.append("cloud_name", process.env.CLOUD_NAME);
+		// let response;
+		// if (course.image) {
+		// 	response = await axios.post(process.env.CLOUDINARY_URL, data);
+		// }
+		let fileName = '';
+		if (course.image!=null){
+			console.log("Inside handle image upload")
+			const contentType = course.image.type;
+			const bucket = new S3({
+				accessKeyId: 'AKIAUAPPTOSJ4XNUJ2D5',
+				secretAccessKey: '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',
+				region: 'ap-south-1',
+			});
+			fileName = '_' + Math.random().toString(36).substr(2, 9);
+			const params = {
+				Bucket: 'charuvidya-charusat',
+				Key: fileName,
+				Body: course.image,
+				ACL: 'public-read',
+				ContentType: contentType,
+			};
+
+			try {
+				const res = (await bucket.upload(params).promise()).Location;
+				course.courseLogo = res;
+				fileName = res;
+			} catch (e) {
+				window.alert(e);
+			}
+		}
+		// const imageUrl = response.data.url;
+
+		return fileName;
+	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
 			setLoading(true);
-			// let photo;
-			// if (course.courseLogo) {
-			// 	photo = await handleImageUpload();
-			//
-			// 	photo = photo.replace(/^http:\/\//i, "https://");
-			// }
+			let photo;
+			if (course.image) {
+				console.log("Insisde image part")
+				photo = await handleImageUpload();
+				course.courseLogo = photo
+				console.log(course.courseLogo)
+				// course.courseLogo = photo;
+				// photo = photo.replace(/^http:\/\//i, "https://");
+			}
 
 			// const {
 			// 	title,
@@ -235,7 +267,7 @@ const CourseCreateForm = ({ btnText, is_class , parentCategories , level }) => {
 			const response = await axios.post(url, payloadData, payloadHeader);
 			setLoading(false);
 
-			toast.success(response.data.message, {
+			toast.success("Course created and sent for approval", {
 				style: {
 					border: "1px solid #4BB543",
 					padding: "16px",
@@ -254,15 +286,16 @@ const CourseCreateForm = ({ btnText, is_class , parentCategories , level }) => {
 				router.push(
 					`/instructor/course/upload/${response.data.id}`
 				);
+				// router.push(`/instructor/courses`);
 			}
 		} catch (err) {
 			// console.log(err);
-			let {
-				response: {
-					data: { message },
-				},
-			} = err;
-			toast.error(message, {
+			// let {
+			// 	response: {
+			// 		data: { e },
+			// 	},
+			// } = err;
+			toast.error("Something went wrong", {
 				style: {
 					border: "1px solid #ff0033",
 					padding: "16px",
