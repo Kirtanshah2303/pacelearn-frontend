@@ -252,7 +252,7 @@ const CourseCreateForm = ({ btnText, is_class , parentCategories , level }) => {
 			} else {
 				console.log("Response data is --> "+response.data.id)
 				router.push(
-					`/instructor/course/upload/${response.data.id}`
+					`/instructor/course/section/${response.data.id}`
 				);
 			}
 		} catch (err) {
