@@ -4,7 +4,7 @@ import Link from "next/link";
 function Business() {
 	return (
 		<div className="business-area pb-100">
-			<div className="container">
+			{/* <div className="container">
 				<div className="business-bg rounded bg-color-f2f0ef ptb-100">
 					<div className="row align-items-center">
 						<div className="col-lg-7">
@@ -38,7 +38,7 @@ function Business() {
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> */}
 		</div>
 	);
 }

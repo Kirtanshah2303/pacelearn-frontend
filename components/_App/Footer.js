@@ -13,7 +13,7 @@ const Footer = () => {
 							<div className="single-footer-widget">
 								<a href="index.html" className="logo">
 									<img
-										src="/images/logo.png"
+										src="/images/tmp-logo.png"
 										className="main-logo"
 										alt="logo"
 									/>
@@ -122,18 +122,19 @@ const Footer = () => {
 								<ul className="info">
 									<li>
 										<span>Call Us:</span>{" "}
-										<a href="tel:1-885-665-2022">
-											1-885-665-2022
+										<a href="tel:02697-265011">
+										  02697-265011
 										</a>
 									</li>
 									<li>
-										<span>Address:</span> +7011 Vermont Ave,
-										Los Angeles, CA 90044
+										<span>Address:</span> CHARUSAT university,
+										changa, nadiad.
+									
 									</li>
 									<li>
 										<span>Mail Us:</span>{" "}
-										<a href="mailto:hello@edmy.com">
-											hello@edmy.com
+										<a href="mailto: info@charusat.ac.in">
+										info@charusat.ac.in
 										</a>
 									</li>
 								</ul>
@@ -148,7 +149,7 @@ const Footer = () => {
 					alt="footer"
 				/>
 				<img
-					src="/images/footer-shape-2.png"
+					src="/images/charusat-logo.png"
 					className="shape shape-2"
 					alt="footer"
 				/>
@@ -157,9 +158,9 @@ const Footer = () => {
 			<div className="copy-right-area bg-color-f6fafb">
 				<div className="container">
 					<p>
-						&copy; Edmy {currentYear} is Proudly Owned by{" "}
+						{/* &copy; Edmy {currentYear} is Proudly Owned by{" "} */}
 						<a href="https://hibootstrap.com/" target="_blank">
-							HiBootstrap
+							
 						</a>
 					</p>
 				</div>
