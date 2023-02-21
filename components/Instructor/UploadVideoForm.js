@@ -5,40 +5,58 @@ import baseUrl from "@/utils/baseUrl";
 import toast from "react-hot-toast";
 import { useRouter } from "next/router";
 import Button from "@/utils/Button";
+import baseUrl2 from "@/utils/baseUrl2";
+import * as S3 from 'aws-sdk/clients/s3';
 
 const INITIAL_VALUE = {
-	group_name: "",
-	title: "",
-	thumb: "",
-	video: "",
-	video_length: 0.0,
+	sessionDescription: "",
+	sessionTitle: "",
+	sessionVideo: "",
+	sessionResource: "",
+	sectionId: 0,
 	is_preview: false,
-	short_id: 0,
+	isDraft: false,
+	quizLink: "",
 	courseId: "",
+	sessionDuration : 0,
+	video : {}
 };
 
-const UploadVideoForm = ({ courseId }) => {
+const UploadVideoForm = ({ courseId ,courseSection}) => {
 	const { edmy_users_token } = parseCookies();
 	const [video, setVideo] = useState(INITIAL_VALUE);
-	const [disabled, setDisabled] = React.useState(true);
+	const [section, setSection] = useState([]);
+
+	// const [disabled, setDisabled] = React.useState(true);
 	const [loading, setLoading] = React.useState(false);
-	const [thumbPreview, setThumbPreview] = React.useState("");
+	// const [thumbPreview, setThumbPreview] = React.useState("");
 	const router = useRouter();
 
 	useEffect(() => {
-		setVideo((prevState) => ({ ...prevState, courseId }));
-	}, []);
 
-	useEffect(() => {
-		let { group_name, title, video: video_url, courseId } = video;
-		const isVideo = Object.values({
-			group_name,
-			title,
-			video_url,
-			courseId,
-		}).every((el) => Boolean(el));
-		isVideo ? setDisabled(false) : setDisabled(true);
-	}, [video]);
+		fetch(`${baseUrl2}/api/course-section/${courseId}`,{
+			headers: { Authorization: edmy_users_token },
+		}).then(response => response.json().then(result => {
+			console.log(result)
+			setSection(result)
+		}))
+
+	},[])
+
+	// useEffect(() => {
+	// 	setVideo((prevState) => ({ ...prevState, courseId }));
+	// }, []);
+
+	// useEffect(() => {
+	// 	let { group_name, title, video: video_url, courseId } = video;
+	// 	const isVideo = Object.values({
+	// 		group_name,
+	// 		title,
+	// 		video_url,
+	// 		courseId,
+	// 	}).every((el) => Boolean(el));
+	// 	isVideo ? setDisabled(false) : setDisabled(true);
+	// }, [video]);
 
 	const handleChange = (e) => {
 		const { name, value, files } = e.target;
@@ -71,31 +89,31 @@ const UploadVideoForm = ({ courseId }) => {
 			setThumbPreview(window.URL.createObjectURL(files[0]));
 		} else if (name === "video") {
 			fileSize = files[0].size / 1024 / 1024;
-			if (fileSize > 5) {
-				toast.error(
-					"The video size greater than 5 MB. Make sure less than 5 MB.",
-					{
-						style: {
-							border: "1px solid #ff0033",
-							padding: "16px",
-							color: "#ff0033",
-						},
-						iconTheme: {
-							primary: "#ff0033",
-							secondary: "#FFFAEE",
-						},
-					}
-				);
-				e.target.value = null;
-				return;
-			}
+			// if (fileSize > 5) {
+			// 	toast.error(
+			// 		"The video size greater than 5 MB. Make sure less than 5 MB.",
+			// 		{
+			// 			style: {
+			// 				border: "1px solid #ff0033",
+			// 				padding: "16px",
+			// 				color: "#ff0033",
+			// 			},
+			// 			iconTheme: {
+			// 				primary: "#ff0033",
+			// 				secondary: "#FFFAEE",
+			// 			},
+			// 		}
+			// 	);
+			// 	e.target.value = null;
+			// 	return;
+			// }
 
 			let media = new Audio(window.URL.createObjectURL(files[0]));
 			media.onloadedmetadata = function () {
 				setVideo((prevState) => ({
 					...prevState,
 					video: files[0],
-					video_length: media.duration,
+					sessionDuration: media.duration,
 				}));
 			};
 		} else {
@@ -104,33 +122,52 @@ const UploadVideoForm = ({ courseId }) => {
 	};
 
 	const handleVideoUpload = async () => {
-		const data = new FormData();
-		data.append("file", video.video);
-		data.append("upload_preset", process.env.UPLOAD_PRESETS);
-		data.append("cloud_name", process.env.CLOUD_NAME);
-		let response;
-		if (video.video) {
-			response = await axios.post(process.env.CLOUDINARY_VIDEO_URL, data);
-		}
+		let fileName = '';
+		if (video.video!=null){
+			console.log("Inside handle image upload")
+			const contentType = video.video.type;
+			const bucket = new S3({
+				accessKeyId: 'AKIAUAPPTOSJ4XNUJ2D5',
+				secretAccessKey: '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',
+				region: 'ap-south-1',
+			});
+			fileName = '_' + Math.random().toString(36).substr(2, 9);
+			const params = {
+				Bucket: 'charuvidya-charusat',
+				Key: fileName,
+				Body: video.video,
+				ACL: 'public-read',
+				ContentType: contentType,
+			};
 
-		const mediaUrl = response.data.url;
-		return mediaUrl;
+			try {
+				const res = (await bucket.upload(params).promise()).Location;
+				console.log("Location of video is --? "+ res)
+				video.sessionVideo = res;
+				fileName = res;
+			} catch (e) {
+				window.alert(e);
+			}
+		}
+		// const imageUrl = response.data.url;
+
+		// return fileName;
 	};
 
-	const handleThumbUpload = async () => {
-		const data = new FormData();
-		data.append("file", video.thumb);
-		data.append("upload_preset", process.env.UPLOAD_PRESETS);
-		data.append("cloud_name", process.env.CLOUD_NAME);
-		let response;
-		if (video.thumb) {
-			response = await axios.post(process.env.CLOUDINARY_URL, data);
-		}
-
-		const imageUrl = response.data.url;
-
-		return imageUrl;
-	};
+	// const handleThumbUpload = async () => {
+	// 	const data = new FormData();
+	// 	data.append("file", video.thumb);
+	// 	data.append("upload_preset", process.env.UPLOAD_PRESETS);
+	// 	data.append("cloud_name", process.env.CLOUD_NAME);
+	// 	let response;
+	// 	if (video.thumb) {
+	// 		response = await axios.post(process.env.CLOUDINARY_URL, data);
+	// 	}
+	//
+	// 	const imageUrl = response.data.url;
+	//
+	// 	return imageUrl;
+	// };
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -139,60 +176,127 @@ const UploadVideoForm = ({ courseId }) => {
 			let videoUrl = "";
 			let thumbUrl = "";
 			if (video.video) {
-				const videoUpload = await handleVideoUpload();
-				videoUrl = videoUpload.replace(/^http:\/\//i, "https://");
-				const thumbUpload = await handleThumbUpload();
-				thumbUrl = thumbUpload.replace(/^http:\/\//i, "https://");
+				// const videoUpload = await handleVideoUpload();
+				await handleVideoUpload();
+				// video.sessionVideo = videoUpload
+				console.log("Session video = " + video.sessionVideo)
+				// videoUrl = videoUpload.replace(/^http:\/\//i, "https://");
+				// const thumbUpload = await handleThumbUpload();
+				// thumbUrl = thumbUpload.replace(/^http:\/\//i, "https://");
 			}
 
 			const {
-				group_name,
-				title,
-				video_length,
+				sessionTitle,
+				sessionDescription,
+				sessionVideo,
+				sessionResource,
+				sectionId,
 				is_preview,
-				short_id,
-				courseId,
+				isDraft,
+				quizLink,
+				sessionDuration
 			} = video;
 
 			const payloadData = {
-				group_name,
-				title,
-				thumb: thumbUrl,
-				video: videoUrl,
-				video_length,
+				sessionTitle,
+				sessionDescription,
+				sessionVideo,
+				sessionResource,
+				sectionId,
 				is_preview,
-				short_id,
-				courseId,
+				isDraft,
+				quizLink,
+				sessionDuration
 			};
-			const url = `${baseUrl}/api/courses/course/upload/new`;
+			const url = `${baseUrl2}/api/course/${courseId}/course-session`;
 			const payloadHeader = {
-				headers: { Authorization: edmy_users_token },
+				headers: { Authorization: edmy_users_token,
+					"Content-Type" : 'application/json'
+
+				},
 			};
 
-			const response = await axios.post(url, payloadData, payloadHeader);
+			// const response = await axios.post(url, payloadData, payloadHeader);
 
-			toast.success(response.data.message, {
-				style: {
-					border: "1px solid #4BB543",
-					padding: "16px",
-					color: "#4BB543",
+			fetch(url,{
+				method : "POST",
+				headers : {
+					Authorization: "Bearer " + edmy_users_token,
+					"Content-Type" : 'application/json'
 				},
-				iconTheme: {
-					primary: "#4BB543",
-					secondary: "#FFFAEE",
-				},
-			});
+				body : JSON.stringify(payloadData)
+			}).then(response => {
+				response.json().then(response => {
 
-			setLoading(false);
 
-			router.push(`/instructor/course/uploads/${courseId}`);
+					toast.success("Video uploaded successfully", {
+						style: {
+							border: "1px solid #4BB543",
+							padding: "16px",
+							color: "#4BB543",
+						},
+						iconTheme: {
+							primary: "#4BB543",
+							secondary: "#FFFAEE",
+						},
+					});
+
+					setLoading(false);
+
+					router.push(`/instructor/course/uploads/${courseId}`);
+
+
+					// console.log("Get response is --> "+response.title)
+					// setLoading(false);
+					//
+					// toast.success("Submitted successfully", {
+					// 	style: {
+					// 		border: "1px solid #4BB543",
+					// 		padding: "16px",
+					// 		color: "#4BB543",
+					// 	},
+					// 	iconTheme: {
+					// 		primary: "#4BB543",
+					// 		secondary: "#FFFAEE",
+					// 	},
+					// });
+					//
+					// // if (is_class) {
+					// //     router.push(`/instructor/courses`);
+					// // } else {
+					// console.log("Response data is --> "+response.id)
+					// router.push(
+					// 	`/instructor/course/upload/${courseId}`
+					// 	// `/instructor/course/upload/${response.id}`
+					// );
+					// }
+				})
+			}).catch(error => {
+				console.log("Error is --> "+error)
+			})
+
+			// toast.success("Video uploaded successfully", {
+			// 	style: {
+			// 		border: "1px solid #4BB543",
+			// 		padding: "16px",
+			// 		color: "#4BB543",
+			// 	},
+			// 	iconTheme: {
+			// 		primary: "#4BB543",
+			// 		secondary: "#FFFAEE",
+			// 	},
+			// });
+			//
+			// setLoading(false);
+			//
+			// router.push(`/instructor/course/uploads/${courseId}`);
 		} catch (err) {
-			let {
-				response: {
-					data: { message },
-				},
-			} = err;
-			toast.error(message, {
+			// let {
+			// 	response: {
+			// 		data: { message },
+			// 	},
+			// } = err;
+			toast.error(err, {
 				style: {
 					border: "1px solid #ff0033",
 					padding: "16px",
@@ -214,29 +318,29 @@ const UploadVideoForm = ({ courseId }) => {
 				<div className="col-md-6">
 					<div className="form-group">
 						<label className="form-label fw-semibold">
-							Video Group Title
-						</label>
-						<input
-							type="text"
-							className="form-control"
-							placeholder="Group Title"
-							name="group_name"
-							value={video.group_name}
-							onChange={handleChange}
-						/>
-					</div>
-				</div>
-				<div className="col-md-6">
-					<div className="form-group">
-						<label className="form-label fw-semibold">
 							Video Title
 						</label>
 						<input
 							type="text"
 							className="form-control"
-							placeholder="Video Title"
-							name="title"
-							value={video.title}
+							placeholder="Session Title"
+							name="sessionTitle"
+							value={video.sessionTitle}
+							onChange={handleChange}
+						/>
+					</div>
+				</div>
+				<div className="col-md-6">
+					<div className="form-group">
+						<label className="form-label fw-semibold">
+							Video Description
+						</label>
+						<input
+							type="text"
+							className="form-control"
+							placeholder="Video Description"
+							name="sessionDescription"
+							value={video.sessionDescription}
 							onChange={handleChange}
 						/>
 					</div>
@@ -245,30 +349,22 @@ const UploadVideoForm = ({ courseId }) => {
 				<div className="col-md-6">
 					<div className="form-group">
 						<label className="form-label fw-semibold">
-							Select Thumbnail Image
+							Course Section
 						</label>
-						<input
-							type="file"
-							className="form-control file-control"
-							name="thumb"
+						<select
+							className="form-select"
+							name="sectionId"
+							value={video.sectionId}
 							onChange={handleChange}
-							required={true}
-						/>
-						<div className="form-text">
-							Upload image size 1280x720!
-						</div>
-
-						<div className="mt-2">
-							<img
-								src={
-									thumbPreview
-										? thumbPreview
-										: "/images/courses/course-1.jpg"
-								}
-								alt="image"
-								className="img-thumbnail w-100px me-2"
-							/>
-						</div>
+						>
+							<option value="">Select</option>
+							{section.length > 0 &&
+							section.map((cat) => (
+								<option key={cat.id} value={cat.id}>
+									{cat.sectionTitle}
+								</option>
+							))}
+						</select>
 					</div>
 				</div>
 
@@ -285,21 +381,54 @@ const UploadVideoForm = ({ courseId }) => {
 						/>
 					</div>
 				</div>
+				{/*<div className="col-md-6">*/}
+				{/*	<div className="form-group">*/}
+				{/*		<label className="form-label fw-semibold">*/}
+				{/*			Video Order Number (Ascending)*/}
+				{/*		</label>*/}
+				{/*		<input*/}
+				{/*			type="number"*/}
+				{/*			className="form-control"*/}
+				{/*			placeholder="Group Title"*/}
+				{/*			name="short_id"*/}
+				{/*			value={video.short_id}*/}
+				{/*			onChange={handleChange}*/}
+				{/*		/>*/}
+				{/*	</div>*/}
+				{/*</div>*/}
+
 				<div className="col-md-6">
 					<div className="form-group">
 						<label className="form-label fw-semibold">
-							Video Order Number (Ascending)
+							Session Resource
 						</label>
 						<input
-							type="number"
+							type="text"
 							className="form-control"
-							placeholder="Group Title"
-							name="short_id"
-							value={video.short_id}
+							placeholder="Session Resource"
+							name="sessionResource"
+							value={video.sessionResource}
 							onChange={handleChange}
 						/>
 					</div>
 				</div>
+
+				<div className="col-md-6">
+					<div className="form-group">
+						<label className="form-label fw-semibold">
+							Session Quiz
+						</label>
+						<input
+							type="text"
+							className="form-control"
+							placeholder="Link of the Quiz"
+							name="quizLink"
+							value={video.quizLink}
+							onChange={handleChange}
+						/>
+					</div>
+				</div>
+
 				<div className="col-md-6">
 					<div className="form-group">
 						<input
@@ -326,7 +455,7 @@ const UploadVideoForm = ({ courseId }) => {
 				<div className="col-12">
 					<Button
 						loading={loading}
-						disabled={loading || disabled}
+						// disabled={loading || disabled}
 						btnText="Upload Video"
 						btnClass="default-btn"
 					/>

@@ -88,7 +88,8 @@ const CourseSection = ({courseId}) => {
                     // } else {
                         console.log("Response data is --> "+response.id)
                         router.push(
-                            `/instructor/course/upload/${response.id}`
+                            `/instructor/course/upload/${courseId}`
+                            // `/instructor/course/upload/${response.id}`
                         );
                     // }
                 })

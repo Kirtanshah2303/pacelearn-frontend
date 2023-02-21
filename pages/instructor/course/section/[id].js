@@ -41,8 +41,8 @@ const Create = ({ user }) => {
 
                     <div className="create-course-form">
                         {/*<CourseSection courseId={courseId} />*/}
-                        { <CourseSection courseId={courseId} /> }
-                        {/*{course && <CourseSection courseId={courseId} />}*/}
+                        {/*{ <CourseSection courseId={courseId} /> }*/}
+                        {course && <CourseSection courseId={courseId} />}
                     </div>
                 </div>
             </div>

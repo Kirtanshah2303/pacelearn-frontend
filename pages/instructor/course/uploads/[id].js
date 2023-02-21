@@ -5,7 +5,7 @@ import Footer from "@/components/_App/Footer";
 import PageNavigation from "@/components/Instructor/PageNavigation";
 import axios from "axios";
 import { parseCookies } from "nookies";
-import baseUrl from "@/utils/baseUrl";
+import baseUrl2 from "@/utils/baseUrl2";
 import toast from "react-hot-toast";
 import { useRouter } from "next/router";
 import CourseVideos from "@/components/Instructor/CourseVideos";
@@ -24,10 +24,10 @@ const Index = ({ user }) => {
 			headers: { Authorization: edmy_users_token },
 		};
 
-		const url = `${baseUrl}/api/courses/course/upload/${courseId}`;
+		const url = `${baseUrl2}/api/videoSessions/${courseId}`;
 
 		const response = await axios.get(url, payload);
-		setVideos(response.data.videos);
+		setVideos(response.data.video);
 		setLoading(false);
 	};
 
