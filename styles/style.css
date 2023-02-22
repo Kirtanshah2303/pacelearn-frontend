@@ -5356,11 +5356,13 @@ Course Details Area Style
   color: #0d0c0c;
   font-weight: 600;
   border-bottom: 1px solid #F5F5F5;
+  font-size: 15px;
 }
 
 .course-details-sidebar .sidebar-futcher ul li span {
   color: #646464;
   float: right;
+  font-size: 13px;
 }
 
 .course-details-sidebar .sidebar-futcher ul li:last-child {
