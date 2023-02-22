@@ -1,10 +1,40 @@
-import React from "react";
+import React, {useState,useEffect} from "react";
 import Navbar from "@/components/_App/Navbar";
 import Footer from "@/components/_App/Footer";
 import Link from "next/link";
 import CourseCreateForm from "@/components/Instructor/CourseCreateForm";
+import baseUrl2 from "@/utils/baseUrl2";
+import {parseCookies} from "nookies";
 
 const Create = ({ user }) => {
+	const { edmy_users_token } = parseCookies();
+	const [parentCategories, setParentCategories] = useState([]);
+	// const [categories, setCategories] = useState([]);
+	const [level, setLevel] = useState([]);
+
+	useEffect(() => {
+		// const { edmy_users_token } = parseCookies();
+		// const [parentCategories, setParentCategories] = useState([]);
+		// // const [categories, setCategories] = useState([]);
+		// const [level, setLevel] = useState([]);
+
+		fetch(`${baseUrl2}/api/course-category/parent-categories`,{
+			headers: { Authorization: edmy_users_token },
+		}).then(response => response.json().then(result => {
+			console.log(result.parentCategories)
+			setParentCategories(result.parentCategories)
+		}))
+
+		fetch(`${baseUrl2}/api/course-levels`,{
+			headers: { Authorization: edmy_users_token },
+		}).then(response => response.json().then(result => {
+			console.log(result.levels)
+			setLevel(result.levels)
+		}))
+	}, []);
+
+
+
 	return (
 		<>
 			<Navbar user={user} />
@@ -32,7 +62,7 @@ const Create = ({ user }) => {
 					</ul>
 
 					<div className="create-course-form">
-						<CourseCreateForm />
+						<CourseCreateForm parentCategories={parentCategories} level ={level} />
 					</div>
 				</div>
 			</div>

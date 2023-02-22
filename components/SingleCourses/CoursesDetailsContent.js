@@ -35,6 +35,7 @@ const CoursesDetailsContent = ({ user: current_user, course , studentCount }) =>
 
 	console.log("ID --> "+id)
 	console.log("courseTitle is  --> "+courseTitle)
+	console.log("courseDescription is  --> "+courseDescription)
 
 	return (
 		<div className="course-details-area ptb-100">
@@ -78,7 +79,7 @@ const CoursesDetailsContent = ({ user: current_user, course , studentCount }) =>
 							<div className="gap-mb-50"></div>
 
 							<TabContent
-								overview={courseDescription}
+								overview = {courseDescription}
 								// courseSlug={id}
 								// //requirements={requirements}
 								// instructor={user}

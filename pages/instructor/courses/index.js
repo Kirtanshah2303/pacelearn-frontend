@@ -6,7 +6,7 @@ import InstructorHeader from "@/components/Instructor/InstructorHeader";
 import CoursesCard from "@/components/Instructor/CoursesCard";
 import axios from "axios";
 import { parseCookies } from "nookies";
-import baseUrl from "@/utils/baseUrl";
+import baseUrl2 from "@/utils/baseUrl2";
 import GeneralLoader from "@/utils/GeneralLoader";
 import toast from "react-hot-toast";
 
@@ -17,10 +17,11 @@ const Index = ({ user }) => {
 
 	const fetchCourses = async () => {
 		const payload = {
-			headers: { Authorization: edmy_users_token },
+			headers: { Authorization: "Bearer "+edmy_users_token },
 		};
 
-		const response = await axios.get(`${baseUrl}/api/courses`, payload);
+		const response = await axios.get(`${baseUrl2}/api/courses`, payload);
+		console.log("Inside fetchCourses --> "+response.data.courses)
 		setCourses(response.data.courses);
 		setLoading(false);
 	};
