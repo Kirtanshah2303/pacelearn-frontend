@@ -172,7 +172,7 @@ const CourseCard = ({ course, onFav, onUnFav, userId, onAddCart }) => {
 								src={
 									user.imageUrl
 										? user.imageUrl
-										: "/images/admin-1.jpg"
+										: "/images/avatar.jpg"
 								}
 								className="rounded-circle"
 								alt={user.firstName}
@@ -182,7 +182,7 @@ const CourseCard = ({ course, onFav, onUnFav, userId, onAddCart }) => {
 						<li>
 							<span>By</span>
 						</li>
-						<li>{`${user.firstName} ${user.lastName}`}</li>
+						<li style={{fontSize: "15px"}}>{`${user.firstName} ${user.lastName}`}</li>
 					</ul>
 
 				</div>
