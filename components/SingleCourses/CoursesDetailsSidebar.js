@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/router";
 import BuyCourseBtn from "./BuyCourseBtn";
 import { calculateDiscount } from "@/utils/helper";
+import Cookies from "js-cookie";
 
 const CoursesDetailsSidebar = ({ current_user, course , studentCount }) => {
 	// console.log(course);
@@ -21,6 +22,92 @@ const CoursesDetailsSidebar = ({ current_user, course , studentCount }) => {
 	// useEffect(()=>{
 
 	// })
+
+	const enroll = (courseID) => {
+
+		const cookies = Cookies.get("edmy_users_token")
+
+		if(cookies){
+			let bearer = 'Bearer ';
+			let token = cookies;
+			console.log("Token is -->" + token);
+			bearer = bearer+token;
+
+			fetch(`http://localhost:8080/api/courses/enroll`, {
+				method: 'POST',
+				headers: {
+					accept: '*/*',
+					Authorization: bearer,
+				},
+				body: courseID,
+			})
+				// .then(response => response.json())
+				.then((response) => {
+					// if(!response.ok) throw new Error(response.status);
+					if (response.status === 400) {
+						toast.error("Already Enrolled", {
+							style: {
+								border: "1px solid #ff0033",
+								padding: "16px",
+								color: "#ff0033",
+							},
+							iconTheme: {
+								primary: "#ff0033",
+								secondary: "#FFFAEE",
+							},
+						});
+						console.log("Already Enrolled")
+						throw new Error(response.status);
+					}
+					else return response.json();
+
+				})
+				.then(result => {
+					if(result.status === "FORBIDDEN"){
+						toast.error("Access Denied for this action", {
+							style: {
+								border: "1px solid #ff0033",
+								padding: "16px",
+								color: "#ff0033",
+							},
+							iconTheme: {
+								primary: "#ff0033",
+								secondary: "#FFFAEE",
+							},
+						});
+						console.log("Access Denied")
+						return false;
+					}
+					toast.success("Course enrolled successfully", {
+						style: {
+							border: "1px solid #4BB543",
+							padding: "16px",
+							color: "#4BB543",
+						},
+						iconTheme: {
+							primary: "#4BB543",
+							secondary: "#FFFAEE",
+						},
+					});
+					window.location.href = '/';
+					console.log(result.status);
+					console.log('Demo passed enrolled');
+					// console.log(this.state);
+					return true;
+				})
+				.catch(error => {
+					console.log(error);
+					return false;
+				});
+
+			return true;
+
+		}else{
+			window.location.href = '/auth';
+		}
+
+	}
+
 
 	// const cntStud =(courseID) => {
 	// 	console.log("--------------->"+course_id);
@@ -252,12 +339,20 @@ const CoursesDetailsSidebar = ({ current_user, course , studentCount }) => {
 					{/*	)}*/}
 					{/*</div>*/}
 
-					{!alreadyBuy && !add && (
-						<BuyCourseBtn
-							current_user={current_user}
-							course={course}
-						/>
-					)}
+					{/*{!alreadyBuy && !add && (*/}
+					{/*	<BuyCourseBtn*/}
+					{/*		current_user={current_user}*/}
+					{/*		course={course}*/}
+					{/*	/>*/}
+					{/*)}*/}
+					<button
+						className="default-btn buy"
+						onClick={() =>
+							enroll(course.id)
+						}
+					>
+						Enroll
+					</button>
 				</div>
 			</div>
 		</div>

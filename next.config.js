@@ -16,6 +16,9 @@ const nextConfig = {
 		JWT_SECRET: "asdfghjklnbvcxzqwertyuiopmkioprewqasderfgnujm",
 		AWS_SES_USER: "...",
 		AWS_SES_PASSWORD: ".....",
+		AWS_ACCESSKEY_ID : "AKIAUAPPTOSJ4XNUJ2D5",
+		AWS_SECRET_ACCESS_KEY : "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",
+		AWS_REGION : "ap-south-1",
 		CLOUD_NAME: "cloudname",
 		UPLOAD_PRESETS: "presets",
 		CLOUDINARY_URL:

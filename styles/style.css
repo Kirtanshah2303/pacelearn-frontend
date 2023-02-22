@@ -207,7 +207,7 @@ textarea.form-control {
 /*
 Bg-color Style*/
 .bg-color-0f6c76 {
-  background-color: #0f6c76;
+  background-color: #0f6caf;
 }
 
 .bg-color-f6fafb {
@@ -237,7 +237,9 @@ Default Btn Area Style*/
   display: -ms-inline-flexbox;
   display: inline-flex;
   padding: 16px 40px 12px;
-  background: linear-gradient(133.65deg, #6cc17e 2.24%, #098b99 100%);
+  /* background: linear-gradient(133.65deg, #9fccfa 2.24%, #0974f1 100%); */
+  background: linear-gradient(133.65deg, #9fccfa 2.24%, #0974f1 100%);
+
   border-radius: 3px;
   border-radius: 5px;
   font-weight: 600;
@@ -250,7 +252,7 @@ Default Btn Area Style*/
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(315deg, #098b99 0%, #057fa8 100%);
+  background: linear-gradient(315deg, #9fccfa 0%, #0974f1 100%);
   opacity: 0;
   -webkit-transition: all ease 0.5s;
   transition: all ease 0.5s;
@@ -588,7 +590,7 @@ Navbar Area Style
 }
 
 .desktop-nav .navbar .navbar-nav .nav-item a:hover, .desktop-nav .navbar .navbar-nav .nav-item a:focus, .desktop-nav .navbar .navbar-nav .nav-item a.active {
-  color: #098b99;
+  color: #0974f1;
 }
 
 .desktop-nav .navbar .navbar-nav .nav-item a i {
@@ -908,7 +910,7 @@ Navbar Area Style
   width: 17px;
   height: 17px;
   line-height: 18px;
-  background: linear-gradient(133.65deg, #6CC17E 2.24%, #098B99 100%);
+  background: linear-gradient(133.65deg, #9fccfa 2.24%, #0974f1 100%);
   color: #ffffff;
   text-align: center;
   border-radius: 50%;
@@ -1263,6 +1265,7 @@ Banner Area Style
   left: 200px;
   -webkit-animation: off-on 10s infinite linear;
           animation: off-on 10s infinite linear;
+          
 }
 
 .banner-area .shape.shape-3 {
@@ -1398,7 +1401,8 @@ Banner Area Style
 }
 
 .banner-content .search-form .default-btn::before {
-  background: linear-gradient(312.38deg, #6CC17E 2.65%, #098B99 98.23%);
+  /* background: linear-gradient(312.38deg, #6CC17E 2.65%, #098B99 98.23%); */
+  background: sandybrown;
 }
 
 .banner-content .search-form .default-btn i {
@@ -1485,8 +1489,8 @@ Courses Area Style
 }
 
 .feature-dcourses-area .default-btn {
-  -webkit-box-shadow: 0px 4px 25px rgba(9, 139, 153, 0.3);
-          box-shadow: 0px 4px 25px rgba(9, 139, 153, 0.3);
+  -webkit-box-shadow: 0px 4px 25px rgba(88, 65, 243, 0.3);
+          box-shadow: 0px 4px 25px rgba(88, 65, 243, 0.3);
 }
 
 .most-viewed-courses-area .default-btn {
@@ -1945,7 +1949,7 @@ Courses Area Style
   right: 15px;
   font-size: 20px;
   background-color: transparent;
-  color: #098b99;
+  color: #0974f1;
   border-radius: 6px;
 }
 
@@ -2630,10 +2634,10 @@ Footer Area Style
 }
 
 .footer-area .shape.shape-2 {
-  bottom: -35px;
-  left: 300px;
-  -webkit-animation: off-on 15s infinite linear;
-          animation: off-on 15s infinite linear;
+  bottom: 4px;
+  left: 360px;
+  /* -webkit-animation: off-on 15s infinite linear;
+          animation: off-on 15s infinite linear; */
 }
 
 .single-footer-widget {
@@ -2674,7 +2678,7 @@ Footer Area Style
 }
 
 .single-footer-widget .info li span {
-  color: #098b99;
+  color: #0974f1;
 }
 
 .single-footer-widget .import-link {
@@ -2773,7 +2777,7 @@ Footer Area Style
 Pages Banner Area Style
 ======================================================*/
 .pages-banner-area {
-  background: linear-gradient(96.41deg, #6CC17E 10.61%, #098B99 70.66%);
+  background: linear-gradient(96.41deg, #9fccfa 10.61%, #0974f1 70.66%);
   position: relative;
   z-index: 1;
   overflow: hidden;
@@ -3523,7 +3527,7 @@ Register Area Style
 }
 
 .register-tab .nav-item .nav-link.active {
-  background: linear-gradient(133.65deg, #6CC17E 2.24%, #098B99 100%);
+  background: linear-gradient(133.65deg, #9fccfa 2.24%, #0974f1 100%);
   color: #ffffff;
 }
 
@@ -3544,7 +3548,9 @@ Contact Info Area Style
 }
 
 .single-contact-info.bg-a8e3da {
-  background-color: #a8e3da;
+  /* background-color: #a8e3da; */
+  /* background-color: #9fccfa !important; */
+  
 }
 
 .single-contact-info img {
