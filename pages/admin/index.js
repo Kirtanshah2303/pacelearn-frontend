@@ -30,7 +30,7 @@ const Index = ({
 					user,
 }) => {
 
-	const { edmy_users_token } = parseCookies();
+	const { charuvidhya_users_token } = parseCookies();
 	const [students,setStudents] = useState(0);
 	const [instructor,setInstructor] = useState(0);
 	const [reviewer,setReviewer] = useState(0);
@@ -42,10 +42,10 @@ const Index = ({
 	const fetchData = async () => {
 		const res = await fetch(`${baseUrl2}/api/coreMetaData`,{
 			headers : {
-				Authorization : "Bearer "+edmy_users_token
+				Authorization : "Bearer "+charuvidhya_users_token
 			}
 		})
-		console.log("Token is --> "+edmy_users_token)
+		console.log("Token is --> "+charuvidhya_users_token)
 		const {
 			students,
 			instructor,
@@ -87,12 +87,14 @@ const Index = ({
 
 	return (
 		<>
+			{console.log("INDEX ADMIN !!!!!!!!!!------------->"+user)}
 			<Navbar user={user} />
 
 			<div className="main-content">
 				<div className="container-fluid">
 					<div className="row">
 						<div className="col-lg-3 col-md-4">
+							{console.log("INDEX ADMIN ------------->"+user)}
 							<AdminSideNav user={user} />
 						</div>
 
@@ -168,13 +170,13 @@ const Index = ({
 // This gets called on every request
 // export async function getServerSideProps() {
 // 	// Fetch data from external API
-// 	const { edmy_users_token } = parseCookies();
+// 	const { charuvidhya_users_token } = parseCookies();
 // 	const res = await fetch(`${baseUrl2}/api/coreMetaData`,{
 // 		headers : {
-// 			Authorization : "Bearer "+edmy_users_token
+// 			Authorization : "Bearer "+charuvidhya_users_token
 // 		}
 // 	})
-// 	console.log("Token is --> "+edmy_users_token)
+// 	console.log("Token is --> "+charuvidhya_users_token)
 // 	const {
 // 		students,
 // 		instructor,

@@ -11,13 +11,13 @@ import GeneralLoader from "@/utils/GeneralLoader";
 import toast from "react-hot-toast";
 
 const Index = ({ user }) => {
-	const { edmy_users_token } = parseCookies();
+	const { charuvidhya_users_token } = parseCookies();
 	const [courses, setCourses] = useState([]);
 	const [loading, setLoading] = useState(true);
 
 	const fetchCourses = async () => {
 		const payload = {
-			headers: { Authorization: "Bearer "+edmy_users_token },
+			headers: { Authorization: "Bearer "+charuvidhya_users_token },
 		};
 
 		const response = await axios.get(`${baseUrl2}/api/courses`, payload);
@@ -49,7 +49,7 @@ const Index = ({ user }) => {
 		try {
 			setLoading(true);
 			const payload = {
-				headers: { Authorization: edmy_users_token },
+				headers: { Authorization: charuvidhya_users_token },
 			};
 
 			const url = `${baseUrl}/api/courses/course/${courseId}`;

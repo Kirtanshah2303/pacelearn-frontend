@@ -4,19 +4,19 @@ import Link from "@/utils/ActiveLink";
 import { handleLogout } from "@/utils/auth";
 
 const ProfileDropdown = ({
-	userId,
-	first_name,
+	id,
+	firstName,
 	email,
-	role,
-	profile_photo,
+	authorities,
+	imageUrl,
 }) => {
 	const [isMouse, toggleMouse] = useState(false);
 	const toggleMouseMenu = () => {
 		toggleMouse(!isMouse);
 	};
 
-	const isAdmin = role === "admin";
-	const isInstructor = role === "instructor";
+	const isAdmin = authorities.includes("ROLE_ADMIN");
+	const isInstructor = authorities.includes("ROLE_FACULTY");
 
 	const subMenuAnimate = {
 		enter: {
@@ -47,10 +47,10 @@ const ProfileDropdown = ({
 			onMouseLeave={toggleMouseMenu}
 		>
 			<div className="img ptb-15">
-				{profile_photo ? (
-					<img src={profile_photo} alt={first_name} />
+				{imageUrl ? (
+					<img src={imageUrl} alt={firstName} />
 				) : (
-					<img src="/images/admin/admin-9.jpg" alt={first_name} />
+					<img src="/images/admin/admin-9.jpg" alt={firstName} />
 				)}
 			</div>
 			<motion.ul
@@ -64,22 +64,22 @@ const ProfileDropdown = ({
 						<a className="dropdown-item author-dropdown-item">
 							<div className="d-flex align-items-center">
 								<div className="img">
-									{profile_photo ? (
+									{imageUrl ? (
 										<img
-											src={profile_photo}
-											alt={first_name}
+											src={imageUrl}
+											alt={firstName}
 										/>
 									) : (
 										<img
 											src="/images/admin/admin-9.jpg"
-											alt={first_name}
+											alt={firstName}
 										/>
 									)}
 								</div>
 
 								<span className="ps-3">
 									<span className="fw-semibold fs-16 mb-1 d-block">
-										{first_name}
+										{firstName}
 									</span>
 									<span className="d-block fs-13 mt-minus-2">
 										{email}
@@ -132,31 +132,31 @@ const ProfileDropdown = ({
 						</a>
 					</Link>
 				</li>
-				<li>
-					<Link href="/learning/my-purchase-history/">
-						<a className="dropdown-item">
-							<i className="bx bx-credit-card-front"></i>
-							My Purchases
-						</a>
-					</Link>
-				</li>
-				<li>
-					<Link href="/learning/wishlist/">
-						<a className="dropdown-item">
-							<i className="bx bxs-heart"></i>
-							Wishlist
-						</a>
-					</Link>
-				</li>
+				{/*<li>*/}
+				{/*	<Link href="/learning/my-purchase-history/">*/}
+				{/*		<a className="dropdown-item">*/}
+				{/*			<i className="bx bx-credit-card-front"></i>*/}
+				{/*			My Purchases*/}
+				{/*		</a>*/}
+				{/*	</Link>*/}
+				{/*</li>*/}
+				{/*<li>*/}
+				{/*	<Link href="/learning/wishlist/">*/}
+				{/*		<a className="dropdown-item">*/}
+				{/*			<i className="bx bxs-heart"></i>*/}
+				{/*			Wishlist*/}
+				{/*		</a>*/}
+				{/*	</Link>*/}
+				{/*</li>*/}
 
-				<li>
-					<Link href="/profile/basic-information/">
-						<a className="dropdown-item">
-							<i className="bx bxs-user-account"></i> Account
-							settings
-						</a>
-					</Link>
-				</li>
+				{/*<li>*/}
+				{/*	<Link href="/profile/basic-information/">*/}
+				{/*		<a className="dropdown-item">*/}
+				{/*			<i className="bx bxs-user-account"></i> Account*/}
+				{/*			settings*/}
+				{/*		</a>*/}
+				{/*	</Link>*/}
+				{/*</li>*/}
 				<li>
 					<hr className="dropdown-divider" />
 				</li>

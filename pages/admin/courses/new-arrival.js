@@ -11,7 +11,7 @@ import GeneralLoader from "@/utils/GeneralLoader";
 import CourseRow from "@/components/Admin/CourseRow";
 
 const Index = ({ user }) => {
-	const { edmy_users_token } = parseCookies();
+	const { charuvidhya_users_token } = parseCookies();
 	const [courses, setCourses] = useState([]);
 	const [loading, setLoading] = useState(true);
 
@@ -19,7 +19,7 @@ const Index = ({ user }) => {
 		setLoading(true);
 		try {
 			const payload = {
-				headers: { Authorization: edmy_users_token },
+				headers: { Authorization: charuvidhya_users_token },
 			};
 			const response = await axios.get(
 				`${baseUrl}/api/admin/courses/requests`,
@@ -57,7 +57,7 @@ const Index = ({ user }) => {
 	const handleApprove = async (courseId) => {
 		try {
 			const payload = {
-				headers: { Authorization: edmy_users_token },
+				headers: { Authorization: charuvidhya_users_token },
 			};
 
 			const payloadData = { courseId, approved: true };
@@ -104,7 +104,7 @@ const Index = ({ user }) => {
 	const handleDeny = async (courseId) => {
 		try {
 			const payload = {
-				headers: { Authorization: edmy_users_token },
+				headers: { Authorization: charuvidhya_users_token },
 			};
 			const payloadData = { courseId, approved: false };
 			const response = await axios.put(

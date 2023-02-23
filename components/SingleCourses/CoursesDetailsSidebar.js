@@ -25,7 +25,7 @@ const CoursesDetailsSidebar = ({ current_user, course , studentCount }) => {
 
 	const enroll = (courseID) => {
 
-		const cookies = Cookies.get("edmy_users_token")
+		const cookies = Cookies.get("charuvidhya_users_token")
 
 		if(cookies){
 			let bearer = 'Bearer ';
