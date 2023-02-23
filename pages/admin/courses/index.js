@@ -9,6 +9,7 @@ import baseUrl from "@/utils/baseUrl";
 import { parseCookies } from "nookies";
 import GeneralLoader from "@/utils/GeneralLoader";
 import CourseRow from "@/components/Admin/CourseRow";
+import baseUrl2 from "@/utils/baseUrl2";
 
 const Index = ({ user }) => {
 	const { charuvidhya_users_token } = parseCookies();
@@ -19,14 +20,14 @@ const Index = ({ user }) => {
 		setLoading(true);
 		try {
 			const payload = {
-				headers: { Authorization: charuvidhya_users_token },
+				headers: { Authorization: "Bearer " + charuvidhya_users_token },
 			};
 			const response = await axios.get(
-				`${baseUrl}/api/admin/courses`,
+				`${baseUrl2}/api/admin/courses/forApproval`,
 				payload
 			);
 			// console.log(response.data.courses);
-			setCourses(response.data.courses);
+			setCourses(response.data.pendingApprovalCourses);
 			setLoading(false);
 		} catch (err) {
 			let {
