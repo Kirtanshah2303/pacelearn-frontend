@@ -3,13 +3,13 @@ import Link from "next/link";
 
 const CourseRow = ({
 	id,
-	title,
+					   courseTitle,
 	slug,
 	latest_price,
-	category,
+					   courseCategory,
 	user,
 	videos,
-	approved,
+					   isApproved,
 	in_home_page,
 	onApprove = null,
 	onDeny = null,
@@ -19,14 +19,14 @@ const CourseRow = ({
 	return (
 		<tr>
 			<td>
-				<Link href={`/course/${slug}`}>
-					<a>{title}</a>
+				<Link href={`/course/${id}`}>
+					<a>{courseTitle}</a>
 				</Link>
 			</td>
-			<td>${latest_price}</td>
-			<td>{category.name}</td>
-			<td>{user.first_name}</td>
-			<td>{videos.length}</td>
+			<td>{courseCategory.courseCategoryTitle}</td>
+			<td>{user.firstName}</td>
+			{/*<td>${latest_price}</td>*/}
+			{/*<td>{videos.length}</td>*/}
 			{onHome && (
 				<td>
 					{in_home_page ? (
@@ -49,7 +49,7 @@ const CourseRow = ({
 				</td>
 			)}
 			<td>
-				{approved ? (
+				{isApproved ? (
 					<button
 						type="button"
 						className="btn btn-success btn-sm fs-12 ms-2"
@@ -65,7 +65,7 @@ const CourseRow = ({
 					</button>
 				)}
 			</td>
-			{!approved && (
+			{!isApproved && (
 				<td>
 					<button
 						type="button"
