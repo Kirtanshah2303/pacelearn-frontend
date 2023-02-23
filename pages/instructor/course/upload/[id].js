@@ -9,7 +9,7 @@ import baseUrl2 from "@/utils/baseUrl2";
 
 const Index = ({ user }) => {
 	const router = useRouter();
-	const { edmy_users_token } = parseCookies();
+	const { charuvidhya_users_token } = parseCookies();
 	const [section, setSection] = useState([]);
 	const { id: courseId } = router.query;
 
@@ -17,7 +17,7 @@ const Index = ({ user }) => {
 	// useEffect(() => {
 	//
 	// 	fetch(`${baseUrl2}/api/course-section/${courseId}`,{
-	// 		headers: { Authorization: edmy_users_token },
+	// 		headers: { Authorization: charuvidhya_users_token },
 	// 	}).then(response => response.json().then(result => {
 	// 		console.log(result)
 	// 		setSection(result)

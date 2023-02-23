@@ -11,7 +11,7 @@ import GeneralLoader from "@/utils/GeneralLoader";
 import { parseCookies } from "nookies";
 
 const Index = ({ user }) => {
-	const { edmy_users_token } = parseCookies();
+	const { charuvidhya_users_token } = parseCookies();
 	const [users, setUsers] = useState([]);
 	const [loading, setLoading] = useState(true);
 
@@ -19,7 +19,7 @@ const Index = ({ user }) => {
 		setLoading(true);
 		try {
 			const payload = {
-				headers: { Authorization: edmy_users_token },
+				headers: { Authorization: charuvidhya_users_token },
 			};
 			const response = await axios.get(
 				`${baseUrl}/api/admin/make-admin`,
@@ -71,7 +71,7 @@ const Index = ({ user }) => {
 		}
 		try {
 			const payload = {
-				headers: { Authorization: edmy_users_token },
+				headers: { Authorization: charuvidhya_users_token },
 			};
 
 			const payloadData = { userId, admin: false };

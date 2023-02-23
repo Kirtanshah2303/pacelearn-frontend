@@ -23,7 +23,7 @@ const  INITIAL_VALUE ={
 
 
 const CourseSection = ({courseId}) => {
-    const { edmy_users_token } = parseCookies();
+    const { charuvidhya_users_token } = parseCookies();
     const [section, setSection] = useState(INITIAL_VALUE);
     const [loading, setLoading] = React.useState(false);
     const router = useRouter();
@@ -54,7 +54,7 @@ const CourseSection = ({courseId}) => {
             };
 
             const payloadHeader = {
-                headers: { Authorization: "Bearer " + edmy_users_token },
+                headers: { Authorization: "Bearer " + charuvidhya_users_token },
             };
 
             const url = `${baseUrl2}/api/course/${courseId}/course-sections`;
@@ -62,7 +62,7 @@ const CourseSection = ({courseId}) => {
             fetch(url,{
                 method : "POST",
                 headers : {
-                    Authorization: "Bearer " + edmy_users_token,
+                    Authorization: "Bearer " + charuvidhya_users_token,
                     "Content-Type" : 'application/json'
                 },
                 body : JSON.stringify(payloadData)

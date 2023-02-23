@@ -26,7 +26,7 @@ const RegisterForm = ({
 	};
 
 	const router = useRouter();
-	const { edmy_users_token } = parseCookies();
+	const { charuvidhya_users_token } = parseCookies();
 
 	const [instructor, setInstructor] = useState(INITIAL_REQUEST);
 	const [disabled, setDisabled] = React.useState(true);
@@ -51,7 +51,7 @@ const RegisterForm = ({
 			const url = `${baseUrl}/api/instructor/new`;
 			const payload = { ...instructor };
 			const payloadAuth = {
-				headers: { Authorization: edmy_users_token },
+				headers: { Authorization: charuvidhya_users_token },
 			};
 			const response = await axios.put(url, payload, payloadAuth);
 			toast.success(response.data.message, {

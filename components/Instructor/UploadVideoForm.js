@@ -23,7 +23,7 @@ const INITIAL_VALUE = {
 };
 
 const UploadVideoForm = ({ courseId ,courseSection}) => {
-	const { edmy_users_token } = parseCookies();
+	const { charuvidhya_users_token } = parseCookies();
 	const [video, setVideo] = useState(INITIAL_VALUE);
 	const [section, setSection] = useState([]);
 
@@ -35,7 +35,7 @@ const UploadVideoForm = ({ courseId ,courseSection}) => {
 	useEffect(() => {
 
 		fetch(`${baseUrl2}/api/course-section/${courseId}`,{
-			headers: { Authorization: edmy_users_token },
+			headers: { Authorization: charuvidhya_users_token },
 		}).then(response => response.json().then(result => {
 			console.log(result)
 			setSection(result)
@@ -210,7 +210,7 @@ const UploadVideoForm = ({ courseId ,courseSection}) => {
 			};
 			const url = `${baseUrl2}/api/course/${courseId}/course-session`;
 			const payloadHeader = {
-				headers: { Authorization: edmy_users_token,
+				headers: { Authorization: charuvidhya_users_token,
 					"Content-Type" : 'application/json'
 
 				},
@@ -221,7 +221,7 @@ const UploadVideoForm = ({ courseId ,courseSection}) => {
 			fetch(url,{
 				method : "POST",
 				headers : {
-					Authorization: "Bearer " + edmy_users_token,
+					Authorization: "Bearer " + charuvidhya_users_token,
 					"Content-Type" : 'application/json'
 				},
 				body : JSON.stringify(payloadData)

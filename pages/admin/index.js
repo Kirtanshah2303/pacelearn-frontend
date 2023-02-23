@@ -87,12 +87,14 @@ const Index = ({
 
 	return (
 		<>
+			{console.log("INDEX ADMIN !!!!!!!!!!------------->"+user)}
 			<Navbar user={user} />
 
 			<div className="main-content">
 				<div className="container-fluid">
 					<div className="row">
 						<div className="col-lg-3 col-md-4">
+							{console.log("INDEX ADMIN ------------->"+user)}
 							<AdminSideNav user={user} />
 						</div>
 

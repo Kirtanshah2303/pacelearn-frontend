@@ -7,26 +7,26 @@ import baseUrl2 from "@/utils/baseUrl2";
 import {parseCookies} from "nookies";
 
 const Create = ({ user }) => {
-	const { edmy_users_token } = parseCookies();
+	const { charuvidhya_users_token } = parseCookies();
 	const [parentCategories, setParentCategories] = useState([]);
 	// const [categories, setCategories] = useState([]);
 	const [level, setLevel] = useState([]);
 
 	useEffect(() => {
-		// const { edmy_users_token } = parseCookies();
+		// const { charuvidhya_users_token } = parseCookies();
 		// const [parentCategories, setParentCategories] = useState([]);
 		// // const [categories, setCategories] = useState([]);
 		// const [level, setLevel] = useState([]);
 
 		fetch(`${baseUrl2}/api/course-category/parent-categories`,{
-			headers: { Authorization: edmy_users_token },
+			headers: { Authorization: charuvidhya_users_token },
 		}).then(response => response.json().then(result => {
 			console.log(result.parentCategories)
 			setParentCategories(result.parentCategories)
 		}))
 
 		fetch(`${baseUrl2}/api/course-levels`,{
-			headers: { Authorization: edmy_users_token },
+			headers: { Authorization: charuvidhya_users_token },
 		}).then(response => response.json().then(result => {
 			console.log(result.levels)
 			setLevel(result.levels)

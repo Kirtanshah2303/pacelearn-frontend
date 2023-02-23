@@ -5,13 +5,13 @@ import { parseCookies } from "nookies";
 import baseUrl2 from "@/utils/baseUrl2";
 
 const PageNavigation = ({ courseId, activeClassname }) => {
-	const { edmy_users_token } = parseCookies();
+	const { charuvidhya_users_token } = parseCookies();
 	const [course, setCourse] = useState({ title: "" });
 
 	useEffect(() => {
 		const fetchCourse = async () => {
 			const payload = {
-				headers: { Authorization: "Bearer "+edmy_users_token },
+				headers: { Authorization: "Bearer "+charuvidhya_users_token },
 			};
 			const url = `${baseUrl2}/api/courses/${courseId}`;
 			const response = await axios.get(url, payload);
