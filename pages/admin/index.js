@@ -1,19 +1,90 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Navbar from "@/components/_App/Navbar";
 import Footer from "@/components/_App/Footer";
 import AdminSideNav from "@/components/_App/AdminSideNav";
-import baseUrl from "@/utils/baseUrl";
+import baseUrl2 from "@/utils/baseUrl2";
+import {parseCookies} from "nookies";
+import toast from "react-hot-toast";
+import Router from "next/router";
+
+const INITIAL_USER = {
+	students : 0,
+	instructor : 0,
+	reviewer : 0,
+	approvedCourses : 0,
+	approvalPendingCourses : 0,
+	courseVideos : 0,
+	totalEnrollment : 0,
+	// authorities : [""]
+
+};
 
 const Index = ({
-	students,
-	instructors,
-	courses,
-	enrolments,
-	earningsTotal,
-	videos,
-	assets,
-	user,
+				   // students,
+				   // instructor,
+				   // reviewer,
+				   // approvedCourses,
+				   // approvalPendingCourses,
+				   // courseVideos,
+				   // totalEnrollment,
+					user,
 }) => {
+
+	const { edmy_users_token } = parseCookies();
+	const [students,setStudents] = useState(0);
+	const [instructor,setInstructor] = useState(0);
+	const [reviewer,setReviewer] = useState(0);
+	const [approvedCourses,setApprovedCourses] = useState(0);
+	const [approvalPendingCourses,setApprovalPendingCourses] = useState(0);
+	const [courseVideos,setCourseVideos] = useState(0);
+	const [totalEnrollment,setTotalEnrollment] = useState(0);
+
+	const fetchData = async () => {
+		const res = await fetch(`${baseUrl2}/api/coreMetaData`,{
+			headers : {
+				Authorization : "Bearer "+edmy_users_token
+			}
+		})
+		console.log("Token is --> "+edmy_users_token)
+		const {
+			students,
+			instructor,
+			reviewer,
+			approvedCourses,
+			approvalPendingCourses,
+			courseVideos,
+			totalEnrollment,
+			status
+		} = await res.json();
+		setApprovalPendingCourses(approvalPendingCourses)
+		setStudents(students)
+		setCourseVideos(courseVideos)
+		setTotalEnrollment(totalEnrollment)
+		setInstructor(instructor)
+		setReviewer(reviewer)
+		setApprovedCourses(approvedCourses)
+
+		if (status === "FORBIDDEN"){
+			toast.error("Access Denied, You do not have access to view this page", {
+				style: {
+					border: "1px solid #ff0033",
+					padding: "16px",
+					color: "#ff0033",
+				},
+				iconTheme: {
+					primary: "#ff0033",
+					secondary: "#FFFAEE",
+				},
+			})
+			Router.push("/");
+		}
+	}
+
+	useEffect(() => {
+		fetchData();
+	}, []);
+
+
 	return (
 		<>
 			<Navbar user={user} />
@@ -38,48 +109,48 @@ const Index = ({
 
 									<div className="col-lg-4 col-sm-6">
 										<div className="info-box-card">
-											<i className="bx bxs-file"></i>
-											<h1>{courses}</h1>
-											<p>Total Courses</p>
-										</div>
-									</div>
-
-									<div className="col-lg-4 col-sm-6">
-										<div className="info-box-card">
 											<i className="bx bx-group"></i>
-											<h1>{instructors}</h1>
+											<h1>{instructor}</h1>
 											<p>Total Instructors</p>
 										</div>
 									</div>
 
 									<div className="col-lg-4 col-sm-6">
 										<div className="info-box-card">
-											<i className="bx bx-cart"></i>
-											<h1>{enrolments}</h1>
+											<i className="bx bx-group"></i>
+											<h1>{reviewer}</h1>
+											<p>Total Reviewers</p>
+										</div>
+									</div>
+
+									<div className="col-lg-4 col-sm-6">
+										<div className="info-box-card">
+											<i className="bx bx-group"></i>
+											<h1>{totalEnrollment}</h1>
 											<p>Course Enrolled</p>
 										</div>
 									</div>
 
 									<div className="col-lg-4 col-sm-6">
 										<div className="info-box-card">
-											<i className="bx bx-cart"></i>
-											<h1>${earningsTotal}</h1>
-											<p>Total Sale</p>
+											<i className="bx bx-book-add"></i>
+											<h1>{approvedCourses}</h1>
+											<p>Total Approved Courses</p>
 										</div>
 									</div>
 
 									<div className="col-lg-4 col-sm-6">
 										<div className="info-box-card">
-											<i className="bx bx-cart"></i>
-											<h1>{videos}</h1>
-											<p>Course Videos</p>
+											<i className="bx bxs-bell-ring"></i>
+											<h1>{approvalPendingCourses}</h1>
+											<p>Total Approval Pending Courses</p>
 										</div>
 									</div>
 									<div className="col-lg-4 col-sm-6">
 										<div className="info-box-card">
-											<i className="bx bx-cart"></i>
-											<h1>{assets}</h1>
-											<p>Course Assets</p>
+											<i className="bx bxs-file"></i>
+											<h1>{courseVideos}</h1>
+											<p>Total Video Sessions</p>
 										</div>
 									</div>
 								</div>
@@ -95,31 +166,37 @@ const Index = ({
 };
 
 // This gets called on every request
-export async function getServerSideProps() {
-	// Fetch data from external API
-	const res = await fetch(`${baseUrl}/api/funfacts`);
-	const {
-		students,
-		instructors,
-		courses,
-		enrolments,
-		earningsTotal,
-		videos,
-		assets,
-	} = await res.json();
-
-	// Pass data to the page via props
-	return {
-		props: {
-			students,
-			instructors,
-			courses,
-			enrolments,
-			earningsTotal,
-			videos,
-			assets,
-		},
-	};
-}
+// export async function getServerSideProps() {
+// 	// Fetch data from external API
+// 	const { edmy_users_token } = parseCookies();
+// 	const res = await fetch(`${baseUrl2}/api/coreMetaData`,{
+// 		headers : {
+// 			Authorization : "Bearer "+edmy_users_token
+// 		}
+// 	})
+// 	console.log("Token is --> "+edmy_users_token)
+// 	const {
+// 		students,
+// 		instructor,
+// 		reviewer,
+// 		approvedCourses,
+// 		approvalPendingCourses,
+// 		courseVideos,
+// 		totalEnrollment,
+// 	} = await res.json();
+//
+// 	// Pass data to the page via props
+// 	return {
+// 		// props: {
+// 		// 	students,
+// 		// 	instructor,
+// 		// 	reviewer,
+// 		// 	approvedCourses,
+// 		// 	approvalPendingCourses,
+// 		// 	courseVideos,
+// 		// 	totalEnrollment,
+// 		// },
+// 	};
+// }
 
 export default Index;
