@@ -6,6 +6,7 @@ import baseUrl2 from "@/utils/baseUrl2";
 import { useRouter } from "next/router";
 import Button from "../../utils/Button";
 import { motion } from "framer-motion";
+import Router from "next/router";
 
 // const INITIAL_USER = {
 // 	first_name: "",
@@ -21,13 +22,13 @@ const INITIAL_USER = {
 	email : "",
 	imageUrl : "",
 	langKey : "en",
-	authorities : [""]
+	// authorities : [""]
 
 };
 
 const RegisterForm = () => {
 	const [user, setUser] = React.useState(INITIAL_USER);
-	const [value,setValue] = React.useState("");
+	// const [value,setValue] = React.useState("");
 	const [disabled, setDisabled] = React.useState(true);
 	const [loading, setLoading] = React.useState(false);
 	const router = useRouter();
@@ -55,7 +56,8 @@ const RegisterForm = () => {
 			const url = `${baseUrl2}/api/register`;
 			const payload = { ...user };
 			const response = await axios.post(url, payload);
-			handleLogin(response.data.edmy_users_token, router);
+			Router.push("/")
+			// handleLogin(response.data.edmy_users_token, router);
 			toast.success(response.data.message, {
 				style: {
 					border: "1px solid #9fccfa",
@@ -160,26 +162,26 @@ const RegisterForm = () => {
 				/>
 			</div>
 			
-			<div className="form-group">
-				{/* <input
-					type="select"
-					className="form-control"
-					placeholder="Last Name"
-					name="authority"
-					value={user.last_name}
-					onChange={handleChange}
-				/> */}
-				<select 
-				
-					value={value} onChange={handleChangeROLE}
-					
-					className="form-control">
+			{/*<div className="form-group">*/}
+			{/*	/!* <input*/}
+			{/*		type="select"*/}
+			{/*		className="form-control"*/}
+			{/*		placeholder="Last Name"*/}
+			{/*		name="authority"*/}
+			{/*		value={user.last_name}*/}
+			{/*		onChange={handleChange}*/}
+			{/*	/> *!/*/}
+			{/*	<select */}
+			{/*	*/}
+			{/*		value={value} onChange={handleChangeROLE}*/}
+			{/*		*/}
+			{/*		className="form-control">*/}
 
-					<option value={"ROLE_STUDENT"}>ROLE_STUDENT</option>
-					<option value={"ROLE_FACULTY"}>ROLE_FACULTY</option>
+			{/*		<option value={"ROLE_STUDENT"}>ROLE_STUDENT</option>*/}
+			{/*		<option value={"ROLE_FACULTY"}>ROLE_FACULTY</option>*/}
 
-				</select>
-			</div>
+			{/*	</select>*/}
+			{/*</div>*/}
 
 			<Button
 				loading={loading}

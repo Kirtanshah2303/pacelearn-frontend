@@ -21,7 +21,7 @@ const Index = ({ user }) => {
 	const fetchVideos = async () => {
 		setLoading(true);
 		const payload = {
-			headers: { Authorization: edmy_users_token },
+			headers: { Authorization: "Bearer "+edmy_users_token },
 		};
 
 		const url = `${baseUrl2}/api/videoSessions/${courseId}`;
@@ -55,14 +55,14 @@ const Index = ({ user }) => {
 		try {
 			setLoading(true);
 			const payload = {
-				headers: { Authorization: edmy_users_token },
+				headers: { Authorization: "Bearer "+ edmy_users_token },
 			};
 
-			const url = `${baseUrl}/api/courses/course/upload/${videoId}`;
+			const url = `${baseUrl2}/api/course-sessions/${videoId}`;
 
 			const response = await axios.delete(url, payload);
 			setLoading(false);
-			toast.success(response.data.message, {
+			toast.success("Video Session Deleted!", {
 				style: {
 					border: "1px solid #4BB543",
 					padding: "16px",

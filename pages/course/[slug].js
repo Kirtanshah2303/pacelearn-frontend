@@ -74,7 +74,7 @@ const courseDeatails = ({ user }) => {
 				activePageText={course && course.title}
 			/>
 			{/*{<CoursesDetailsContent user={user} course={course} studentCount={cnt} />}*/}
-			{course && <CoursesDetailsContent user={user} course={course} studentCount={cnt} />}
+			{course && <CoursesDetailsContent user={user} course={course} studentCount={cnt} slug={slug} />}
 			<Footer />
 		</>
 	);
