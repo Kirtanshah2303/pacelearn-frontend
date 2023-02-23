@@ -57,7 +57,7 @@ const RegisterForm = () => {
 			const payload = { ...user };
 			const response = await axios.post(url, payload);
 			Router.push("/")
-			// handleLogin(response.data.edmy_users_token, router);
+			// handleLogin(response.data.charuvidhya_users_token, router);
 			toast.success(response.data.message, {
 				style: {
 					border: "1px solid #9fccfa",
