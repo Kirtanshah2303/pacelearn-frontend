@@ -6,7 +6,7 @@ import InstructorProfile from "../Course/InstructorProfile";
 import { formatDate } from "@/utils/helper";
 import TabContent from "./TabContent";
 
-const CoursesDetailsContent = ({ user: current_user, course , studentCount }) => {
+const CoursesDetailsContent = ({ user: current_user, course , studentCount , slug }) => {
 	// const {
 	// 	title,
 	// 	slug,
@@ -56,7 +56,8 @@ const CoursesDetailsContent = ({ user: current_user, course , studentCount }) =>
 								)}
 								<li>
 									<span>
-										{enrolledUsersLists && enrolledUsersLists.length}
+										{/*{enrolledUsersLists && enrolledUsersLists.length}*/}
+										{studentCount}
 									</span>{" "}
 									Students
 								</li>
@@ -80,13 +81,16 @@ const CoursesDetailsContent = ({ user: current_user, course , studentCount }) =>
 
 							<TabContent
 								overview = {courseDescription}
-								// courseSlug={id}
+								courseSlug={slug}
 								// //requirements={requirements}
 								// instructor={user}
 								// who_is_this_course_for={courseObjectives}
 								//is_class={is_class}
 							/>
 						</div>
+
+
+
 					</div>
 
 					<CoursesDetailsSidebar
