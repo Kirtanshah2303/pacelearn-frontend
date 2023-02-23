@@ -37,7 +37,7 @@ const userProfilePhoto = async (req, res) => {
 			where: { id: userId },
 		});
 
-		const edmy_users_token = jwt.sign(
+		const charuvidhya_users_token = jwt.sign(
 			{
 				userId: updateUser.id,
 				first_name: updateUser.first_name,
@@ -54,7 +54,7 @@ const userProfilePhoto = async (req, res) => {
 
 		res.status(200).json({
 			message: "Profile photo updated.",
-			edmy_users_token,
+			charuvidhya_users_token,
 		});
 	} catch (e) {
 		res.status(400).json({

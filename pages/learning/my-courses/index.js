@@ -10,7 +10,7 @@ import GeneralLoader from "@/utils/GeneralLoader";
 import CourseCard from "@/components/Learning/CourseCard";
 
 const Index = ({ user }) => {
-	const { edmy_users_token } = parseCookies();
+	const { charuvidhya_users_token } = parseCookies();
 	const [enrolments, setEnrolments] = useState([]);
 	const [loading, setLoading] = useState(true);
 
@@ -18,7 +18,7 @@ const Index = ({ user }) => {
 		const fetchEnrols = async () => {
 			setLoading(true);
 			let bearer = 'Bearer ';
-			let token = edmy_users_token;
+			let token = charuvidhya_users_token;
 			// console.log("Token is -->" + token);
 			bearer = bearer+token;
 			const payload = {

@@ -28,7 +28,7 @@ const INITIAL_VALUE = {
 };
 
 const CourseUpdateForm = ({ courseData }) => {
-	const { edmy_users_token } = parseCookies();
+	const { charuvidhya_users_token } = parseCookies();
 	const [course, setCourse] = useState(INITIAL_VALUE);
 	const [parentCategories, setParentCategories] = useState([]);
 	const [level, setLevel] = useState([]);
@@ -72,7 +72,7 @@ const CourseUpdateForm = ({ courseData }) => {
 	useEffect(() => {
 		const fetchData = async () => {
 			const payload = {
-				headers: { Authorization: "Bearer "+ edmy_users_token },
+				headers: { Authorization: "Bearer "+ charuvidhya_users_token },
 			};
 			// const response = await axios.get(
 			// 	`${baseUrl}/api/categories`,
@@ -80,14 +80,14 @@ const CourseUpdateForm = ({ courseData }) => {
 			// );
 
 			fetch(`${baseUrl2}/api/course-category/parent-categories`,{
-				headers: { Authorization: "Bearer "+ edmy_users_token },
+				headers: { Authorization: "Bearer "+ charuvidhya_users_token },
 			}).then(response => response.json().then(result => {
 				console.log(result.parentCategories)
 				setParentCategories(result.parentCategories)
 			}))
 
 			fetch(`${baseUrl2}/api/course-levels`,{
-				headers: { Authorization: "Bearer "+ edmy_users_token },
+				headers: { Authorization: "Bearer "+ charuvidhya_users_token },
 			}).then(response => response.json().then(result => {
 				console.log(result.levels)
 				setLevel(result.levels)
@@ -150,14 +150,14 @@ const CourseUpdateForm = ({ courseData }) => {
 		setCourse((prevState) => ({ ...prevState, [name]: value }));
 		//
 		const payload = {
-			headers: { Authorization: edmy_users_token },
+			headers: { Authorization: charuvidhya_users_token },
 		};
 		// const response3 = axios.get(
 		// 	`${baseUrl2}/api/course-category/sub-categories/${value}`,
 		// 	payload
 		// );
 		fetch(`${baseUrl2}/api/course-category/sub-categories/${value}`,{
-			headers: { Authorization: edmy_users_token },
+			headers: { Authorization: charuvidhya_users_token },
 		}).then(response => response.json().then(result => {
 			console.log(result.subcategory)
 			setCategories(result.subcategory);
@@ -217,7 +217,7 @@ const CourseUpdateForm = ({ courseData }) => {
 			};
 
 			const payloadHeader = {
-				headers: { Authorization: "Bearer " + edmy_users_token },
+				headers: { Authorization: "Bearer " + charuvidhya_users_token },
 			};
 
 			const url = `${baseUrl2}/api/courses/${courseData.id}`;

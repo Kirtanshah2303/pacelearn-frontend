@@ -8,12 +8,12 @@ import axios from "axios";
 import CoursesList from "@/components/Courses/CoursesList";
 
 const Index = ({ user }) => {
-	const { edmy_users_token } = parseCookies();
+	const { charuvidhya_users_token } = parseCookies();
 
 	const [courses, setCourses] = useState([]);
 
 	const fetchEnrol = async () => {
-		const payload = { headers: { Authorization: edmy_users_token } };
+		const payload = { headers: { Authorization: charuvidhya_users_token } };
 		const url = `${baseUrl}/api/wishlist`;
 		const response = await axios.get(url, payload);
 		let courseArray = [];
