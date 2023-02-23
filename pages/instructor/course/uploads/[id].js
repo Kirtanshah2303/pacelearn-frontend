@@ -12,7 +12,7 @@ import CourseVideos from "@/components/Instructor/CourseVideos";
 import GeneralLoader from "@/utils/GeneralLoader";
 
 const Index = ({ user }) => {
-	const { edmy_users_token } = parseCookies();
+	const { charuvidhya_users_token } = parseCookies();
 	const router = useRouter();
 	const { id: courseId } = router.query;
 	const [videos, setVideos] = useState([]);
@@ -21,7 +21,7 @@ const Index = ({ user }) => {
 	const fetchVideos = async () => {
 		setLoading(true);
 		const payload = {
-			headers: { Authorization: "Bearer "+edmy_users_token },
+			headers: { Authorization: "Bearer "+charuvidhya_users_token },
 		};
 
 		const url = `${baseUrl2}/api/videoSessions/${courseId}`;
@@ -55,7 +55,7 @@ const Index = ({ user }) => {
 		try {
 			setLoading(true);
 			const payload = {
-				headers: { Authorization: "Bearer "+ edmy_users_token },
+				headers: { Authorization: "Bearer "+ charuvidhya_users_token },
 			};
 
 			const url = `${baseUrl2}/api/course-sessions/${videoId}`;

@@ -1,10 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import { Provider } from "react-redux";
 import { useStore } from "../store";
 import { parseCookies, destroyCookie } from "nookies";
 import axios from "axios";
 import { redirectUser } from "@/utils/auth";
-import baseUrl from "@/utils/baseUrl";
+import baseUrl2 from "@/utils/baseUrl2";
 import "../styles/bootstrap.min.css";
 import "../styles/animate.min.css";
 import "../styles/boxicons.min.css";
@@ -18,6 +18,7 @@ import "swiper/css/bundle";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import "@etchteam/next-pagination/dist/index.css";
 import "react-loading-skeleton/dist/skeleton.css";
+
 // Global Styles
 import "../styles/style.css";
 import "../styles/responsive.css";
@@ -26,6 +27,7 @@ import "../styles/responsive.css";
 import "../styles/dashboard.css";
 
 import Layout from "../components/_App/Layout";
+import cookie from "js-cookie";
 
 function MyApp({ Component, pageProps }) {
 	const store = useStore(pageProps.initialReduxState);
@@ -39,14 +41,18 @@ function MyApp({ Component, pageProps }) {
 }
 
 MyApp.getInitialProps = async ({ Component, ctx }) => {
-	const { edmy_users_token } = parseCookies(ctx);
+	// const { charuvidhya_users_token } = parseCookies(ctx);
 	let pageProps = {};
+
+	let user;
 
 	if (Component.getInitialProps) {
 		pageProps = await Component.getInitialProps(ctx);
 	}
 
-	if (!edmy_users_token) {
+	console.log("ohh-----------------<<---"+cookie.get("charuvidhya_users_token")+"--->>");
+
+	if (!cookie.get("charuvidhya_users_token")) {
 		// if a user not logged in then user can't access those pages
 		const isProtectedRoute =
 			ctx.pathname === "/profile/basic-information" ||
@@ -69,25 +75,31 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 		}
 	} else {
 		// if a user logged in then user can't access those pages
-		const ifLoggedIn =
-			ctx.pathname === "/auth" || ctx.pathname === "/reset-password";
-		if (ifLoggedIn) {
-			redirectUser(ctx, "/");
-		}
+		// const ifLoggedIn =
+		// 	ctx.pathname === "/auth" || ctx.pathname === "/reset-password";
+		// if (ifLoggedIn) {
+		// 	redirectUser(ctx, "/");
+		// }
 
 		try {
-			const payload = { headers: { Authorization: edmy_users_token } };
-			const url = `${baseUrl}/api/users/update`;
-			const response = await axios.get(url, payload);
-			const user = response && response.data.user;
+			if (!(typeof cookie.get('charuvidhya_users_token')==="undefined")){
+				const options = {
+					headers: {
+						'Authorization': 'Bearer ' + cookie.get('charuvidhya_users_token'),
+						'Content-Type': 'application/json',
+					}
+				};
+				const response = await fetch(`${baseUrl2}/api/account`, options);
+				const jsonData = await response.json();
 
-			if (!user) {
-				destroyCookie(ctx, "edmy_users_token");
-				redirectUser(ctx, "/auth");
+				// if (!user) {
+				// 	destroyCookie(ctx, "charuvidhya_users_token");
+				// 	redirectUser(ctx, "/auth");
+				// }
+				pageProps.user = jsonData;
 			}
-			pageProps.user = user;
 		} catch (err) {
-			destroyCookie(ctx, "edmy_users_token");
+			destroyCookie(ctx, "charuvidhya_users_token");
 			// redirectUser(ctx, "/");
 		}
 	}

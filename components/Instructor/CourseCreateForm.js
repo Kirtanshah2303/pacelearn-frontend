@@ -34,8 +34,8 @@ const INITIAL_VALUE = {
 };
 
 const CourseCreateForm = ({ btnText, is_class , parentCategories , level }) => {
-	const { edmy_users_token } = parseCookies();
-	let bearer = "bearer " + edmy_users_token
+	const { charuvidhya_users_token } = parseCookies();
+	let bearer = "bearer " + charuvidhya_users_token
 	const [course, setCourse] = useState(INITIAL_VALUE);
 	const [disabled, setDisabled] = React.useState(true);
 	const [loading, setLoading] = React.useState(false);
@@ -54,7 +54,7 @@ const CourseCreateForm = ({ btnText, is_class , parentCategories , level }) => {
 	useEffect(() => {
 		const fetchData = async () => {
 			const payload = {
-				headers: { Authorization: "bearer " + edmy_users_token },
+				headers: { Authorization: "bearer " + charuvidhya_users_token },
 			};
 			// const response = await axios.get(
 			// 	`${baseUrl2}/api/course-category/parent-categories`,
@@ -62,14 +62,14 @@ const CourseCreateForm = ({ btnText, is_class , parentCategories , level }) => {
 			// );
 
 			// fetch(`${baseUrl2}/api/course-category/parent-categories`,{
-			// 	headers: { Authorization: edmy_users_token },
+			// 	headers: { Authorization: charuvidhya_users_token },
 			// }).then(response => response.json().then(result => {
 			// 	console.log(result.parentCategories)
 			// 	setParentCategories(result.parentCategories)
 			// }))
 			//
 			// fetch(`${baseUrl2}/api/course-levels`,{
-			// 	headers: { Authorization: edmy_users_token },
+			// 	headers: { Authorization: charuvidhya_users_token },
 			// }).then(response => response.json().then(result => {
 			// 	console.log(result.levels)
 			// 	setParentCategories(result.parentCategories)
@@ -78,7 +78,7 @@ const CourseCreateForm = ({ btnText, is_class , parentCategories , level }) => {
 			console.log("Categories are --> "+parentCategories)
 
 			// fetch(`${baseUrl2}/api/course-levels`,{
-			// 	headers: { Authorization: edmy_users_token },
+			// 	headers: { Authorization: charuvidhya_users_token },
 			// }).then(response => response.json().then(setLevel(response.data.levels)))
 
 			// const response2 = await axios.get(
@@ -147,14 +147,14 @@ const CourseCreateForm = ({ btnText, is_class , parentCategories , level }) => {
 		setCourse((prevState) => ({ ...prevState, [name]: value }));
 		//
 		const payload = {
-			headers: { Authorization: edmy_users_token },
+			headers: { Authorization: charuvidhya_users_token },
 		};
 		// const response3 = axios.get(
 		// 	`${baseUrl2}/api/course-category/sub-categories/${value}`,
 		// 	payload
 		// );
 		fetch(`${baseUrl2}/api/course-category/sub-categories/${value}`,{
-			headers: { Authorization: edmy_users_token },
+			headers: { Authorization: charuvidhya_users_token },
 		}).then(response => response.json().then(result => {
 			console.log(result.subcategory)
 			setCategories(result.subcategory);
@@ -260,7 +260,7 @@ const CourseCreateForm = ({ btnText, is_class , parentCategories , level }) => {
 			};
 
 			const payloadHeader = {
-				headers: { Authorization: "Bearer " + edmy_users_token },
+				headers: { Authorization: "Bearer " + charuvidhya_users_token },
 			};
 
 			const url = `${baseUrl2}/api/courses`;
