@@ -77,7 +77,7 @@ const Index = ({ user }) => {
 					secondary: "#FFFAEE",
 				},
 			});
-			fetchData();
+			await fetchData();
 		} catch (err) {
 			let {
 				response: {
@@ -97,7 +97,7 @@ const Index = ({ user }) => {
 			});
 		} finally {
 			setLoading(false);
-			fetchData();
+			await fetchData();
 		}
 	};
 
@@ -161,16 +161,17 @@ const Index = ({ user }) => {
 						<div className="col-lg-9 col-md-8">
 							<div className="main-content-box">
 								<ul className="nav-style1">
-									<li>
-										<Link href="/admin/courses/">
-											<a>Courses</a>
-										</Link>
-									</li>
+
 									<li>
 										<Link href="/admin/courses/new-arrival/">
 											<a className="active">
 												New Arrival
 											</a>
+										</Link>
+									</li>
+									<li>
+										<Link href="/admin/courses/">
+											<a>Courses</a>
 										</Link>
 									</li>
 								</ul>
@@ -182,7 +183,7 @@ const Index = ({ user }) => {
 											<thead>
 												<tr>
 													<th scope="col">Title</th>
-													<th scope="col">Price</th>
+													{/*<th scope="col">Price</th>*/}
 													<th scope="col">
 														Category
 													</th>

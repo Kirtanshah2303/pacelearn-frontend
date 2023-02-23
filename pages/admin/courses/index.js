@@ -162,14 +162,15 @@ const Index = ({ user }) => {
 						<div className="col-lg-9 col-md-8">
 							<div className="main-content-box">
 								<ul className="nav-style1">
-									<li>
-										<Link href="/admin/courses/">
-											<a className="active">Courses</a>
-										</Link>
-									</li>
+
 									<li>
 										<Link href="/admin/courses/new-arrival/">
 											<a>New Arrival</a>
+										</Link>
+									</li>
+									<li>
+										<Link href="/admin/courses/">
+											<a className="active">Courses</a>
 										</Link>
 									</li>
 								</ul>
@@ -181,7 +182,6 @@ const Index = ({ user }) => {
 											<thead>
 												<tr>
 													<th scope="col">Title</th>
-													<th scope="col">Price</th>
 													<th scope="col">
 														Category
 													</th>
@@ -189,9 +189,9 @@ const Index = ({ user }) => {
 														Instructor
 													</th>
 													<th scope="col">Videos</th>
-													<th scope="col">
+													{/*<th scope="col">
 														Homepage
-													</th>
+													</th>*/}
 													<th scope="col">Status</th>
 												</tr>
 											</thead>
