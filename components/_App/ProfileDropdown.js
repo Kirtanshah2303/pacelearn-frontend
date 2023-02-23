@@ -132,31 +132,31 @@ const ProfileDropdown = ({
 						</a>
 					</Link>
 				</li>
-				<li>
-					<Link href="/learning/my-purchase-history/">
-						<a className="dropdown-item">
-							<i className="bx bx-credit-card-front"></i>
-							My Purchases
-						</a>
-					</Link>
-				</li>
-				<li>
-					<Link href="/learning/wishlist/">
-						<a className="dropdown-item">
-							<i className="bx bxs-heart"></i>
-							Wishlist
-						</a>
-					</Link>
-				</li>
+				{/*<li>*/}
+				{/*	<Link href="/learning/my-purchase-history/">*/}
+				{/*		<a className="dropdown-item">*/}
+				{/*			<i className="bx bx-credit-card-front"></i>*/}
+				{/*			My Purchases*/}
+				{/*		</a>*/}
+				{/*	</Link>*/}
+				{/*</li>*/}
+				{/*<li>*/}
+				{/*	<Link href="/learning/wishlist/">*/}
+				{/*		<a className="dropdown-item">*/}
+				{/*			<i className="bx bxs-heart"></i>*/}
+				{/*			Wishlist*/}
+				{/*		</a>*/}
+				{/*	</Link>*/}
+				{/*</li>*/}
 
-				<li>
-					<Link href="/profile/basic-information/">
-						<a className="dropdown-item">
-							<i className="bx bxs-user-account"></i> Account
-							settings
-						</a>
-					</Link>
-				</li>
+				{/*<li>*/}
+				{/*	<Link href="/profile/basic-information/">*/}
+				{/*		<a className="dropdown-item">*/}
+				{/*			<i className="bx bxs-user-account"></i> Account*/}
+				{/*			settings*/}
+				{/*		</a>*/}
+				{/*	</Link>*/}
+				{/*</li>*/}
 				<li>
 					<hr className="dropdown-divider" />
 				</li>
