@@ -40,7 +40,7 @@ const Index = ({
 	const [totalEnrollment,setTotalEnrollment] = useState(0);
 
 	const fetchData = async () => {
-		const res = await fetch(`${baseUrl2}/api/coreMetaData`,{
+		const res = await fetch(`${baseUrl2}/api/admin/coreMetaData`,{
 			headers : {
 				Authorization : "Bearer "+charuvidhya_users_token
 			}

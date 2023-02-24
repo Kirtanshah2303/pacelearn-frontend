@@ -23,7 +23,7 @@ const Index = ({ user }) => {
 				headers: { Authorization: "Bearer "+charuvidhya_users_token },
 			};
 			const response = await axios.get(
-				`${baseUrl2}/api/admin/courses/forApproval`,
+				`${baseUrl2}/api/admin/courses/approval/request`,
 				payload
 			);
 			// console.log(response.data.courses);
@@ -71,7 +71,7 @@ const Index = ({ user }) => {
 
 							const payloadData = { courseId, approved: true };
 							const response = await axios.put(
-								`${baseUrl2}/api/course/${courseId}/approve`,{
+								`${baseUrl2}/api/admin/course/${courseId}/approve`,{
 									payloadData
 								},
 								payload
