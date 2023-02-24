@@ -15,6 +15,7 @@ const CourseRow = ({
 	onDeny = null,
 	onHome = null,
 	onHomeRemove = null,
+	status = null
 }) => {
 	return (
 		<tr>
@@ -27,32 +28,34 @@ const CourseRow = ({
 			<td>{user.firstName}</td>
 			{/*<td>${latest_price}</td>*/}
 			{/*<td>{videos.length}</td>*/}
-			{onHome && (
-				<td>
-					{in_home_page ? (
-						<button
-							type="button"
-							className="btn btn-danger btn-sm fs-12 ms-2"
-							onClick={() => onHomeRemove(id)}
-						>
-							Remove
-						</button>
-					) : (
-						<button
-							type="button"
-							className="btn btn-primary btn-sm fs-12 ms-2"
-							onClick={() => onHome(id)}
-						>
-							Homepage
-						</button>
-					)}
-				</td>
-			)}
+			{/*{onHome && (*/}
+			{/*	<td>*/}
+			{/*		{in_home_page ? (*/}
+			{/*			<button*/}
+			{/*				type="button"*/}
+			{/*				className="btn btn-danger btn-sm fs-12 ms-2"*/}
+			{/*				onClick={() => onHomeRemove(id)}*/}
+			{/*			>*/}
+			{/*				Remove*/}
+			{/*			</button>*/}
+			{/*		) : (*/}
+			{/*			<button*/}
+			{/*				type="button"*/}
+			{/*				className="btn btn-primary btn-sm fs-12 ms-2"*/}
+			{/*				onClick={() => onHome(id)}*/}
+			{/*			>*/}
+			{/*				Homepage*/}
+			{/*			</button>*/}
+			{/*		)}*/}
+			{/*	</td>*/}
+			{/*)}*/}
 			<td>
 				{isApproved ? (
 					<button
 						type="button"
 						className="btn btn-success btn-sm fs-12 ms-2"
+						// className="btn btn-success btn-sm fs-12 ms-2"
+						onClick={() => status(id)}
 					>
 						Approved
 					</button>
