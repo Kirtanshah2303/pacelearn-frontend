@@ -56,13 +56,13 @@ const Layout = ({ children }) => {
 				onExitComplete={() => null}
 				mode="wait"
 			>
-				{modalOpen && modalImage && (
+				{/*{modalOpen && modalImage && (
 					<Modal
 						modalOpen={modalOpen}
 						handleClose={close}
 						image_url={modalImage}
 					/>
-				)}
+				)}*/}
 			</AnimatePresence>
 		</>
 	);
