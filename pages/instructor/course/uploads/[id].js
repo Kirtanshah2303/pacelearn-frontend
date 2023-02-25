@@ -109,21 +109,43 @@ const Index = ({ user }) => {
 					{loading ? (
 						<GeneralLoader />
 					) : (
-						<div className="create-course-form">
-							<div className="row">
+						<table className="table align-middle table-hover fs-14">
+							<div className="create-course-form">
+
+
+								<thead className="videoDetailrows">
+								<tr >
+									<th scope="col" style={{width: "12rem"}}>session order</th>
+									<th scope="col" style={{width: "12rem"}}>session Title</th>
+
+									<th scope="col" style={{width: "12rem"}}>
+										session Duration
+									</th>
+									<th scope="col" style={{width: "12rem"}}>Is preview</th>
+									<th scope="col" style={{width: "12rem"}}>
+										Is published</th>
+									<th scope="col" style={{width: "12rem"}}>
+										Buttons</th>
+								</tr>
+								</thead>
+
 								{videos.length > 0
-									? videos.map((video) => (
-											<CourseVideos
-												key={video.id}
-												{...video}
-												onDelete={() =>
-													confirmDelete(video.id)
-												}
-											/>
-									  ))
+									? videos.map((videos) => (
+										<CourseVideos
+											key={videos.id}
+											{...videos}
+											onDelete={() =>
+												confirmDelete(videos.id)
+											}
+										/>
+									))
 									: "Empty"}
+
+
 							</div>
-						</div>
+						</table>
+
+
 					)}
 				</div>
 			</div>
