@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import Router from "next/router";
 import NProgress from "nprogress";
 import Link from "@/utils/ActiveLink";
@@ -7,14 +7,17 @@ import Cart from "./Cart";
 import SearchForm from "./SearchForm";
 import TopHeader from "./TopHeader";
 import { motion } from "framer-motion";
+import AppContext from 'pages/AppContext.js'
 
 Router.onRouteChangeStart = () => NProgress.start();
 Router.onRouteChangeComplete = () => NProgress.done();
 Router.onRouteChangeError = () => NProgress.done();
 
-const Navbar = ({ user }) => {
+const Navbar = () => {
 	const [menu, setMenu] = React.useState(true);
 
+
+	const { user, setUser } = useContext(AppContext);
 	const toggleNavbar = () => {
 		setMenu(!menu);
 	};
@@ -166,10 +169,11 @@ const Navbar = ({ user }) => {
 
 							<div className="others-options">
 								<ul className="d-flex align-items-center">
-									<Cart />
+									{/*<Cart />*/}
 									{user ? (
 										<li className="profile_li">
-											<ProfileDropdown {...user} />
+											{console.log("Home ------------------>"+JSON.stringify(user))}
+											<ProfileDropdown {...user}/>
 										</li>
 									) : (
 										<motion.li whileTap={{ scale: 0.9 }}>

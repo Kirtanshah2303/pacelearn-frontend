@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect, useContext} from "react";
 import Navbar from "@/components/_App/Navbar";
 import Footer from "@/components/_App/Footer";
 import AdminSideNav from "@/components/_App/AdminSideNav";
@@ -10,11 +10,15 @@ import CatRow from "@/components/Admin/CatRow";
 import { parseCookies } from "nookies";
 import GeneralLoader from "@/utils/GeneralLoader";
 import { confirmAlert } from "react-confirm-alert";
+import AppContext from "../../AppContext";
+import {fetchUserData} from "../../gobals";
 
-const Index = ({ user }) => {
+const Index = () => {
 	const { charuvidhya_users_token } = parseCookies();
 	const [categories, setCategories] = useState([]);
 	const [loading, setLoading] = useState(true);
+	const { user, setUser } = useContext(AppContext);
+
 
 	const fetchData = async () => {
 		setLoading(true);
@@ -52,6 +56,7 @@ const Index = ({ user }) => {
 
 	useEffect(() => {
 		fetchData();
+		fetchUserData(user,setUser)
 	}, []);
 
 	const confirmDelete = (catId) => {

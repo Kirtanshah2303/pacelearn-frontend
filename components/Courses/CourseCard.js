@@ -9,7 +9,7 @@ import Cookies from 'js-cookie'
 import toast from "react-hot-toast";
 
 const CourseCard = ({ course, onFav, onUnFav, userId, onAddCart }) => {
-	const cartItems = useSelector((state) => state.cart.cartItems);
+	// const cartItems = useSelector((state) => state.cart.cartItems);
 	const router = useRouter();
 	// const {
 	// 	id,

@@ -8,7 +8,7 @@ import CourseCard from "./CourseCard";
 
 const CoursesList = ({ courses, user }) => {
 	const [loading, setLoading] = useState(true);
-	const dispatch = useDispatch();
+	// const dispatch = useDispatch();
 
 	useEffect(() => {
 		const timer = setTimeout(() => {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { handleLogin } from "@/utils/auth";
@@ -6,6 +6,8 @@ import baseUrl2 from "@/utils/baseUrl2";
 import { useRouter } from "next/router";
 import Button from "../../utils/Button";
 import { motion } from "framer-motion";
+import AppContext from 'pages/AppContext.js'
+import cookie from "js-cookie";
 
 const INITIAL_USER = {
 	username: "",
@@ -14,35 +16,38 @@ const INITIAL_USER = {
 };
 
 const LoginForm = () => {
-	const [user, setUser] = React.useState(INITIAL_USER);
+	const [loginuser, setLoginUser] = React.useState(INITIAL_USER);
 	const [disabled, setDisabled] = React.useState(true);
 	const [loading, setLoading] = React.useState(false);
 	const router = useRouter();
 
+	 const { user, setUser } = useContext(AppContext);
+
 	React.useEffect(() => {
-		const isUser = Object.values(user).every((el) => Boolean(el));
+		const isUser = Object.values(loginuser).every((el) => Boolean(el));
 		isUser ? setDisabled(false) : setDisabled(true);
-	}, [user]);
+	}, [loginuser]);
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
-		setUser((prevState) => ({ ...prevState, [name]: value }));
+		setLoginUser((prevState) => ({ ...prevState, [name]: value }));
 	};
+
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			// setUser({
+			// setLoginUser({
 			// 	username : email.value,
 			// 	password : password.value
 			// })
 			setLoading(true);
 			const url = `${baseUrl2}/api/authenticate`;
 			// const url = `${baseUrl2}/demoPostAPI`;
-			// const headers = { 
+			// const headers = {
 			// 	'Access-Control-Allow-Origin': 'http://localhost:8080'
 			// };
-			const payload = { ...user };
+			const payload = { ...loginuser };
 			const response = await axios.post(url, payload);
 			// const response = await fetch(url, {
     		// 		method: "POST",
@@ -110,7 +115,7 @@ const LoginForm = () => {
 					className="form-control"
 					placeholder="username"
 					name="username"
-					value={user.username}
+					value={loginuser.username}
 					onChange={handleChange}
 				/>
 			</div>
@@ -120,7 +125,7 @@ const LoginForm = () => {
 					className="form-control"
 					placeholder="Password"
 					name="password"
-					value={user.password}
+					value={loginuser.password}
 					onChange={handleChange}
 				/>
 			</div>

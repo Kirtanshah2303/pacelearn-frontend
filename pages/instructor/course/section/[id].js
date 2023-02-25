@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import Navbar from "@/components/_App/Navbar";
 import Footer from "@/components/_App/Footer";
 import CourseUpdateForm from "@/components/Instructor/CourseSection";
@@ -8,14 +8,19 @@ import { parseCookies } from "nookies";
 import baseUrl2 from "@/utils/baseUrl2";
 import PageNavigation from "../../../../components/Instructor/PageNavigation";
 import CourseSection from "@/components/Instructor/CourseSection";
+import AppContext from "../../../AppContext";
+import {fetchUserData} from "../../../gobals";
 
-const Create = ({ user }) => {
+const Create = ({ }) => {
     const { charuvidhya_users_token } = parseCookies();
     const router = useRouter();
     const { id: courseId } = router.query;
     const [course, setCourse] = useState({});
+    const { user, setUser } = useContext(AppContext);
+
 
     useEffect(() => {
+        fetchUserData(user,setUser);
         const fetchCourse = async () => {
             const payload = {
                 headers: { Authorization:"Bearer "+ charuvidhya_users_token },

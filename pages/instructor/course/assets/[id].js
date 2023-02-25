@@ -13,12 +13,14 @@ import GeneralLoader from "@/utils/GeneralLoader";
 import UploadAssetForm from "../../../../components/Instructor/UploadAssetForm";
 import PageNavigation from "../../../../components/Instructor/PageNavigation";
 
-const Index = ({ user }) => {
+const Index = ({  }) => {
 	const { charuvidhya_users_token } = parseCookies();
 	const router = useRouter();
 	const { id: courseId } = router.query;
 	const [assets, setAssets] = useState([]);
 	const [loading, setLoading] = useState(true);
+	const { user, setUser } = useContext(AppContext);
+
 
 	const fetchAssets = async () => {
 		setLoading(true);
@@ -34,6 +36,7 @@ const Index = ({ user }) => {
 	};
 
 	useEffect(() => {
+		fetchUserData(user,setUser);
 		fetchAssets();
 	}, []);
 

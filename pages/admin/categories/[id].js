@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
 import Button from "@/utils/Button";
+import {fetchUserData} from "../../gobals";
 
 const Create = ({ user }) => {
 	const router = useRouter();
@@ -16,6 +17,7 @@ const Create = ({ user }) => {
 	const [cat, setCat] = useState({ category: "" });
 	const [loading, setLoading] = React.useState(false);
 	const { id } = router.query;
+	const { user, setUser } = useContext(AppContext);
 
 	useEffect(() => {
 		const fetchCat = async () => {
@@ -31,7 +33,7 @@ const Create = ({ user }) => {
 				console.log(err);
 			}
 		};
-
+	fetchUserData(user,setUser)
 		fetchCat();
 	}, [id]);
 

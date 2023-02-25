@@ -1,4 +1,6 @@
-import React, {useEffect, useState} from "react";
+import cookie from "js-cookie";
+import {fetchUserData} from "../gobals";
+import React, {useEffect, useState ,useContext} from "react";
 import Navbar from "@/components/_App/Navbar";
 import Footer from "@/components/_App/Footer";
 import AdminSideNav from "@/components/_App/AdminSideNav";
@@ -6,6 +8,7 @@ import baseUrl2 from "@/utils/baseUrl2";
 import {parseCookies} from "nookies";
 import toast from "react-hot-toast";
 import Router from "next/router";
+import AppContext from "../AppContext";
 
 const INITIAL_USER = {
 	students : 0,
@@ -19,16 +22,7 @@ const INITIAL_USER = {
 
 };
 
-const Index = ({
-				   // students,
-				   // instructor,
-				   // reviewer,
-				   // approvedCourses,
-				   // approvalPendingCourses,
-				   // courseVideos,
-				   // totalEnrollment,
-					user,
-}) => {
+const Index = ({}) => {
 
 	const { charuvidhya_users_token } = parseCookies();
 	const [students,setStudents] = useState(0);
@@ -38,6 +32,14 @@ const Index = ({
 	const [approvalPendingCourses,setApprovalPendingCourses] = useState(0);
 	const [courseVideos,setCourseVideos] = useState(0);
 	const [totalEnrollment,setTotalEnrollment] = useState(0);
+
+
+	// eslint-disable-next-line react-hooks/rules-of-hooks
+	const { user, setUser } = useContext(AppContext);
+	useEffect(() => {
+
+		fetchUserData(user,setUser);
+	}, []);
 
 	const fetchData = async () => {
 		const res = await fetch(`${baseUrl2}/api/coreMetaData`,{

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect, useContext} from "react";
 import Navbar from "@/components/_App/Navbar";
 import PageBanner from "@/components/Common/PageBanner";
 import CoursesList from "@/components/Courses/CoursesList";
@@ -9,8 +9,10 @@ import { useRouter } from "next/router";
 import Pagination from "@etchteam/next-pagination";
 import axios from "axios";
 import baseUrl from "@/utils/baseUrl";
+import {fetchUserData} from "../gobals";
+import AppContext from "../AppContext";
 
-export default function CoursesPage({ user }) {
+export default function CoursesPage({  }) {
 	const [courses, setCourses] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [pages, setPages] = useState(0);
@@ -20,7 +22,12 @@ export default function CoursesPage({ user }) {
 	const size = router.query.size ? router.query.size : "8";
 	const short = router.query.short ? router.query.short : "";
 	const search = router.query.search ? router.query.search : "";
+	const { user, setUser } = useContext(AppContext);
 
+	useEffect(() => {
+
+		fetchUserData(user,setUser);
+	}, []);
 	const fetchCourses = async () => {
 		setLoading(true);
 

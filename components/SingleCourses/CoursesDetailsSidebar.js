@@ -10,14 +10,14 @@ import Cookies from "js-cookie";
 
 const CoursesDetailsSidebar = ({ current_user, course , studentCount }) => {
 	// console.log(course);
-	const cartItems = useSelector((state) => state.cart.cartItems);
-	const dispatch = useDispatch();
+	// const cartItems = useSelector((state) => state.cart.cartItems);
+	// const dispatch = useDispatch();
 	const [add, setAdd] = useState(false);
 	const [alreadyBuy, setAlreadyBuy] = useState(false);
 	const router = useRouter();
 	const [apply, setApplyCoupon] = useState(false);
 	const [coupon, setCoupon] = useState({ coupon: "" });
-	const discount = useSelector((state) => state.cart.discount);
+	// const discount = useSelector((state) => state.cart.discount);
 	// const [cnt,setCnt]=useState(10);
 	// useEffect(()=>{
 

@@ -5,8 +5,8 @@ import axios from "axios";
 import { useRouter } from "next/router";
 
 const BuyCourseBtn = ({ current_user, course }) => {
-	const cartItems = useSelector((state) => state.cart.cartItems);
-	const dispatch = useDispatch();
+	// const cartItems = useSelector((state) => state.cart.cartItems);
+	// const dispatch = useDispatch();
 	const router = useRouter();
 
 	const buyCourse = (courseCart) => {

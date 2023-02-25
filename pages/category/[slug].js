@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect, useContext} from "react";
 import Navbar from "@/components/_App/Navbar";
 import PageBanner from "@/components/Common/PageBanner";
 import CoursesList from "@/components/Courses/CoursesList";
@@ -6,12 +6,15 @@ import Footer from "@/components/_App/Footer";
 import { useRouter } from "next/router";
 import axios from "axios";
 import baseUrl from "@/utils/baseUrl";
+import {fetchUserData} from "../gobals";
+import AppContext from "../AppContext";
 
-export default function CoursesPage({ user }) {
+export default function CoursesPage({}) {
 	const [courses, setCourses] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const router = useRouter();
 	const { slug } = router.query;
+	const { user, setUser } = useContext(AppContext);
 
 	const fetchCourses = async () => {
 		setLoading(true);
@@ -22,6 +25,7 @@ export default function CoursesPage({ user }) {
 	};
 
 	useEffect(() => {
+		fetchUserData();
 		fetchCourses();
 	}, [slug]);
 	return (

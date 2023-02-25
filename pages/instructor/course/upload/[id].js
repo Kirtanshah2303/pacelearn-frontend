@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import Navbar from "@/components/_App/Navbar";
 import Footer from "@/components/_App/Footer";
 import PageNavigation from "@/components/Instructor/PageNavigation";
@@ -6,13 +6,20 @@ import { useRouter } from "next/router";
 import UploadVideoForm from "@/components/Instructor/UploadVideoForm";
 import {parseCookies} from "nookies";
 import baseUrl2 from "@/utils/baseUrl2";
+import {fetchUserData} from "../../../gobals";
+import AppContext from "../../../AppContext";
 
-const Index = ({ user }) => {
+const Index = ({ }) => {
 	const router = useRouter();
 	const { charuvidhya_users_token } = parseCookies();
 	const [section, setSection] = useState([]);
 	const { id: courseId } = router.query;
+	const { user, setUser } = useContext(AppContext);
 
+	useEffect(() => {
+
+		fetchUserData(user,setUser);
+	}, []);
 
 	// useEffect(() => {
 	//

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import Navbar from "@/components/_App/Navbar";
 import Footer from "@/components/_App/Footer";
 import Link from "next/link";
@@ -8,13 +8,18 @@ import { parseCookies } from "nookies";
 import baseUrl2 from "@/utils/baseUrl2";
 import GeneralLoader from "@/utils/GeneralLoader";
 import CourseCard from "@/components/Learning/CourseCard";
+import AppContext from "../../AppContext";
+import {fetchUserData} from "../../gobals";
 
-const Index = ({ user }) => {
+const Index = ({  }) => {
 	const { charuvidhya_users_token } = parseCookies();
 	const [enrolments, setEnrolments] = useState([]);
 	const [loading, setLoading] = useState(true);
 
+	const { user, setUser } = useContext(AppContext);
+
 	useEffect(() => {
+		fetchUserData(user,setUser);
 		const fetchEnrols = async () => {
 			setLoading(true);
 			let bearer = 'Bearer ';

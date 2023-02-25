@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import Link from "next/link";
 import CoursesList from "@/components/Courses/CoursesList";
 import Banner from "@/components/Index/Banner";
@@ -15,6 +15,8 @@ import baseUrl2 from "@/utils/baseUrl2";
 import baseUrl from "@/utils/baseUrl";
 import { motion } from "framer-motion";
 import cookie from "js-cookie";
+import AppContext from './AppContext';
+import {fetchUserData} from "./gobals";
 
 const index = ({ courses, categories }) => {
 	const variants = {
@@ -26,26 +28,14 @@ const index = ({ courses, categories }) => {
 		hidden: { opacity: 0, scale: 0 },
 	};
 
-	const [user,setUser]=useState();
+	// eslint-disable-next-line react-hooks/rules-of-hooks
+	const { user, setUser } = useContext(AppContext);
+
+	// eslint-disable-next-line react-hooks/rules-of-hooks
 	useEffect(() => {
-		const fetchData = async () => {
-			if(typeof cookie.get("charuvidhya_users_token") !== 'undefined' || (user === null || (typeof user) === undefined )) {
 
-				const options = {
-					headers: {
-						'Authorization': 'Bearer ' + cookie.get('charuvidhya_users_token'),
-						'Content-Type': 'application/json',
-					}
-				};
-				const response = await fetch(`${baseUrl2}/api/account`, options);
-				const jsonData = await response.json();
-				setUser(jsonData);
-				console.log("Data@@@@@@@@@@@@@@@@@" + user + "JSON :" + jsonData);
-			}
-		};
-		fetchData();
+		fetchUserData(user,setUser);
 	}, []);
-
 
 	return (
 		<>
