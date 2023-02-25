@@ -21,7 +21,7 @@ const Index = ({ user }) => {
 		};
 
 		const response = await axios.get(`${baseUrl2}/api/courses`, payload);
-		console.log("Inside fetchCourses --> "+response.data.courses)
+		/*console.log("Inside fetchCourses --> "+response.data.courses)*/
 		setCourses(response.data.courses);
 		setLoading(false);
 	};

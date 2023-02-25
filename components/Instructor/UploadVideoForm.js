@@ -37,7 +37,7 @@ const UploadVideoForm = ({ courseId ,courseSection}) => {
 		fetch(`${baseUrl2}/api/course-section/${courseId}`,{
 			headers: { Authorization: charuvidhya_users_token },
 		}).then(response => response.json().then(result => {
-			console.log(result)
+			// console.log(result)
 			setSection(result)
 		}))
 
@@ -124,7 +124,7 @@ const UploadVideoForm = ({ courseId ,courseSection}) => {
 	const handleVideoUpload = async () => {
 		let fileName = '';
 		if (video.video!=null){
-			console.log("Inside handle image upload")
+			// console.log("Inside handle image upload")
 			const contentType = video.video.type;
 			const bucket = new S3({
 				accessKeyId: 'AKIAUAPPTOSJ4XNUJ2D5',
@@ -142,7 +142,7 @@ const UploadVideoForm = ({ courseId ,courseSection}) => {
 
 			try {
 				const res = (await bucket.upload(params).promise()).Location;
-				console.log("Location of video is --? "+ res)
+				// console.log("Location of video is --? "+ res)
 				video.sessionVideo = res;
 				fileName = res;
 			} catch (e) {
@@ -179,7 +179,7 @@ const UploadVideoForm = ({ courseId ,courseSection}) => {
 				// const videoUpload = await handleVideoUpload();
 				await handleVideoUpload();
 				// video.sessionVideo = videoUpload
-				console.log("Session video = " + video.sessionVideo)
+				// console.log("Session video = " + video.sessionVideo)
 				// videoUrl = videoUpload.replace(/^http:\/\//i, "https://");
 				// const thumbUpload = await handleThumbUpload();
 				// thumbUrl = thumbUpload.replace(/^http:\/\//i, "https://");

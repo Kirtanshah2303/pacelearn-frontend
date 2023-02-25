@@ -5,7 +5,7 @@ import StickyBox from "react-sticky-box";
 import { motion } from "framer-motion";
 
 const AdminSideNav = ({ user }) => {
-	console.log("ADMIN----------------->"+JSON.stringify(user));
+	/*console.log("ADMIN----------------->"+JSON.stringify(user));*/
 	const isAdmin = user.authorities.includes("ROLE_ADMIN");
 	const router = useRouter();
 	const currentRoute = router.pathname;
@@ -112,7 +112,7 @@ const AdminSideNav = ({ user }) => {
 									damping: 10,
 								}}
 							>
-								<Link href="/admin/instructor/">
+								{/*<Link href="/admin/instructor/">
 									<a
 										className={
 											currentRoute === "/admin/instructor"
@@ -122,7 +122,7 @@ const AdminSideNav = ({ user }) => {
 									>
 										Instructors
 									</a>
-								</Link>
+								</Link>*/}
 							</motion.li>
 							<motion.li
 								whileHover={{
@@ -135,7 +135,7 @@ const AdminSideNav = ({ user }) => {
 									damping: 10,
 								}}
 							>
-								<Link href="/admin/students/">
+								{/*<Link href="/admin/students/">
 									<a
 										className={
 											currentRoute === "/admin/students"
@@ -145,7 +145,7 @@ const AdminSideNav = ({ user }) => {
 									>
 										Students
 									</a>
-								</Link>
+								</Link>*/}
 							</motion.li>
 							<motion.li
 								whileHover={{
@@ -158,7 +158,7 @@ const AdminSideNav = ({ user }) => {
 									damping: 10,
 								}}
 							>
-								<Link href="/admin/partners/">
+								{/*<Link href="/admin/partners/">
 									<a
 										className={
 											currentRoute === "/admin/partners"
@@ -168,7 +168,7 @@ const AdminSideNav = ({ user }) => {
 									>
 										Partners
 									</a>
-								</Link>
+								</Link>*/}
 							</motion.li>
 							<motion.li
 								whileHover={{
@@ -181,7 +181,7 @@ const AdminSideNav = ({ user }) => {
 									damping: 10,
 								}}
 							>
-								<Link href="/admin/testimonials/">
+								{/*<Link href="/admin/testimonials/">
 									<a
 										className={
 											currentRoute ===
@@ -192,7 +192,7 @@ const AdminSideNav = ({ user }) => {
 									>
 										Testimonials
 									</a>
-								</Link>
+								</Link>*/}
 							</motion.li>
 							<motion.li
 								whileHover={{
@@ -205,7 +205,7 @@ const AdminSideNav = ({ user }) => {
 									damping: 10,
 								}}
 							>
-								<Link href="/admin/categories/">
+								{/*<Link href="/admin/categories/">
 									<a
 										className={
 											currentRoute === "/admin/categories"
@@ -215,7 +215,7 @@ const AdminSideNav = ({ user }) => {
 									>
 										Categories
 									</a>
-								</Link>
+								</Link>*/}
 							</motion.li>
 							<motion.li
 								whileHover={{
@@ -228,7 +228,7 @@ const AdminSideNav = ({ user }) => {
 									damping: 10,
 								}}
 							>
-								<Link href="/admin/coupons/">
+								{/*<Link href="/admin/coupons/">
 									<a
 										className={
 											currentRoute === "/admin/coupons" ||
@@ -240,7 +240,7 @@ const AdminSideNav = ({ user }) => {
 									>
 										Coupons
 									</a>
-								</Link>
+								</Link>*/}
 							</motion.li>
 						</ul>
 					</div>

@@ -46,7 +46,7 @@ const Categories = ({ categories }) => {
 					<div className="col-lg-12 ">
 						<p className="text-center">
 							Browse All{" "}
-							<Link href="/courses">
+							<Link href="/">
 								<a className="read-more">
 									Courses{" "}
 									<i className="ri-arrow-right-line"></i>

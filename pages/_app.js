@@ -50,7 +50,7 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 		pageProps = await Component.getInitialProps(ctx);
 	}
 
-	console.log("ohh-----------------<<---"+cookie.get("charuvidhya_users_token")+"--->>");
+	/*console.log("ohh-----------------<<---"+cookie.get("charuvidhya_users_token")+"--->>");*/
 
 	if (!cookie.get("charuvidhya_users_token")) {
 		// if a user not logged in then user can't access those pages

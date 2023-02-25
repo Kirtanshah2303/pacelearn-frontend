@@ -9,7 +9,7 @@ const CourseVideos = ({ id:videoId,sessionOrder, sessionTitle, isPreview, isPubl
 		<div className="table-responsive">
 			<table className="table align-middle table-hover fs-14" >
 				<div className="create-course-form">
-					{console.log("VIdeos ----------------->isPublies:"+isPublished+"isPreview"+isPreview)}
+					{/*{console.log("VIdeos ----------------->isPublies:"+isPublished+"isPreview"+isPreview)}*/}
 					<thead></thead>
 			<tbody className="tbody,td,tfoot,th,thead,tr">
 					<tr className="videoDetailrows">

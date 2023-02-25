@@ -67,12 +67,12 @@ const Navbar = ({ user }) => {
 								className={classOne}
 								id="navbarSupportedContent"
 							>
-								<div className="others-options pe-0">
+								{/*<div className="others-options pe-0">
 									<SearchForm
 										formClass="search-form style1"
 										btnClass="src-btn"
 									/>
-								</div>
+								</div>*/}
 
 								<ul className="navbar-nav ms-auto">
 									<motion.li
@@ -102,7 +102,7 @@ const Navbar = ({ user }) => {
 										whileTap={{ scale: 0.9 }}
 									>
 										<Link
-											href="/courses"
+											href="/"
 											activeClassName="active"
 										>
 											<a
@@ -114,7 +114,7 @@ const Navbar = ({ user }) => {
 										</Link>
 									</motion.li>
 
-									{user ? (
+									{/*{user ? (
 										!user.instructor_request && (
 											<motion.li
 												className="nav-item"
@@ -160,7 +160,7 @@ const Navbar = ({ user }) => {
 												</a>
 											</Link>
 										</motion.li>
-									)}
+									)}*/}
 								</ul>
 							</div>
 

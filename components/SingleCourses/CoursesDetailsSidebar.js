@@ -30,7 +30,7 @@ const CoursesDetailsSidebar = ({ current_user, course , studentCount }) => {
 		if(cookies){
 			let bearer = 'Bearer ';
 			let token = cookies;
-			console.log("Token is -->" + token);
+			// console.log("Token is -->" + token);
 			bearer = bearer+token;
 
 			fetch(`http://localhost:8080/api/courses/enroll`, {
@@ -56,7 +56,7 @@ const CoursesDetailsSidebar = ({ current_user, course , studentCount }) => {
 								secondary: "#FFFAEE",
 							},
 						});
-						console.log("Already Enrolled")
+						// console.log("Already Enrolled")
 						throw new Error(response.status);
 					}
 					else return response.json();
@@ -75,7 +75,7 @@ const CoursesDetailsSidebar = ({ current_user, course , studentCount }) => {
 								secondary: "#FFFAEE",
 							},
 						});
-						console.log("Access Denied")
+						// console.log("Access Denied")
 						return false;
 					}
 					toast.success("Course enrolled successfully", {
@@ -90,8 +90,8 @@ const CoursesDetailsSidebar = ({ current_user, course , studentCount }) => {
 						},
 					});
 					window.location.href = '/';
-					console.log(result.status);
-					console.log('Demo passed enrolled');
+					// console.log(result.status);
+					// console.log('Demo passed enrolled');
 					// console.log(this.state);
 					return true;
 				})

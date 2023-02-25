@@ -7,12 +7,12 @@ const Cart = () => {
 
 	return (
 		<li>
-			<Link href="/checkout">
+			{/*<Link href="/checkout">
 				<a className="cart">
 					<i className="ri-shopping-cart-line"></i>
 					<span>{cartItems.length}</span>
 				</a>
-			</Link>
+			</Link>*/}
 		</li>
 	);
 };

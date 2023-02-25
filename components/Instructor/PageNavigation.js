@@ -80,7 +80,7 @@ const PageNavigation = ({ courseId, activeClassname }) => {
 						</a>
 					</Link>
 				</li>
-				<li>
+				{/*<li>
 					<Link href={`/instructor/course/assets/${courseId}`}>
 						<a
 							className={
@@ -90,7 +90,7 @@ const PageNavigation = ({ courseId, activeClassname }) => {
 							Assets
 						</a>
 					</Link>
-				</li>
+				</li>*/}
 			</ul>
 		</>
 	);

@@ -23,11 +23,11 @@ const Footer = () => {
 										alt="logo"
 									/>
 								</a>
-								<p>
+								{/*<p>
 									Lorem ipsum dolor sit amet, consectetur
 									adipiscing elit. Mattis mi suscipit bibendum
 									sit amet, consectetur.
-								</p>
+								</p>*/}
 							</div>
 						</div>
 

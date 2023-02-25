@@ -21,14 +21,14 @@ const Create = ({ user }) => {
 		fetch(`${baseUrl2}/api/course-category/parent-categories`,{
 			headers: { Authorization: charuvidhya_users_token },
 		}).then(response => response.json().then(result => {
-			console.log(result.parentCategories)
+			// console.log(result.parentCategories)
 			setParentCategories(result.parentCategories)
 		}))
 
 		fetch(`${baseUrl2}/api/course-levels`,{
 			headers: { Authorization: charuvidhya_users_token },
 		}).then(response => response.json().then(result => {
-			console.log(result.levels)
+			// console.log(result.levels)
 			setLevel(result.levels)
 		}))
 	}, []);

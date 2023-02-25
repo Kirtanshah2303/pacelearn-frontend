@@ -124,14 +124,14 @@ const ProfileDropdown = ({
 					</li>
 				)}
 
-				<li>
+				{/*<li>
 					<Link href="/learning/my-courses/">
 						<a className="dropdown-item">
 							<i className="bx bx-book"></i>
 							My learning
 						</a>
 					</Link>
-				</li>
+				</li>*/}
 				{/*<li>*/}
 				{/*	<Link href="/learning/my-purchase-history/">*/}
 				{/*		<a className="dropdown-item">*/}

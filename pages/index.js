@@ -40,7 +40,7 @@ const index = ({ courses, categories }) => {
 				const response = await fetch(`${baseUrl2}/api/account`, options);
 				const jsonData = await response.json();
 				setUser(jsonData);
-				console.log("Data@@@@@@@@@@@@@@@@@" + user + "JSON :" + jsonData);
+				/*console.log("Data@@@@@@@@@@@@@@@@@" + user + "JSON :" + jsonData);*/
 			}
 		};
 		fetchData();
@@ -78,7 +78,7 @@ const index = ({ courses, categories }) => {
 							<span className="top-title">Featured Courses</span>
 							<h2>Find Yours From The Featured</h2>
 						</motion.div>
-						<Link href="/courses">
+						<Link href="/">
 							<a className="default-btn">View All</a>
 						</Link>
 					</div>
@@ -106,7 +106,7 @@ const index = ({ courses, categories }) => {
 							</span>
 							<h2>Students Are Also Viewing</h2>
 						</motion.div>
-						<Link href="/courses">
+						<Link href="/">
 							<a className="default-btn">View All</a>
 						</Link>
 					</div>
@@ -115,12 +115,12 @@ const index = ({ courses, categories }) => {
 			</div>
 
 			<Categories categories={categories} />
-			<Transform />
+			{/*<Transform />
 			<Features />
 			<Testimonials />
 			<Partners />
 			<Teaching />
-			<Business />
+			<Business />*/}
 			<Footer />
 		</>
 	);

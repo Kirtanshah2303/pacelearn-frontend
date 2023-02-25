@@ -24,7 +24,7 @@ const Index = ({ user }) => {
 			const payload = {
 				headers: { Authorization: bearer },
 			};
-			console.log("Payload is --> "+payload);
+			// console.log("Payload is --> "+payload);
 			// const response = await axios.get(
 			// 	// `${baseUrl}/api/learnings`,
 			// 	`${baseUrl2}/api/courses/enrolled`,
@@ -37,10 +37,10 @@ const Index = ({ user }) => {
 				}
 			}).then(response => response.json())
 				.then(result => {
-					console.log("Results is ==> "+result)
+					// console.log("Results is ==> "+result)
 					const {enrolments} = result
 					setEnrolments(enrolments)
-					console.log("Response is = "+ enrolments)
+					// console.log("Response is = "+ enrolments)
 				})
 			// console.log("Response is = "+ (await response).json())
 			// const {enrolments} = (await response).json();
