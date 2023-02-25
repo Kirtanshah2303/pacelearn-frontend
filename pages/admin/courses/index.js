@@ -9,6 +9,8 @@ import baseUrl from "@/utils/baseUrl";
 import { parseCookies } from "nookies";
 import GeneralLoader from "@/utils/GeneralLoader";
 import CourseRow from "@/components/Admin/CourseRow";
+import baseUrl2 from "@/utils/baseUrl2";
+import {confirmAlert} from "react-confirm-alert";
 
 const Index = ({ user }) => {
 	const { charuvidhya_users_token } = parseCookies();
@@ -19,14 +21,14 @@ const Index = ({ user }) => {
 		setLoading(true);
 		try {
 			const payload = {
-				headers: { Authorization: charuvidhya_users_token },
+				headers: { Authorization: "Bearer " + charuvidhya_users_token },
 			};
 			const response = await axios.get(
-				`${baseUrl}/api/admin/courses`,
+				`${baseUrl2}/api/admin/courses/approved-courses`,
 				payload
 			);
 			// console.log(response.data.courses);
-			setCourses(response.data.courses);
+			setCourses(response.data.approvedCourses);
 			setLoading(false);
 		} catch (err) {
 			let {
@@ -99,6 +101,119 @@ const Index = ({ user }) => {
 			setLoading(false);
 			fetchData();
 		}
+	};
+
+	const handleApprove = async (courseId) => {
+
+		confirmAlert({
+			title: "Confirm to revoke approval on this Course",
+			message: "Are you sure to disapprove this?",
+			buttons: [
+				{
+					label: "Yes",
+					onClick: async () => {
+						try {
+							const payload = {
+								headers: { Authorization: "Bearer " + charuvidhya_users_token },
+							};
+
+							const payloadData = { courseId, approved: true };
+							const response = await axios.put(
+								`${baseUrl2}/api/admin/course/${courseId}/revoke-approval`,{
+									payloadData
+								},
+								payload
+								// payloadData,
+
+							);
+							toast.success(response.data.message, {
+								style: {
+									border: "1px solid #4BB543",
+									padding: "16px",
+									color: "#4BB543",
+								},
+								iconTheme: {
+									primary: "#4BB543",
+									secondary: "#FFFAEE",
+								},
+							});
+							await fetchData();
+						} catch (err) {
+							let {
+								response: {
+									data: { message },
+								},
+							} = err;
+							toast.error(message, {
+								style: {
+									border: "1px solid #ff0033",
+									padding: "16px",
+									color: "#ff0033",
+								},
+								iconTheme: {
+									primary: "#ff0033",
+									secondary: "#FFFAEE",
+								},
+							});
+						} finally {
+							setLoading(false);
+							await fetchData();
+						}
+					}
+				},
+				{
+					label: "No",
+				},
+			],
+		});
+
+		// try {
+		// 	const payload = {
+		// 		headers: { Authorization: "Bearer " + charuvidhya_users_token },
+		// 	};
+		//
+		// 	const payloadData = { courseId, approved: true };
+		// 	const response = await axios.put(
+		// 		`${baseUrl2}/api/course/${courseId}/approve`,{
+		// 			payloadData
+		// 		},
+		// 		payload
+		// 		// payloadData,
+		//
+		// 	);
+		// 	toast.success(response.data.message, {
+		// 		style: {
+		// 			border: "1px solid #4BB543",
+		// 			padding: "16px",
+		// 			color: "#4BB543",
+		// 		},
+		// 		iconTheme: {
+		// 			primary: "#4BB543",
+		// 			secondary: "#FFFAEE",
+		// 		},
+		// 	});
+		// 	await fetchData();
+		// } catch (err) {
+		// 	let {
+		// 		response: {
+		// 			data: { message },
+		// 		},
+		// 	} = err;
+		// 	toast.error(message, {
+		// 		style: {
+		// 			border: "1px solid #ff0033",
+		// 			padding: "16px",
+		// 			color: "#ff0033",
+		// 		},
+		// 		iconTheme: {
+		// 			primary: "#ff0033",
+		// 			secondary: "#FFFAEE",
+		// 		},
+		// 	});
+		// } finally {
+		// 	setLoading(false);
+		// 	await fetchData();
+		// }
 	};
 
 	const handleCourseRemoveHome = async (courseId) => {
@@ -188,7 +303,7 @@ const Index = ({ user }) => {
 													<th scope="col">
 														Instructor
 													</th>
-													<th scope="col">Videos</th>
+													{/*<th scope="col">Videos</th>*/}
 													{/*<th scope="col">
 														Homepage
 													</th>*/}
@@ -201,16 +316,17 @@ const Index = ({ user }) => {
 														<CourseRow
 															key={course.id}
 															{...course}
-															onHome={() =>
-																handleCourseHome(
-																	course.id
-																)
-															}
-															onHomeRemove={() =>
-																handleCourseRemoveHome(
-																	course.id
-																)
-															}
+															// onHome={() =>
+															// 	handleCourseHome(
+															// 		course.id
+															// 	)
+															// }
+															// onHomeRemove={() =>
+															// 	handleCourseRemoveHome(
+															// 		course.id
+															// 	)
+															// }
+															status={() => handleApprove(course.id) }
 														/>
 													))
 												) : (
