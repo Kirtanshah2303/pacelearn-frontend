@@ -5,10 +5,11 @@ import AdminSideNav from "@/components/_App/AdminSideNav";
 import Link from "next/link";
 import toast from "react-hot-toast";
 import axios from "axios";
-import baseUrl from "@/utils/baseUrl";
+import baseUrl2 from "@/utils/baseUrl2";
 import { parseCookies } from "nookies";
 import GeneralLoader from "@/utils/GeneralLoader";
 import InstructorRow from "@/components/Admin/InstructorRow";
+import {confirmAlert} from "react-confirm-alert";
 
 const Index = ({ user }) => {
 	const { charuvidhya_users_token } = parseCookies();
@@ -19,10 +20,10 @@ const Index = ({ user }) => {
 		setLoading(true);
 		try {
 			const payload = {
-				headers: { Authorization: charuvidhya_users_token },
+				headers: { Authorization: "Bearer "+ charuvidhya_users_token },
 			};
 			const response = await axios.get(
-				`${baseUrl}/api/instructor/instructors`,
+				`${baseUrl2}/api/admin/instructor`,
 				payload
 			);
 			setInstructors(response.data.instructors);
@@ -53,6 +54,71 @@ const Index = ({ user }) => {
 		fetchData();
 	}, []);
 
+	const handleMakeReviewer = async (instId) => {
+
+
+		confirmAlert({
+			title: "Confirm to Make this Instructor a Reviewer",
+			message: "Are you sure for this?",
+			buttons: [
+				{
+					label: "Yes",
+					onClick: async () => {
+						try {
+							const payload = {
+								headers: { Authorization: "Bearer "+ charuvidhya_users_token },
+							};
+
+							const payloadData = { instId, approve: true };
+							const response = await axios.put(
+								`${baseUrl2}/api/admin/instructor/${instId}/make-reviewer`,
+								payloadData,
+								payload
+							);
+							toast.success(response.data.message, {
+								style: {
+									border: "1px solid #4BB543",
+									padding: "16px",
+									color: "#4BB543",
+								},
+								iconTheme: {
+									primary: "#4BB543",
+									secondary: "#FFFAEE",
+								},
+							});
+							fetchData();
+						} catch (err) {
+							let {
+								response: {
+									data: { message },
+								},
+							} = err;
+							toast.error(message, {
+								style: {
+									border: "1px solid #ff0033",
+									padding: "16px",
+									color: "#ff0033",
+								},
+								iconTheme: {
+									primary: "#ff0033",
+									secondary: "#FFFAEE",
+								},
+							});
+						} finally {
+							setLoading(false);
+							fetchData();
+						}
+					}
+				},
+				{
+					label: "No",
+				},
+			],
+		});
+
+
+	};
+
 	return (
 		<>
 			<Navbar user={user} />
@@ -76,7 +142,7 @@ const Index = ({ user }) => {
 									</li>
 									<li>
 										<Link href="/admin/instructor/requests/">
-											<a>Requests</a>
+											<a>Reviewers</a>
 										</Link>
 									</li>
 								</ul>
@@ -89,9 +155,9 @@ const Index = ({ user }) => {
 												<tr>
 													<th scope="col">Name</th>
 													<th scope="col">Email</th>
-													<th scope="col">Phone</th>
-													<th scope="col">Subject</th>
-													<th scope="col">Text</th>
+													<th scope="col">Activated</th>
+													{/*<th scope="col">Subject</th>*/}
+													{/*<th scope="col">Text</th>*/}
 													<th scope="col">Status</th>
 												</tr>
 											</thead>
@@ -104,6 +170,12 @@ const Index = ({ user }) => {
 																	instructor.id
 																}
 																{...instructor}
+																make_reviewer={true}
+																onMakeReviewer={() =>
+																	handleMakeReviewer(
+																		instructor.id
+																	)
+																}
 															/>
 														)
 													)
