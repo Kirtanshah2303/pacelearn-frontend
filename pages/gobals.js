@@ -1,10 +1,12 @@
 import cookie from "js-cookie";
 import baseUrl2 from "@/utils/baseUrl2";
+import {handleLogout} from "@/utils/auth";
 
-export const myGlobalVar = "Hello, World!";
+export let isAuthorized = false;
 export const user=null;
 
 export const fetchUserData = async (user,setUser) => {
+    console.log("Cookies ---------------->"+cookie.get("charuvidhya_users_token"));
     if(typeof cookie.get("charuvidhya_users_token") !== 'undefined' && (user === null || (typeof user) === undefined )) {
 
         const options = {
@@ -15,7 +17,13 @@ export const fetchUserData = async (user,setUser) => {
         };
         const response = await fetch(`${baseUrl2}/api/account`, options);
         const jsonData = await response.json();
-        setUser(jsonData);
-        console.log("Data@@@@@@@@@@@@@@@@@" + user + "JSON :" + jsonData);
+        if(typeof jsonData.firstName ==="undefined"){
+            handleLogout()
+        }
+        else {
+            isAuthorized = true;
+            setUser(jsonData);
+            console.log("Data@@@@@@@@@@@@@@@@@" + user + "JSON :" + jsonData);
+        }
     }
 };

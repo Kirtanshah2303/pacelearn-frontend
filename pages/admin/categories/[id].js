@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 import Button from "@/utils/Button";
 import {fetchUserData} from "../../gobals";
 
-const Create = ({ user }) => {
+const Create = ({  }) => {
 	const router = useRouter();
 	const { charuvidhya_users_token } = parseCookies();
 	const [cat, setCat] = useState({ category: "" });

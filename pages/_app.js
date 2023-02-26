@@ -27,36 +27,31 @@ import "../styles/responsive.css";
 import "../styles/dashboard.css";
 
 import Layout from "../components/_App/Layout";
-import cookie from "js-cookie";
+import cookies from "js-cookie";
 import AppContext from './AppContext';
+import {isAuthorized} from "./gobals";
+import Router from "next/router";
 
 function MyApp({ Component, pageProps }) {
+	const { charuvidhya_users_token } = parseCookies();
 	const [user, setUser] = React.useState(null);
-	// const myContext = useContext(AppContext);
-	// useEffect(() => {
-	// 	try{
-	// 		const fetchData = async () => {
-	// 			if(typeof cookie.get("charuvidhya_users_token") !== 'undefined' && (myContext.user === null || (typeof myContext.user) === undefined )) {
-	//
-	// 				const options = {
-	// 					headers: {
-	// 						'Authorization': 'Bearer ' + cookie.get('charuvidhya_users_token'),
-	// 						'Content-Type': 'application/json',
-	// 					}
-	// 				};
-	// 				const response = await fetch(`${baseUrl2}/api/account`, options);
-	// 				const jsonData = await response.json();
-	// 				myContext.setUser(jsonData);
-	// 				console.log("Data@@@@@@@@@@@@@@@@@" + myContext.user + "JSON :" + jsonData);
-	// 			}
-	// 		};
-	// 		fetchData();
-	// 	}
-	// 	catch (e) {
-	// 		console.log("Context------------>"+myContext+"\n"+e);
-	// 	}
-	// }, []);
-
+	useEffect(() => {
+		const isProtectedRoute =
+			Router.pathname === "/profile/basic-information" ||
+			Router.pathname === "/profile/photo" ||
+			Router.pathname === "/learning/my-courses" ||
+			Router.pathname === "/instructor/courses" ||
+			Router.pathname === "/admin" ||
+			Router.pathname === "/admin/instructor" ||
+			Router.pathname === "/admin/students" ||
+			Router.pathname === "/admin/partners" ||
+			Router.pathname === "/admin/testimonials" ||
+			Router.pathname === "/admin/categories" ||
+			Router.pathname === "/learning/wishlist";
+		if (!charuvidhya_users_token && isProtectedRoute) {
+			Router.push('/auth');
+		}
+	}, []);
 	// const store = useStore(pageProps.initialReduxState);
 	return (
 		<AppContext.Provider value={{ user, setUser }}>
@@ -69,51 +64,46 @@ function MyApp({ Component, pageProps }) {
 
 
 MyApp.getInitialProps = async ({ Component, ctx }) => {
-	// const { charuvidhya_users_token } = parseCookies(ctx);
 	let pageProps = {};
 	console.log("First Time --------------->"+Component.user);
-
-	// if (Component.getInitialProps) {
-	// 	pageProps = await Component.getInitialProps(ctx);
-	// }
-	// const cookie = ctx.req.headers.cookie
-	// console.log("ohh-----------------<<---"+cookie.get("charuvidhya_users_token")+"--->>");
-
-	// if(typeof cookie.get("charuvidhya_users_token") !== 'undefined' || (Component.user === null || (typeof Component.user) === undefined )) {
+	console.log("Authorized -------------------->"+isAuthorized+"\n");
+	// if (!isAuthorized) {
+	// 	// if a user not logged in then user can't access those pages
+	// 	const isProtectedRoute =
+	// 		ctx.pathname === "/profile/basic-information" ||
+	// 		ctx.pathname === "/profile/photo" ||
+	// 		ctx.pathname === "/checkout" ||
+	// 		ctx.pathname === "/become-an-instructor" ||
+	// 		ctx.pathname === "/learning/my-courses" ||
+	// 		ctx.pathname === "/instructor/courses" ||
+	// 		ctx.pathname === "/admin" ||
+	// 		ctx.pathname === "/admin/instructor" ||
+	// 		ctx.pathname === "/admin/students" ||
+	// 		ctx.pathname === "/admin/partners" ||
+	// 		ctx.pathname === "/admin/testimonials" ||
+	// 		ctx.pathname === "/admin/categories" ||
+	// 		ctx.pathname === "/checkout" ||
+	// 		ctx.pathname === "/learning/wishlist";
 	//
-	// 	const options = {
-	// 		headers: {
-	// 			'Authorization': 'Bearer ' + cookie.get('charuvidhya_users_token'),
-	// 			'Content-Type': 'application/json',
+	// 	console.log("ohh-----------------<<---"+cookies.get("charuvidhya_users_token")+"--->>");
+	// 	console.log("ohh-----------------<<---"+Component.charuvidhya_users_token+"--->>");
+	// 	if (isProtectedRoute) {
+	// 		const options = {
+	// 			headers: {
+	// 				'Authorization': 'Bearer ' +Component.charuvidhya_users_token,
+	// 				'Content-Type': 'application/json',
+	// 			}
+	// 		};
+	// 		const response = await fetch(`${baseUrl2}/api/account`, options);
+	// 		const jsonData = await response.json();
+	// 		if(typeof jsonData.firstName ==="undefined"){
+	// 			redirectUser(ctx, "/auth");
 	// 		}
-	// 	};
-	// 	const response = await fetch(`${baseUrl2}/api/account`, options);
-	// 	const jsonData = await response.json();
-	// 	console.log("Result ------------------>"+Component.setUser(jsonData));
-	// 	console.log("Data-------------->" + Component.user + "JSON :" + jsonData);
-	// }
-	if (typeof cookie.get("charuvidhya_users_token") === 'undefined') {
-		// if a user not logged in then user can't access those pages
-		const isProtectedRoute =
-			ctx.pathname === "/profile/basic-information" ||
-			ctx.pathname === "/profile/photo" ||
-			ctx.pathname === "/checkout" ||
-			ctx.pathname === "/become-an-instructor" ||
-			ctx.pathname === "/learning/my-courses" ||
-			ctx.pathname === "/instructor/courses" ||
-			ctx.pathname === "/admin" ||
-			ctx.pathname === "/admin/instructor" ||
-			ctx.pathname === "/admin/students" ||
-			ctx.pathname === "/admin/partners" ||
-			ctx.pathname === "/admin/testimonials" ||
-			ctx.pathname === "/admin/categories" ||
-			ctx.pathname === "/checkout" ||
-			ctx.pathname === "/learning/wishlist";
-
-		if (isProtectedRoute) {
-			redirectUser(ctx, "/auth");
-		}
-	} else {
+	// 		else{
+	//
+	// 		}
+	// 	}
+	// } else {
 		// if a user logged in then user can't access those pages
 		// const ifLoggedIn =
 		// 	ctx.pathname === "/auth" || ctx.pathname === "/reset-password";
@@ -146,7 +136,7 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 		// 	destroyCookie(ctx, "charuvidhya_users_token");
 		// 	// redirectUser(ctx, "/");
 		// }
-	}
+	// }
 	return {
 		pageProps,
 	};

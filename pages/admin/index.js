@@ -32,14 +32,11 @@ const Index = ({}) => {
 	const [approvalPendingCourses,setApprovalPendingCourses] = useState(0);
 	const [courseVideos,setCourseVideos] = useState(0);
 	const [totalEnrollment,setTotalEnrollment] = useState(0);
-
+	const { user, setUser } = useContext(AppContext);
 
 	// eslint-disable-next-line react-hooks/rules-of-hooks
-	const { user, setUser } = useContext(AppContext);
-	useEffect(() => {
 
-		fetchUserData(user,setUser);
-	}, []);
+
 
 	const fetchData = async () => {
 		const res = await fetch(`${baseUrl2}/api/coreMetaData`,{
@@ -84,6 +81,7 @@ const Index = ({}) => {
 
 	useEffect(() => {
 		fetchData();
+		fetchUserData(user,setUser);
 	}, []);
 
 
