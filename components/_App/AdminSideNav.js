@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import StickyBox from "react-sticky-box";
 import { motion } from "framer-motion";
+import AppContext from "../../pages/AppContext";
+import {fetchUserData} from "../../pages/gobals";
 
-const AdminSideNav = ({ user }) => {
+const AdminSideNav = ({ }) => {
 	/*console.log("ADMIN----------------->"+JSON.stringify(user));*/
-	const isAdmin = user.authorities.includes("ROLE_ADMIN");
 	const router = useRouter();
 	const currentRoute = router.pathname;
+	const { user, setUser } = useContext(AppContext);
 
 	useEffect(() => {
-		if (!isAdmin) {
-			router.replace("/");
-		}
-	}, [user]);
+		fetchUserData(user,setUser);
+	}, []);
 
 	// Sidebar Nav
 	const [isActiveSidebarNav, setActiveSidebarNav] = useState("false");

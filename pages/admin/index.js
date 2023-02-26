@@ -7,6 +7,7 @@ import {parseCookies} from "nookies";
 import toast from "react-hot-toast";
 import Router from "next/router";
 import {fetchUserData} from "../gobals";
+import AppContext from "../AppContext";
 
 const INITIAL_USER = {
 	students : 0,
@@ -39,6 +40,7 @@ const Index = ({
 	const [approvalPendingCourses,setApprovalPendingCourses] = useState(0);
 	const [courseVideos,setCourseVideos] = useState(0);
 	const [totalEnrollment,setTotalEnrollment] = useState(0);
+	const { user, setUser } = useContext(AppContext);
 
 	const fetchData = async () => {
 		const res = await fetch(`${baseUrl2}/api/admin/coreMetaData`,{
@@ -80,7 +82,6 @@ const Index = ({
 			Router.push("/");
 		}
 	}
-	const { user, setUser } = useContext(AppContext);
 
 
 	useEffect(() => {
