@@ -9,6 +9,7 @@ import baseUrl2 from "@/utils/baseUrl2";
 import GeneralLoader from "@/utils/GeneralLoader";
 import CourseCard from "@/components/Learning/CourseCard";
 import AppContext from "../../AppContext";
+import {fetchUserData} from "../../gobals";
 
 const Index = ({  }) => {
 	const { charuvidhya_users_token } = parseCookies();
