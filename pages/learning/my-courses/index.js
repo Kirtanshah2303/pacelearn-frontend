@@ -70,11 +70,11 @@ const Index = ({ user }) => {
 								<a className="active">All Courses</a>
 							</Link>
 						</li>
-						<li>
-							<Link href="/learning/wishlist/">
-								<a>Wishlist</a>
-							</Link>
-						</li>
+						{/*<li>*/}
+						{/*	<Link href="/learning/wishlist/">*/}
+						{/*		<a>Wishlist</a>*/}
+						{/*	</Link>*/}
+						{/*</li>*/}
 					</ul>
 
 					<div className="row">

@@ -43,7 +43,8 @@ const Footer = () => {
 											transition: { duration: 0.5 },
 										}}
 									>
-										<Link href="/courses">
+										<Link href="/">
+										{/*<Link href="/courses">*/}
 											<a>Courses</a>
 										</Link>
 									</motion.li>
@@ -85,7 +86,8 @@ const Footer = () => {
 											transition: { duration: 0.5 },
 										}}
 									>
-										<Link href="/contact-us">
+										<Link href="/">
+										{/*<Link href="/contact-us">*/}
 											<a>Support</a>
 										</Link>
 									</motion.li>
@@ -96,7 +98,8 @@ const Footer = () => {
 											transition: { duration: 0.5 },
 										}}
 									>
-										<Link href="/faq">
+										{/*<Link href="/faq">*/}
+										<Link href="/">
 											<a>Get Help</a>
 										</Link>
 									</motion.li>

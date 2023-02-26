@@ -24,11 +24,11 @@ const Create = ({ user }) => {
 								<a>Create a Course</a>
 							</Link>
 						</li>
-						<li>
-							<Link href="/instructor/course/create-class/">
-								<a className="active">Create Class Room</a>
-							</Link>
-						</li>
+						{/*<li>*/}
+						{/*	<Link href="/instructor/course/create-class/">*/}
+						{/*		<a className="active">Create Class Room</a>*/}
+						{/*	</Link>*/}
+						{/*</li>*/}
 					</ul>
 
 					<div className="create-course-form">

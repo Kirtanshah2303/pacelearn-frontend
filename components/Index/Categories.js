@@ -34,7 +34,8 @@ const Categories = ({ categories }) => {
 									hidden: { opacity: 0, scale: 0 },
 								}}
 							>
-								<Link href={`/category/${cat.id}`}>
+								{/*<Link href={`/category/${cat.id}`}>*/}
+								<Link href={`/`}>
 									<a className="single-categorie d-flex justify-content-between align-items-center align-items-center">
 										<h3>{cat.courseCategoryTitle}</h3>
 										<i className="flaticon-developer"></i>
