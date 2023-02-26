@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { confirmAlert } from "react-confirm-alert";
 import Navbar from "@/components/_App/Navbar";
 import Footer from "@/components/_App/Footer";
@@ -10,13 +10,16 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/router";
 import CourseVideos from "@/components/Instructor/CourseVideos";
 import GeneralLoader from "@/utils/GeneralLoader";
+import {fetchUserData} from "../../../gobals";
+import AppContext from "../../../AppContext";
 
-const Index = ({ user }) => {
+const Index = ({  }) => {
 	const { charuvidhya_users_token } = parseCookies();
 	const router = useRouter();
 	const { id: courseId } = router.query;
 	const [videos, setVideos] = useState([]);
 	const [loading, setLoading] = useState(true);
+	const { user, setUser } = useContext(AppContext);
 
 	const fetchVideos = async () => {
 		setLoading(true);
@@ -33,6 +36,7 @@ const Index = ({ user }) => {
 
 	useEffect(() => {
 		fetchVideos();
+		fetchUserData(user,setUser);
 	}, []);
 
 	const confirmDelete = (videoId) => {

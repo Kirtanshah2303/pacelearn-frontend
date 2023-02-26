@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import Navbar from "@/components/_App/Navbar";
 import Footer from "@/components/_App/Footer";
 import AdminSideNav from "@/components/_App/AdminSideNav";
@@ -6,6 +6,7 @@ import baseUrl2 from "@/utils/baseUrl2";
 import {parseCookies} from "nookies";
 import toast from "react-hot-toast";
 import Router from "next/router";
+import {fetchUserData} from "../gobals";
 
 const INITIAL_USER = {
 	students : 0,
@@ -27,7 +28,7 @@ const Index = ({
 				   // approvalPendingCourses,
 				   // courseVideos,
 				   // totalEnrollment,
-					user,
+
 }) => {
 
 	const { charuvidhya_users_token } = parseCookies();
@@ -79,8 +80,11 @@ const Index = ({
 			Router.push("/");
 		}
 	}
+	const { user, setUser } = useContext(AppContext);
+
 
 	useEffect(() => {
+		fetchUserData(user,setUser);
 		fetchData();
 	}, []);
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { useRouter } from "next/router";
 import Navbar from "@/components/_App/Navbar";
 import PageBanner from "@/components/Common/PageBanner";
@@ -7,14 +7,22 @@ import Footer from "@/components/_App/Footer";
 import axios from "axios";
 import baseUrl2 from "@/utils/baseUrl2";
 import toast from "react-hot-toast";
+import AppContext from "../AppContext";
 
-const courseDeatails = ({ user }) => {
+const courseDeatails = ({  }) => {
 	const [course, setCourse] = useState({});
 	const router = useRouter();
 	const { slug } = router.query;
 	const [cnt,setCnt]=useState(10);
 
+	// eslint-disable-next-line react-hooks/rules-of-hooks
+	const { user, setUser } = useContext(AppContext);
+
+	// eslint-disable-next-line react-hooks/rules-of-hooks
+
+	// eslint-disable-next-line react-hooks/rules-of-hooks
 	useEffect(() => {
+		fetchUserData(user,setUser);
 		const fetchCourse = async () => {
 			try {
 				const payload = {

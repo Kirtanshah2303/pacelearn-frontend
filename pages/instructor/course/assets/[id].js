@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { confirmAlert } from "react-confirm-alert";
 import Navbar from "@/components/_App/Navbar";
 import Footer from "@/components/_App/Footer";
@@ -12,13 +12,19 @@ import CourseAssets from "@/components/Instructor/CourseAssets";
 import GeneralLoader from "@/utils/GeneralLoader";
 import UploadAssetForm from "../../../../components/Instructor/UploadAssetForm";
 import PageNavigation from "../../../../components/Instructor/PageNavigation";
+import {fetchUserData} from "../../../gobals";
+import AppContext from "../../../AppContext";
 
-const Index = ({ user }) => {
+const Index = ({  }) => {
 	const { charuvidhya_users_token } = parseCookies();
 	const router = useRouter();
 	const { id: courseId } = router.query;
 	const [assets, setAssets] = useState([]);
 	const [loading, setLoading] = useState(true);
+
+	const { user, setUser } = useContext(AppContext);
+
+	// eslint-disable-next-line react-hooks/rules-of-hooks
 
 	const fetchAssets = async () => {
 		setLoading(true);
@@ -34,7 +40,7 @@ const Index = ({ user }) => {
 	};
 
 	useEffect(() => {
-		fetchAssets();
+		fetchUserData(user,setUser);
 	}, []);
 
 	const confirmDelete = (assetId) => {
