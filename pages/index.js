@@ -33,7 +33,6 @@ const index = ({ courses, categories }) => {
 
 	// eslint-disable-next-line react-hooks/rules-of-hooks
 	useEffect(() => {
-
 		fetchUserData(user,setUser);
 	}, []);
 
