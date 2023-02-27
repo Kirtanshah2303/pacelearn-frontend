@@ -27,20 +27,20 @@ const INITIAL_USER = {
 };
 
 const RegisterForm = () => {
-	const [user, setUser] = React.useState(INITIAL_USER);
+	const [registerUser, setRegisterUser] = React.useState(INITIAL_USER);
 	// const [value,setValue] = React.useState("");
 	const [disabled, setDisabled] = React.useState(true);
 	const [loading, setLoading] = React.useState(false);
 	const router = useRouter();
 
 	React.useEffect(() => {
-		const isUser = Object.values(user).every((el) => Boolean(el));
+		const isUser = Object.values(registerUser).every((el) => Boolean(el));
 		isUser ? setDisabled(false) : setDisabled(true);
-	}, [user]);
+	}, [registerUser]);
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
-		setUser((prevState) => ({ ...prevState, [name]: value }));
+		setRegisterUser((prevState) => ({ ...prevState, [name]: value }));
 	};
 	
 	const handleChangeROLE = (event) => {
@@ -54,7 +54,7 @@ const RegisterForm = () => {
 		try {
 			setLoading(true);
 			const url = `${baseUrl2}/api/register`;
-			const payload = { ...user };
+			const payload = { ...registerUser };
 			const response = await axios.post(url, payload);
 			Router.push("/")
 			// handleLogin(response.data.charuvidhya_users_token, router);
@@ -107,7 +107,7 @@ const RegisterForm = () => {
 					className="form-control"
 					placeholder="login"
 					name="login"
-					value={user.login}
+					value={registerUser.login}
 					onChange={handleChange}
 				/>
 			</div>
@@ -117,7 +117,7 @@ const RegisterForm = () => {
 					className="form-control"
 					placeholder="First Name"
 					name="firstName"
-					value={user.firstName}
+					value={registerUser.firstName}
 					onChange={handleChange}
 				/>
 			</div>
@@ -127,7 +127,7 @@ const RegisterForm = () => {
 					className="form-control"
 					placeholder="Last Name"
 					name="lastName"
-					value={user.lastName}
+					value={registerUser.lastName}
 					onChange={handleChange}
 				/>
 			</div>
@@ -137,7 +137,7 @@ const RegisterForm = () => {
 					className="form-control"
 					placeholder="Email"
 					name="email"
-					value={user.email}
+					value={registerUser.email}
 					onChange={handleChange}
 				/>
 			</div>
@@ -147,7 +147,7 @@ const RegisterForm = () => {
 					className="form-control"
 					placeholder="imageUrl"
 					name="imageUrl"
-					value={user.imageUrl}
+					value={registerUser.imageUrl}
 					onChange={handleChange}
 				/>
 			</div>
@@ -157,7 +157,7 @@ const RegisterForm = () => {
 					className="form-control"
 					placeholder="Password"
 					name="password"
-					value={user.password}
+					value={registerUser.password}
 					onChange={handleChange}
 				/>
 			</div>
@@ -168,7 +168,7 @@ const RegisterForm = () => {
 			{/*		className="form-control"*/}
 			{/*		placeholder="Last Name"*/}
 			{/*		name="authority"*/}
-			{/*		value={user.last_name}*/}
+			{/*		value={registerUser.last_name}*/}
 			{/*		onChange={handleChange}*/}
 			{/*	/> *!/*/}
 			{/*	<select */}

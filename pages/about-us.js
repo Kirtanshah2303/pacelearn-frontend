@@ -24,48 +24,48 @@ const aboutUs = ({ user }) => {
 						<div className="col-lg-6">
 							<div className="transform-conetnt">
 								<h2>
-									We Are <span>Edmy!</span> The Best Online
+									We Are <span>CharuVidya!</span> The Best Private Online
 									Learning Platform
 								</h2>
 								<p>
-									Instructors from around the world teach
-									millions of students on Edmy. We provide the
+									Instructors from around the University teach
+									thousands of students on CharuVidya. We provide the
 									tools and skills to teach what you love. And
 									you can also achieve your goal.
 								</p>
 
-								<div className="single-transform d-flex align-items-center">
-									<div className="transform-video-img flex-shrink-0">
-										<img
-											src="/images/courses/course-16.jpg"
-											alt="about"
-										/>
-										<Link href="/learning/my-courses">
-											<a className="video-btns popup-youtube">
-												<i className="ri-play-circle-fill"></i>
-											</a>
-										</Link>
-									</div>
+								{/*<div className="single-transform d-flex align-items-center">*/}
+								{/*	<div className="transform-video-img flex-shrink-0">*/}
+								{/*		<img*/}
+								{/*			src="/images/courses/course-16.jpg"*/}
+								{/*			alt="about"*/}
+								{/*		/>*/}
+								{/*		<Link href="/learning/my-courses">*/}
+								{/*			<a className="video-btns popup-youtube">*/}
+								{/*				<i className="ri-play-circle-fill"></i>*/}
+								{/*			</a>*/}
+								{/*		</Link>*/}
+								{/*	</div>*/}
 
-									<div className="transform-video-content flex-grow-1">
-										<h3>
-											<Link href="/learning/my-courses">
-												<a className="popup-youtube">
-													Watch Video From the
-													Community How Edmy Change
-													Their Life
-												</a>
-											</Link>
-										</h3>
-										<ul>
-											<li>My Courses</li>
-										</ul>
-									</div>
-								</div>
+								{/*	<div className="transform-video-content flex-grow-1">*/}
+								{/*		<h3>*/}
+								{/*			<Link href="/learning/my-courses">*/}
+								{/*				<a className="popup-youtube">*/}
+								{/*					Watch Video From the*/}
+								{/*					Community How Edmy Change*/}
+								{/*					Their Life*/}
+								{/*				</a>*/}
+								{/*			</Link>*/}
+								{/*		</h3>*/}
+								{/*		<ul>*/}
+								{/*			<li>My Courses</li>*/}
+								{/*		</ul>*/}
+								{/*	</div>*/}
+								{/*</div>*/}
 
-								<Link href="/courses">
-									<a className="default-btn">Find Out How</a>
-								</Link>
+								{/*<Link href="/courses">*/}
+								{/*	<a className="default-btn">Find Out How</a>*/}
+								{/*</Link>*/}
 							</div>
 						</div>
 
@@ -81,11 +81,11 @@ const aboutUs = ({ user }) => {
 				</div>
 			</div>
 
-			<Features />
+			{/*<Features />*/}
 
-			<Testimonials />
+			{/*<Testimonials />*/}
 
-			<Business />
+			{/*<Business />*/}
 
 			<Footer />
 		</>

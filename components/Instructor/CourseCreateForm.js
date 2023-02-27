@@ -48,7 +48,7 @@ const CourseCreateForm = ({ btnText, is_class , parentCategories , level }) => {
 	useEffect(() => {
 		const isCourse = Object.values(course).every((el) => Boolean(el));
 		isCourse ? setDisabled(false) : setDisabled(true);
-		console.log("HAHA this is for demo")
+		/*console.log("HAHA this is for demo")*/
 	}, [course]);
 
 	useEffect(() => {
@@ -75,7 +75,7 @@ const CourseCreateForm = ({ btnText, is_class , parentCategories , level }) => {
 			// 	setParentCategories(result.parentCategories)
 			// }))
 
-			console.log("Categories are --> "+parentCategories)
+			/*console.log("Categories are --> "+parentCategories)*/
 
 			// fetch(`${baseUrl2}/api/course-levels`,{
 			// 	headers: { Authorization: charuvidhya_users_token },
@@ -125,15 +125,15 @@ const CourseCreateForm = ({ btnText, is_class , parentCategories , level }) => {
 			setImagePreview(window.URL.createObjectURL(files[0]));
 		}
 		else if (name === "courseCategory"){
-			console.log("In course category  " + JSON.parse(value))
+			/*console.log("In course category  " + JSON.parse(value))*/
 			setCourse((prevState) => ({ ...prevState, [name]: JSON.parse(value) }));
 		}
 		else if (name === "courseLevel"){
-			console.log("In course Level  " + JSON.parse(value))
+			/*console.log("In course Level  " + JSON.parse(value))*/
 			setCourse((prevState) => ({ ...prevState, [name]: JSON.parse(value) }));
 		}
 		else {
-			console.log("Change Log Name is --> "+name+ " and Value is ----> "+value)
+			/*console.log("Change Log Name is --> "+name+ " and Value is ----> "+value)*/
 			setCourse((prevState) => ({ ...prevState, [name]: value }));
 		}
 	};
@@ -142,7 +142,7 @@ const CourseCreateForm = ({ btnText, is_class , parentCategories , level }) => {
 		// const { courseCategoryTitle } = e.target.data;
 		// e.currentTarget
 		const { name, value, files } = e.target;
-		console.log("change ---> "+value)
+		/*console.log("change ---> "+value)*/
 
 		setCourse((prevState) => ({ ...prevState, [name]: value }));
 		//
@@ -156,7 +156,7 @@ const CourseCreateForm = ({ btnText, is_class , parentCategories , level }) => {
 		fetch(`${baseUrl2}/api/course-category/sub-categories/${value}`,{
 			headers: { Authorization: charuvidhya_users_token },
 		}).then(response => response.json().then(result => {
-			console.log(result.subcategory)
+			// console.log(result.subcategory)
 			setCategories(result.subcategory);
 		}))
 
@@ -177,7 +177,7 @@ const CourseCreateForm = ({ btnText, is_class , parentCategories , level }) => {
 		// }
 		let fileName = '';
 		if (course.image!=null){
-			console.log("Inside handle image upload")
+			// console.log("Inside handle image upload")
 			const contentType = course.image.type;
 			const bucket = new S3({
 				accessKeyId: 'AKIAUAPPTOSJ4XNUJ2D5',
@@ -212,10 +212,10 @@ const CourseCreateForm = ({ btnText, is_class , parentCategories , level }) => {
 			setLoading(true);
 			let photo;
 			if (course.image) {
-				console.log("Insisde image part")
+				// console.log("Insisde image part")
 				photo = await handleImageUpload();
 				course.courseLogo = photo
-				console.log(course.courseLogo)
+				// console.log(course.courseLogo)
 				// course.courseLogo = photo;
 				// photo = photo.replace(/^http:\/\//i, "https://");
 			}
@@ -282,7 +282,7 @@ const CourseCreateForm = ({ btnText, is_class , parentCategories , level }) => {
 			if (is_class) {
 				router.push(`/instructor/courses`);
 			} else {
-				console.log("Response data is --> "+response.data.id)
+				// console.log("Response data is --> "+response.data.id)
 				router.push(
 					`/instructor/course/section/${response.data.id}`
 				);

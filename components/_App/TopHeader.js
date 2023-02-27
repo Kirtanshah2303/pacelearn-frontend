@@ -15,7 +15,7 @@ const TopHeader = ({ user }) => {
 				<div className="row align-items-center">
 					<div className="col-lg-8">
 						<div className="header-left-content">
-							<p>
+							{/*<p>
 								Keep learning with free resources during
 								COVID-19.{" "}
 								<Link href="/about-us">
@@ -24,17 +24,17 @@ const TopHeader = ({ user }) => {
 										<i className="ri-arrow-right-line"></i>
 									</a>
 								</Link>
-							</p>
+							</p>*/}
 						</div>
 					</div>
 
 					<div className="col-lg-4">
 						<ul className="header-right-content">
-							<li>
+							{/*<li>
 								<Link href="/become-an-instructor">
 									<a>Become An Instructor</a>
 								</Link>
-							</li>
+							</li>*/}
 							<li className="auth-link">
 								{user ? (
 									<Link href="#">

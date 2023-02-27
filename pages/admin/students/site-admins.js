@@ -28,7 +28,7 @@ const Index = ({ user }) => {
 			setUsers(response.data.admins);
 			setLoading(false);
 		} catch (err) {
-			console.log(err.response);
+			// console.log(err.response);
 			let {
 				response: {
 					data: { message },
