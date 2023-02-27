@@ -108,7 +108,7 @@ const Navbar = ({ }) => {
 										whileTap={{ scale: 0.9 }}
 									>
 										<Link
-											href="/"
+											href="/courses"
 											activeClassName="active"
 										>
 											<a
@@ -119,54 +119,6 @@ const Navbar = ({ }) => {
 											</a>
 										</Link>
 									</motion.li>
-
-									{/*{user ? (
-										!user.instructor_request && (
-											<motion.li
-												className="nav-item"
-												whileHover={{
-													scale: 1.1,
-													transition: {
-														duration: 0.5,
-													},
-												}}
-												whileTap={{ scale: 0.9 }}
-											>
-												<Link
-													href="/become-an-instructor"
-													activeClassName="active"
-												>
-													<a
-														onClick={toggleNavbar}
-														className="nav-link"
-													>
-														Become An Instructor
-													</a>
-												</Link>
-											</motion.li>
-										)
-									) : (
-										<motion.li
-											className="nav-item"
-											whileHover={{
-												scale: 1.1,
-												transition: { duration: 0.5 },
-											}}
-											whileTap={{ scale: 0.9 }}
-										>
-											<Link
-												href="/become-an-instructor"
-												activeClassName="active"
-											>
-												<a
-													onClick={toggleNavbar}
-													className="nav-link"
-												>
-													Become An Instructor
-												</a>
-											</Link>
-										</motion.li>
-									)}*/}
 								</ul>
 							</div>
 

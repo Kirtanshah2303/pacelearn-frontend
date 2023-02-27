@@ -8,7 +8,7 @@ import FilterDropdown from "@/components/Courses/FilterDropdown";
 import { useRouter } from "next/router";
 import Pagination from "@etchteam/next-pagination";
 import axios from "axios";
-import baseUrl from "@/utils/baseUrl";
+import baseUrl2 from "@/utils/baseUrl2";
 import AppContext from "../AppContext";
 import {fetchUserData} from "../gobals";
 
@@ -38,7 +38,7 @@ export default function CoursesPage({  }) {
 				search: search,
 			},
 		};
-		const response = await axios.get(`${baseUrl}/api/all-courses`, payload);
+		const response = await axios.get(`${baseUrl2}/api/courses`, payload);
 		setCourses(response.data.courses);
 		setPages(response.data.totalPages);
 		setCoursesCount(response.data.coursesCount);
@@ -90,6 +90,7 @@ export default function CoursesPage({  }) {
 						</div>
 					</div>
 
+					{console.log("Courses ---------------------->"+JSON.stringify(courses))}
 					{courses && <CoursesList courses={courses} user={user} />}
 					{coursesCount > 9 && (
 						<div className="col-lg-12 col-md-12">
