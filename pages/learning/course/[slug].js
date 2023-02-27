@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import Navbar from "@/components/_App/Navbar";
 import Footer from "@/components/_App/Footer";
 import StickyBox from "react-sticky-box";
@@ -14,8 +14,10 @@ import CourseAsset from "@/components/Learning/CourseAsset";
 import CourseDiscussion from "@/components/Learning/CourseDiscussion";
 import CourseRating from "@/components/Learning/CourseRating";
 import CourseFeedback from "@/components/Learning/CourseFeedback";
+import AppContext from "../../AppContext";
+import {fetchUserData} from "../../gobals";
 
-const Index = ({ user }) => {
+const Index = ({  }) => {
 	const [videos, setVideos] = useState([]);
 	const [videoDescription, setVideoDescription] = useState("");
 	const [selectedVideo, setSelectedVideo] = useState("");
@@ -24,6 +26,7 @@ const Index = ({ user }) => {
 	const {
 		query: { slug },
 	} = useRouter();
+	const { user, setUser } = useContext(AppContext);
 
 	const fetchVideos = async () => {
 		const url = `${baseUrl2}/api/videoSessions/${slug}`;
@@ -35,6 +38,7 @@ const Index = ({ user }) => {
 	};
 
 	useEffect(() => {
+		fetchUserData(user,setUser);
 		fetchVideos();
 	}, [slug]);
 

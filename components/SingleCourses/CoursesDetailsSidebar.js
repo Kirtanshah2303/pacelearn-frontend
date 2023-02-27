@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+// import { useSelector, useDispatch } from "react-redux";
 import baseUrl from "@/utils/baseUrl";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -10,8 +10,8 @@ import Cookies from "js-cookie";
 
 const CoursesDetailsSidebar = ({ current_user, course , studentCount }) => {
 	// console.log(course);
-	const cartItems = useSelector((state) => state.cart.cartItems);
-	const dispatch = useDispatch();
+	// const cartItems = useSelector((state) => state.cart.cartItems);
+	// const dispatch = useDispatch();
 	const [add, setAdd] = useState(false);
 	const [alreadyBuy, setAlreadyBuy] = useState(false);
 	const router = useRouter();

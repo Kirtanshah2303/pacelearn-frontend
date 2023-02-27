@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect, useContext} from "react";
 import Navbar from "@/components/_App/Navbar";
 import Footer from "@/components/_App/Footer";
 import AdminSideNav from "@/components/_App/AdminSideNav";
@@ -11,12 +11,14 @@ import GeneralLoader from "@/utils/GeneralLoader";
 import CourseRow from "@/components/Admin/CourseRow";
 import baseUrl2 from "@/utils/baseUrl2";
 import {confirmAlert} from "react-confirm-alert";
+import {fetchUserData} from "../../gobals";
+import AppContext from "../../AppContext";
 
-const Index = ({ user }) => {
+const Index = ({  }) => {
 	const { charuvidhya_users_token } = parseCookies();
 	const [courses, setCourses] = useState([]);
 	const [loading, setLoading] = useState(true);
-
+	const { user, setUser } = useContext(AppContext);
 	const fetchData = async () => {
 		setLoading(true);
 		try {
@@ -53,6 +55,7 @@ const Index = ({ user }) => {
 	};
 
 	useEffect(() => {
+		fetchUserData(user,setUser);
 		fetchData();
 	}, []);
 

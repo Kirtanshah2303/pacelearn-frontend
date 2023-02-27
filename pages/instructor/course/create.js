@@ -1,16 +1,21 @@
-import React, {useState,useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import Navbar from "@/components/_App/Navbar";
 import Footer from "@/components/_App/Footer";
 import Link from "next/link";
 import CourseCreateForm from "@/components/Instructor/CourseCreateForm";
 import baseUrl2 from "@/utils/baseUrl2";
 import {parseCookies} from "nookies";
+import AppContext from "../../AppContext";
+import {fetchUserData} from "../../gobals";
 
-const Create = ({ user }) => {
+const Create = ({  }) => {
 	const { charuvidhya_users_token } = parseCookies();
 	const [parentCategories, setParentCategories] = useState([]);
 	// const [categories, setCategories] = useState([]);
 	const [level, setLevel] = useState([]);
+
+	const { user, setUser } = useContext(AppContext);
+
 
 	useEffect(() => {
 		// const { charuvidhya_users_token } = parseCookies();
@@ -18,6 +23,7 @@ const Create = ({ user }) => {
 		// // const [categories, setCategories] = useState([]);
 		// const [level, setLevel] = useState([]);
 
+		fetchUserData(user,setUser);
 		fetch(`${baseUrl2}/api/course-category/parent-categories`,{
 			headers: { Authorization: charuvidhya_users_token },
 		}).then(response => response.json().then(result => {
