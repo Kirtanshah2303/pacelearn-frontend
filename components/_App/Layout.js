@@ -13,15 +13,15 @@ const Layout = ({ children }) => {
 	const [modalImage, setModalImage] = useState("");
 
 	useEffect(() => {
-		const fetchSetting = async () => {
-			const resp = await axios.get(`${baseUrl}/settings.json`);
-			setModalOpen(resp.data.siteModal);
-			setModalImage(resp.data.siteModalImage);
-			if (resp.data.siteModal) {
-				document.body.style.overflow = "hidden";
-			}
-		};
-		fetchSetting();
+		// const fetchSetting = async () => {
+		// 	const resp = await axios.get(`${baseUrl}/settings.json`);
+		// 	setModalOpen(resp.data.siteModal);
+		// 	setModalImage(resp.data.siteModalImage);
+		// 	if (resp.data.siteModal) {
+		// 		document.body.style.overflow = "hidden";
+		// 	}
+		// };
+		// fetchSetting();
 	}, []);
 
 	const close = () => {
@@ -51,19 +51,19 @@ const Layout = ({ children }) => {
 
 			<GoTop />
 
-			<AnimatePresence
-				initial={false}
-				onExitComplete={() => null}
-				mode="wait"
-			>
-				{modalOpen && modalImage && (
-					<Modal
-						modalOpen={modalOpen}
-						handleClose={close}
-						image_url={modalImage}
-					/>
-				)}
-			</AnimatePresence>
+			{/*<AnimatePresence*/}
+			{/*	initial={false}*/}
+			{/*	onExitComplete={() => null}*/}
+			{/*	mode="wait"*/}
+			{/*>*/}
+			{/*	{modalOpen && modalImage && (*/}
+			{/*		<Modal*/}
+			{/*			modalOpen={modalOpen}*/}
+			{/*			handleClose={close}*/}
+			{/*			image_url={modalImage}*/}
+			{/*		/>*/}
+			{/*	)}*/}
+			{/*</AnimatePresence>*/}
 		</>
 	);
 };
