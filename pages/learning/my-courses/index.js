@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import Navbar from "@/components/_App/Navbar";
 import Footer from "@/components/_App/Footer";
 import Link from "next/link";
@@ -8,14 +8,19 @@ import { parseCookies } from "nookies";
 import baseUrl2 from "@/utils/baseUrl2";
 import GeneralLoader from "@/utils/GeneralLoader";
 import CourseCard from "@/components/Learning/CourseCard";
+import AppContext from "../../AppContext";
+import {fetchUserData} from "../../gobals";
 
-const Index = ({ user }) => {
+const Index = ({  }) => {
 	const { charuvidhya_users_token } = parseCookies();
 	const [enrolments, setEnrolments] = useState([]);
 	const [loading, setLoading] = useState(true);
+	const { user, setUser } = useContext(AppContext);
 
+	// eslint-disable-next-line react-hooks/rules-of-hooks
 	useEffect(() => {
 		const fetchEnrols = async () => {
+			fetchUserData(user,setUser);
 			setLoading(true);
 			let bearer = 'Bearer ';
 			let token = charuvidhya_users_token;
@@ -24,7 +29,7 @@ const Index = ({ user }) => {
 			const payload = {
 				headers: { Authorization: bearer },
 			};
-			console.log("Payload is --> "+payload);
+			// console.log("Payload is --> "+payload);
 			// const response = await axios.get(
 			// 	// `${baseUrl}/api/learnings`,
 			// 	`${baseUrl2}/api/courses/enrolled`,
@@ -37,10 +42,10 @@ const Index = ({ user }) => {
 				}
 			}).then(response => response.json())
 				.then(result => {
-					console.log("Results is ==> "+result)
+					// console.log("Results is ==> "+result)
 					const {enrolments} = result
 					setEnrolments(enrolments)
-					console.log("Response is = "+ enrolments)
+					// console.log("Response is = "+ enrolments)
 				})
 			// console.log("Response is = "+ (await response).json())
 			// const {enrolments} = (await response).json();
@@ -52,7 +57,6 @@ const Index = ({ user }) => {
 
 			setLoading(false);
 		};
-
 		fetchEnrols();
 	}, []);
 
@@ -70,11 +74,11 @@ const Index = ({ user }) => {
 								<a className="active">All Courses</a>
 							</Link>
 						</li>
-						<li>
-							<Link href="/learning/wishlist/">
-								<a>Wishlist</a>
-							</Link>
-						</li>
+						{/*<li>*/}
+						{/*	<Link href="/learning/wishlist/">*/}
+						{/*		<a>Wishlist</a>*/}
+						{/*	</Link>*/}
+						{/*</li>*/}
 					</ul>
 
 					<div className="row">

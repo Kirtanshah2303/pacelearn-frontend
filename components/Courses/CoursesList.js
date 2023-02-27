@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import axios from "axios";
 import toast from "react-hot-toast";
 import CourseSkeletonLoader from "@/utils/CourseSkeletonLoader";
@@ -8,7 +8,7 @@ import CourseCard from "./CourseCard";
 
 const CoursesList = ({ courses, user }) => {
 	const [loading, setLoading] = useState(true);
-	const dispatch = useDispatch();
+	// const dispatch = useDispatch();
 
 	useEffect(() => {
 		const timer = setTimeout(() => {

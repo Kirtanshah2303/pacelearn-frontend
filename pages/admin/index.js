@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import Navbar from "@/components/_App/Navbar";
 import Footer from "@/components/_App/Footer";
 import AdminSideNav from "@/components/_App/AdminSideNav";
@@ -6,6 +6,8 @@ import baseUrl2 from "@/utils/baseUrl2";
 import {parseCookies} from "nookies";
 import toast from "react-hot-toast";
 import Router from "next/router";
+import {fetchUserData} from "../gobals";
+import AppContext from "../AppContext";
 
 const INITIAL_USER = {
 	students : 0,
@@ -27,7 +29,7 @@ const Index = ({
 				   // approvalPendingCourses,
 				   // courseVideos,
 				   // totalEnrollment,
-					user,
+
 }) => {
 
 	const { charuvidhya_users_token } = parseCookies();
@@ -38,6 +40,7 @@ const Index = ({
 	const [approvalPendingCourses,setApprovalPendingCourses] = useState(0);
 	const [courseVideos,setCourseVideos] = useState(0);
 	const [totalEnrollment,setTotalEnrollment] = useState(0);
+	const { user, setUser } = useContext(AppContext);
 
 	const fetchData = async () => {
 		const res = await fetch(`${baseUrl2}/api/admin/coreMetaData`,{
@@ -45,7 +48,7 @@ const Index = ({
 				Authorization : "Bearer "+charuvidhya_users_token
 			}
 		})
-		console.log("Token is --> "+charuvidhya_users_token)
+		// console.log("Token is --> "+charuvidhya_users_token)
 		const {
 			students,
 			instructor,
@@ -80,21 +83,23 @@ const Index = ({
 		}
 	}
 
+
 	useEffect(() => {
+		fetchUserData(user,setUser);
 		fetchData();
 	}, []);
 
 
 	return (
 		<>
-			{console.log("INDEX ADMIN !!!!!!!!!!------------->"+user)}
+			{/*{console.log("INDEX ADMIN !!!!!!!!!!------------->"+user)}*/}
 			<Navbar user={user} />
 
 			<div className="main-content">
 				<div className="container-fluid">
 					<div className="row">
 						<div className="col-lg-3 col-md-4">
-							{console.log("INDEX ADMIN ------------->"+user)}
+							{/*{console.log("INDEX ADMIN ------------->"+user)}*/}
 							<AdminSideNav user={user} />
 						</div>
 

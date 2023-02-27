@@ -61,7 +61,7 @@ const Banner = () => {
 									<AnimatedCharacters {...item} key={index} />
 								);
 							})}
-							<motion.p
+							{/*<motion.p
 								initial="hidden"
 								animate="visible"
 								variants={pVariants}
@@ -69,7 +69,7 @@ const Banner = () => {
 								We have <span>40k+</span> Online courses &{" "}
 								<span>500K+</span> Online registered student.
 								Find your desired Courses from them.
-							</motion.p>
+							</motion.p>*/}
 
 							<SearchForm
 								formClass="search-form"
@@ -78,7 +78,7 @@ const Banner = () => {
 							/>
 
 							<ul className="client-list">
-								<li>
+								{/*<li>
 									<img
 										src="/images/banner/client-1.jpg"
 										alt="banner"
@@ -93,8 +93,8 @@ const Banner = () => {
 										className="client"
 										alt="banner"
 									/>
-								</li>
-								<li>
+								</li>*/}
+								{/*<li>
 									<p>
 										500K+ People already trusted us.{" "}
 										<Link href="/courses">
@@ -104,7 +104,7 @@ const Banner = () => {
 											</a>
 										</Link>
 									</p>
-								</li>
+								</li>*/}
 							</ul>
 						</motion.div>
 					</div>

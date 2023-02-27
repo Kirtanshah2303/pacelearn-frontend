@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect, useContext} from "react";
 import { confirmAlert } from "react-confirm-alert";
 import Navbar from "@/components/_App/Navbar";
 import Footer from "@/components/_App/Footer";
@@ -9,11 +9,19 @@ import { parseCookies } from "nookies";
 import baseUrl2 from "@/utils/baseUrl2";
 import GeneralLoader from "@/utils/GeneralLoader";
 import toast from "react-hot-toast";
+import AppContext from "../../AppContext";
+import {fetchUserData} from "../../gobals";
 
-const Index = ({ user }) => {
+const Index = ({  }) => {
 	const { charuvidhya_users_token } = parseCookies();
 	const [courses, setCourses] = useState([]);
 	const [loading, setLoading] = useState(true);
+
+	const { user, setUser } = useContext(AppContext);
+
+	// eslint-disable-next-line react-hooks/rules-of-hooks
+
+
 
 	const fetchCourses = async () => {
 		const payload = {
@@ -21,11 +29,12 @@ const Index = ({ user }) => {
 		};
 
 		const response = await axios.get(`${baseUrl2}/api/courses`, payload);
-		console.log("Inside fetchCourses --> "+response.data.courses)
+		/*console.log("Inside fetchCourses --> "+response.data.courses)*/
 		setCourses(response.data.courses);
 		setLoading(false);
 	};
 	useEffect(() => {
+		fetchUserData(user,setUser);
 		fetchCourses();
 	}, []);
 

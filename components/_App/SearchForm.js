@@ -15,7 +15,7 @@ const SearchForm = ({ formClass, btnClass = null, banner = false }) => {
 	};
 	return (
 		<form className={formClass} onSubmit={handleSearch}>
-			<input
+			{/*<input
 				type="text"
 				className="form-control"
 				placeholder="Search Courses"
@@ -26,7 +26,7 @@ const SearchForm = ({ formClass, btnClass = null, banner = false }) => {
 			<button type="submit" className={btnClass}>
 				{banner === true && <span>Search Now</span>}
 				<i className="ri-search-line"></i>
-			</button>
+			</button>*/}
 		</form>
 	);
 };

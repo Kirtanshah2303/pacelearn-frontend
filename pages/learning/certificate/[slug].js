@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, {useRef, useEffect, useState, useContext} from "react";
 import * as htmlToImage from "html-to-image";
 import { jsPDF } from "jspdf";
 import baseUrl from "@/utils/baseUrl";
@@ -7,16 +7,25 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/router";
 import Navbar from "@/components/_App/Navbar";
 import Footer from "@/components/_App/Footer";
+import AppContext from "../../AppContext";
+import {fetchUserData} from "../../gobals";
 
-const slug = ({ user }) => {
+const slug = ({ }) => {
 	const [student, setStudent] = useState(
 		user && `${user.first_name} ${user.last_name}`
 	);
 	const [course, setCourse] = useState({});
 	const router = useRouter();
 	const { slug } = router.query;
+	// eslint-disable-next-line react-hooks/rules-of-hooks
+	const { user, setUser } = useContext(AppContext);
 
+	// eslint-disable-next-line react-hooks/rules-of-hooks
+
+
+	// eslint-disable-next-line react-hooks/rules-of-hooks
 	useEffect(() => {
+		fetchUserData(user,setUser);
 		const fetchCourse = async () => {
 			try {
 				const payload = {

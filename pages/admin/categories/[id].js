@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import Navbar from "@/components/_App/Navbar";
 import Footer from "@/components/_App/Footer";
 import AdminSideNav from "@/components/_App/AdminSideNav";
@@ -9,15 +9,18 @@ import toast from "react-hot-toast";
 import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
 import Button from "@/utils/Button";
+import AppContext from "../../AppContext";
+import {fetchUserData} from "../../gobals";
 
-const Create = ({ user }) => {
+const Create = ({ }) => {
 	const router = useRouter();
 	const { charuvidhya_users_token } = parseCookies();
 	const [cat, setCat] = useState({ category: "" });
 	const [loading, setLoading] = React.useState(false);
 	const { id } = router.query;
-
+	const { user, setUser } = useContext(AppContext);
 	useEffect(() => {
+		fetchUserData(user,setUser);
 		const fetchCat = async () => {
 			try {
 				const url = `${baseUrl}/api/categories/create`;

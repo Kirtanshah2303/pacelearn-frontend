@@ -17,6 +17,7 @@ const ProfileDropdown = ({
 
 	const isAdmin = authorities.includes("ROLE_ADMIN");
 	const isInstructor = authorities.includes("ROLE_FACULTY");
+	const isStudent = authorities.includes("ROLE_STUDENT");
 
 	const subMenuAnimate = {
 		enter: {
@@ -60,7 +61,7 @@ const ProfileDropdown = ({
 				variants={subMenuAnimate}
 			>
 				<li>
-					<Link href="/profile/basic-information/">
+					{/*<Link href="/profile/basic-information/">*/}
 						<a className="dropdown-item author-dropdown-item">
 							<div className="d-flex align-items-center">
 								<div className="img">
@@ -87,7 +88,7 @@ const ProfileDropdown = ({
 								</span>
 							</div>
 						</a>
-					</Link>
+					{/*</Link>*/}
 				</li>
 				<li>
 					<hr className="dropdown-divider" />
@@ -124,7 +125,7 @@ const ProfileDropdown = ({
 					</li>
 				)}
 
-				<li>
+				{isStudent && (<li>
 					<Link href="/learning/my-courses/">
 						<a className="dropdown-item">
 							<i className="bx bx-book"></i>
@@ -132,6 +133,7 @@ const ProfileDropdown = ({
 						</a>
 					</Link>
 				</li>
+				)}
 				{/*<li>*/}
 				{/*	<Link href="/learning/my-purchase-history/">*/}
 				{/*		<a className="dropdown-item">*/}

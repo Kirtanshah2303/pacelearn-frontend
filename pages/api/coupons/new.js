@@ -63,7 +63,7 @@ const handlePostRequest = async (req, res) => {
 
 const handlePutRequest = async (req, res) => {
 	const { couponId } = req.body;
-	console.log(couponId);
+	// console.log(couponId);
 	try {
 		const coupons = await Coupon.findAll({ attributes: ["id"] });
 		let couponIds = [];
