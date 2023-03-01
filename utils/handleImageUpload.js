@@ -1,4 +1,5 @@
 import * as S3 from "aws-sdk/clients/s3";
+import * as envValue from "next.config.js"
 
 export const handleImageUpload = async (file) =>{
 
@@ -7,16 +8,16 @@ export const handleImageUpload = async (file) =>{
         console.log("Inside handle image upload")
         const contentType = file.type;
         const bucket = new S3({
-            accessKeyId: 'AKIAUAPPTOSJ4XNUJ2D5',
-            secretAccessKey: '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',
-            region: 'ap-south-1',
+            accessKeyId: envValue.env.AWS_ACCESSKEY_ID,
+            secretAccessKey: envValue.env.AWS_SECRET_ACCESS_KEY,
+            region: envValue.env.AWS_REGION,
         });
         fileName = '_' + Math.random().toString(36).substr(2, 9);
         const params = {
-            Bucket: 'charuvidya-charusat',
+            Bucket: envValue.env.AWS_BUCKET_NAME,
             Key: fileName,
             Body: file,
-            ACL: 'public-read',
+            ACL: envValue.env.AWS_ACL,
             ContentType: contentType,
         };
 

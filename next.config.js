@@ -19,6 +19,7 @@ const nextConfig = {
 		AWS_ACCESSKEY_ID : "AKIAUAPPTOSJ4XNUJ2D5",
 		AWS_SECRET_ACCESS_KEY : "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",
 		AWS_REGION : "ap-south-1",
+		AWS_ACL : "public-read",
 		CLOUD_NAME: "cloudname",
 		UPLOAD_PRESETS: "presets",
 		CLOUDINARY_URL:
@@ -29,6 +30,7 @@ const nextConfig = {
 			"https://api.cloudinary.com/v1_1/cloudname/raw/upload",
 		STRIPE_SECRET_KEY: "sk_test_....",
 		STRIPE_PUBLISHABLE_KEY: "pk_test_.....",
+		AWS_BUCKET_NAME : "charuvidya-charusat",
 	},
 };
 
