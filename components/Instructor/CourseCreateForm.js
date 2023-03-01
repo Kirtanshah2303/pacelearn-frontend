@@ -11,7 +11,7 @@ import baseUrl2 from "@/utils/baseUrl2";
 import toast from "react-hot-toast";
 import { useRouter } from "next/router";
 import Button from "@/utils/Button";
-import * as S3 from 'aws-sdk/clients/s3';
+//import * as S3 from 'aws-sdk/clients/s3';
 // import {handleImageUpload} from "@/utils/handleImageUpload";
 
 const INITIAL_VALUE = {
