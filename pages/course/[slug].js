@@ -8,6 +8,7 @@ import axios from "axios";
 import baseUrl2 from "@/utils/baseUrl2";
 import toast from "react-hot-toast";
 import AppContext from "../AppContext";
+import {fetchUserData} from "../../pages/gobals";
 
 const courseDeatails = ({  }) => {
 	const [course, setCourse] = useState({});

@@ -17,7 +17,7 @@ const CoursesDetailsSidebar = ({ current_user, course , studentCount }) => {
 	const router = useRouter();
 	const [apply, setApplyCoupon] = useState(false);
 	const [coupon, setCoupon] = useState({ coupon: "" });
-	const discount = useSelector((state) => state.cart.discount);
+	// const discount = useSelector((state) => state.cart.discount);
 	// const [cnt,setCnt]=useState(10);
 	// useEffect(()=>{
 
