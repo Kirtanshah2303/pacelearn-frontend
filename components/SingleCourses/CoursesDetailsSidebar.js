@@ -344,14 +344,22 @@ const CoursesDetailsSidebar = ({ current_user, course , studentCount }) => {
 					{/*		course={course}*/}
 					{/*	/>*/}
 					{/*)}*/}
-					<button
+					{MyCourses.includes(id.toString()) ?<button
+						className="default-btn"
+						onClick={() =>
+							router.push(`/learning/course/${id}`)
+						}
+					>
+						View Course
+					</button>: <button
 						className="default-btn buy"
 						onClick={() =>
-							enroll(course.id)
+							enroll(id)
 						}
 					>
 						Enroll
 					</button>
+					}
 				</div>
 			</div>
 		</div>
