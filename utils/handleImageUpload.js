@@ -7,16 +7,16 @@ export const handleImageUpload = async (file) =>{
         console.log("Inside handle image upload")
         const contentType = file.type;
         const bucket = new S3({
-            accessKeyId: 'AKIAUAPPTOSJ4XNUJ2D5',
-            secretAccessKey: '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',
-            region: 'ap-south-1',
+            accessKeyId: process.env.AWS_ACCESSKEY_ID,
+            secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+            region: process.env.AWS_REGION,
         });
         fileName = '_' + Math.random().toString(36).substr(2, 9);
         const params = {
-            Bucket: 'charuvidya-charusat',
+            Bucket: process.env.AWS_BUCKET_NAME,
             Key: fileName,
             Body: file,
-            ACL: 'public-read',
+            ACL: process.env.AWS_ACL,
             ContentType: contentType,
         };
 
