@@ -12,8 +12,6 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/router";
 import Button from "@/utils/Button";
 import * as S3 from 'aws-sdk/clients/s3';
-import * as envValue from "next.config.js"
-import {env} from "eslint-config-next";
 // import {handleImageUpload} from "@/utils/handleImageUpload";
 
 const INITIAL_VALUE = {
@@ -182,16 +180,16 @@ const CourseCreateForm = ({ btnText, is_class , parentCategories , level }) => {
 			// console.log("Inside handle image upload")
 			const contentType = course.image.type;
 			const bucket = new S3({
-				accessKeyId: envValue.env.AWS_ACCESSKEY_ID,
-				secretAccessKey: envValue.env.AWS_SECRET_ACCESS_KEY,
-				region: envValue.env.AWS_REGION,
+				accessKeyId: process.env.AWS_ACCESSKEY_ID,
+				secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+				region: process.env.AWS_REGION,
 			});
 			fileName = '_' + Math.random().toString(36).substr(2, 9);
 			const params = {
-				Bucket: envValue.env.AWS_BUCKET_NAME,
+				Bucket: process.env.AWS_BUCKET_NAME,
 				Key: fileName,
 				Body: course.image,
-				ACL: envValue.env.AWS_ACL,
+				ACL: process.env.AWS_ACL,
 				ContentType: contentType,
 			};
 
