@@ -23,7 +23,7 @@ const CourseVideos = ({ id:videoId,sessionOrder, sessionTitle, isPreview, isPubl
 						<img src="/v2.png" height={27} width={27}/>
 
 					</button>
-					<button style={{background:"#59a4e2"}} //onClick={() => onDelete(videoId)}
+					<button style={{background:"#59a5e4"}} //onClick={() => onDelete(videoId)}
 							className="btn btn-danger"> <img src="/edit-solid.svg" height={23} width={23}/></button>
 					<button onClick={() => onDelete(videoId)}
 							className="btn btn-danger"> <img src="/trash-solid.svg" height={17} width={17}/></button>
