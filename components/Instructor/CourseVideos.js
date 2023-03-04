@@ -1,49 +1,37 @@
 import React from "react";
+//import "@fontawsome/~font-awesome/scss/font-awesome.scss";
 import CourseRow from "@/components/Admin/CourseRow";
+//import { FontAwesomeIcon } from '@fontawesome/react-fontawesome';
+//import {faBars} from '@fontawesome/free-solid-svg-icons';
+//import { faFaceRelieved } from '@fontawesome/pro-solid-svg-icons'
+
 
 const CourseVideos = ({ id:videoId,sessionOrder, sessionTitle, isPreview, isPublished, onDelete }) => {
 
-
 	return (
 
-		<div className="table-responsive">
-			<table className="table align-middle table-hover fs-14" >
-				<div className="create-course-form">
-					{/*{console.log("VIdeos ----------------->isPublies:"+isPublished+"isPreview"+isPreview)}*/}
-					<thead></thead>
-			<tbody className="tbody,td,tfoot,th,thead,tr">
-					<tr className="videoDetailrows">
-						<td scope="col" style={{width: "12rem"}}>{sessionOrder}</td>
-						<td scope="col" style={{width: "15rem"}}>{sessionTitle} </td>
-						<td scope="col" style={{width: "12rem"}}>3 hr 50 min</td>
-						<td scope="col" style={{width: "12rem"}}>{isPreview.toString()}</td>
-						<td scope="col" style={{width: "12rem"}}>{isPublished.toString()}</td>
-						<td scope="col" style={{width: "12rem"}}>
-							<div className="btn-group">
-								<button style={{background:"#008000"}} //onClick={() => onDelete(videoId)}
-										className="btn btn-danger">
-									View Content
+		<tr className="videoDetailrows">
+			<td style={{padding:'1em'}} >{sessionOrder}</td>
+			<td  style={{padding:'1em'}}>{sessionTitle} </td>
+			<td  style={{padding:'1em'}}>3 hr 50 min</td>
+			<td  style={{padding:'1em'}}>{isPreview.toString()}</td>
+			<td  style={{padding:'1em'}}>{isPublished.toString()}</td>
+			<td  style={{padding:'1em'}}>
+				<div className="btn-group">
+					<button style={{background:"rgb(68 198 87)" }} //onClick={() => onDelete(videoId)}
+							className="btn btn-danger" >
+						<img src="/v2.png" height={27} width={27}/>
 
-								</button>
-								<button style={{background:"#2780e3"}} //onClick={() => onDelete(videoId)}
-										className="btn btn-danger"> edit</button>
-
-								<button onClick={() => onDelete(videoId)}
-										className="btn btn-danger"> Delete</button>
-							</div>
-
-						</td>
-					</tr>
-</tbody>
-
-
-
+					</button>
+					<button style={{background:"#59a4e2"}} //onClick={() => onDelete(videoId)}
+							className="btn btn-danger"> <img src="/edit-solid.svg" height={23} width={23}/></button>
+					<button onClick={() => onDelete(videoId)}
+							className="btn btn-danger"> <img src="/trash-solid.svg" height={17} width={17}/></button>
 				</div>
-			</table>
-		</div>
+			</td>
+		</tr>
 
 	);
 };
 
 export default CourseVideos;
-//className="col-lg-3 col-md-6"
