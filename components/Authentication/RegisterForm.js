@@ -100,6 +100,7 @@ const RegisterForm = () => {
 			initial={{ scale: 0 }}
 			animate={{ scale: 1 }}
 			exit={{ scale: 0 }}
+
 		>
 			<div className="form-group">
 				<input
@@ -109,6 +110,7 @@ const RegisterForm = () => {
 					name="login"
 					value={registerUser.login}
 					onChange={handleChange}
+					autoFocus
 				/>
 			</div>
 			<div className="form-group">

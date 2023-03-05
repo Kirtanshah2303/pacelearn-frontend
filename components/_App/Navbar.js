@@ -45,7 +45,7 @@ const Navbar = ({ }) => {
 
 	return (
 		<>
-			<TopHeader user={user} />
+			{/*<TopHeader user={user} />*/}
 			<div id="navbar" className="navbar-area">
 				<div className="desktop-nav">
 					<div className="container-fluid">
@@ -55,7 +55,7 @@ const Navbar = ({ }) => {
 									onClick={toggleNavbar}
 									className="navbar-brand"
 								>
-									<img src="/images/tmp-logo.png" alt="logo" />
+									<img src="/images/logo_charuvidya.png" alt="logo" />
 								</a>
 							</Link>
 
@@ -182,7 +182,7 @@ const Navbar = ({ }) => {
 											<Link href="/auth">
 												<a className="default-btn">
 													<i className="ri-registered-line"></i>
-													<span>Register Now</span>
+													<span>Sign in</span>
 												</a>
 											</Link>
 										</motion.li>
