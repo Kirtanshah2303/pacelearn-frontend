@@ -20,7 +20,7 @@ const CourseVideos = ({ id:videoId,sessionOrder, sessionTitle, isPreview, isPubl
 				<div className="btn-group">
 					<button style={{background:"rgb(68 198 87)" }} //onClick={() => onDelete(videoId)}
 							className="btn btn-danger" >
-						<img src="/v2.png" height={27} width={27}/>
+						<img src="/view.png" height={27} width={27}/>
 
 					</button>
 					<button style={{background:"#59a5e4"}} //onClick={() => onDelete(videoId)}
