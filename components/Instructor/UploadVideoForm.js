@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/router";
 import Button from "@/utils/Button";
 import baseUrl2 from "@/utils/baseUrl2";
-import * as S3 from 'aws-sdk/clients/s3';
+//import * as S3 from 'aws-sdk/clients/s3';
 
 
 const INITIAL_VALUE = {
