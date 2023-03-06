@@ -24,6 +24,7 @@ const CourseCard = ({ course, onFav, onUnFav, userId, onAddCart }) => {
 	// } = course;
 	const {
 		id,
+		courseCreatedOn,
 		courseTitle,
 		courseDescription,
 		courseCategory,
@@ -159,9 +160,13 @@ const CourseCard = ({ course, onFav, onUnFav, userId, onAddCart }) => {
 
 	return (
 		<div className="col-lg-3 col-md-6">
-			<div className="single-courses">
+			<div className="single-courses" style={{}}>
+
 				<div className="courses-main-img">
+
+
 					<img src={courseLogo} alt="Image" />
+
 				</div>
 				<div className="courses-content">
 					<h3>{courseTitle}</h3>
@@ -181,10 +186,44 @@ const CourseCard = ({ course, onFav, onUnFav, userId, onAddCart }) => {
 						<li>
 							<span>By</span>
 						</li>
-						<li style={{fontSize: "15px"}}>{`${user.firstName} ${user.lastName}`}</li>
+						<li style={{fontSize: "15px"}}>{`${user.firstName} ${user.lastName}`} </li>
+					</ul>
+
+						<ul className="admin" >
+
+						<li>
+							<img
+								src="/images/banner/client-1.jpg"
+
+								alt="banner"
+							/>
+							<img
+								src="/images/banner/client-2.jpg"
+								className="client"
+								style={{marginLeft:"-10px"}}
+								alt="banner"
+							/>
+							<img
+								src="/images/banner/client-3.jpg"
+								style={{marginLeft:"-10px"}}
+								className="client"
+								alt="banner"
+							/>
+						</li>
+						<li>
+							<p style={{fontSize:"12px"}}>
+								{enrolledUsersLists.length}  Students
+
+							</p>
+						</li>
+							<li>
+								<p style={{marginLeft : "50px",textAlign:"right", fontSize:"14px"}}> created on: <br/>{courseCreatedOn}</p>
+							</li>
+
 					</ul>
 
 				</div>
+
 
 				<div className="courses-hover-content">
 					<div className="sk">
