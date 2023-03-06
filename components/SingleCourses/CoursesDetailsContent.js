@@ -96,7 +96,7 @@ const CoursesDetailsContent = ({ user: current_user, course , studentCount , slu
 					<CoursesDetailsSidebar
 						current_user={current_user}
 						course={course}
-						// course_id={id}
+						course_id={id}
 						studentCount = {studentCount}
 					/>
 				</div>

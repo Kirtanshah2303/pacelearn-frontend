@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import Cookies from 'js-cookie'
 import toast from "react-hot-toast";
+import {MyCourses} from "../../pages/gobals";
 
 const CourseCard = ({ course, onFav, onUnFav, userId, onAddCart }) => {
 	const router = useRouter();
@@ -219,7 +220,15 @@ const CourseCard = ({ course, onFav, onUnFav, userId, onAddCart }) => {
 												View Cart
 											</button>
 										) : ( */}
-									<button
+									{console.log("CourseID -------"+id+"------>"+JSON.stringify(MyCourses))}
+									{MyCourses.includes(id.toString()) ?<button
+										className="default-btn"
+										onClick={() =>
+											router.push(`/learning/course/${id}`)
+										}
+									>
+										View Course
+									</button>: <button
 										className="default-btn"
 										onClick={() =>
 											enroll(id)
@@ -227,6 +236,7 @@ const CourseCard = ({ course, onFav, onUnFav, userId, onAddCart }) => {
 									>
 										Enroll
 									</button>
+									}
 									{/* )} */}
 								</>
 								{/* )} */}

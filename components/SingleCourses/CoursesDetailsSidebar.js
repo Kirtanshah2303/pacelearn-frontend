@@ -7,17 +7,18 @@ import { useRouter } from "next/router";
 import BuyCourseBtn from "./BuyCourseBtn";
 import { calculateDiscount } from "@/utils/helper";
 import Cookies from "js-cookie";
+import {MyCourses} from "../../pages/gobals";
+import {router} from "next/client";
 
-const CoursesDetailsSidebar = ({ current_user, course , studentCount }) => {
+const CoursesDetailsSidebar = ({ current_user,course_id, course , studentCount }) => {
 	// console.log(course);
 	// const cartItems = useSelector((state) => state.cart.cartItems);
 	// const dispatch = useDispatch();
-	const [add, setAdd] = useState(false);
-	const [alreadyBuy, setAlreadyBuy] = useState(false);
-	const router = useRouter();
-	const [apply, setApplyCoupon] = useState(false);
-	const [coupon, setCoupon] = useState({ coupon: "" });
-	// const discount = useSelector((state) => state.cart.discount);
+	// const [add, setAdd] = useState(false);
+	// const [alreadyBuy, setAlreadyBuy] = useState(false);
+	// const router = useRouter();
+	// const [apply, setApplyCoupon] = useState(false);
+	// const [coupon, setCoupon] = useState({ coupon: "" });
 	// const [cnt,setCnt]=useState(10);
 	// useEffect(()=>{
 
@@ -345,14 +346,23 @@ const CoursesDetailsSidebar = ({ current_user, course , studentCount }) => {
 					{/*		course={course}*/}
 					{/*	/>*/}
 					{/*)}*/}
+					{MyCourses.includes(String(course_id)) ?
 					<button
 						className="default-btn buy"
 						onClick={() =>
-							enroll(course.id)
+							router.push(`/learning/course/${course_id}`)
+						}
+					>
+						View Course
+					</button>: <button
+						className="default-btn buy"
+						onClick={() =>
+							enroll(course_id)
 						}
 					>
 						Enroll
 					</button>
+					}
 				</div>
 			</div>
 		</div>
