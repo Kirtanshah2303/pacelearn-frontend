@@ -6,7 +6,7 @@ import LoginForm from "@/components/Authentication/LoginForm";
 import RegisterForm from "@/components/Authentication/RegisterForm";
 import { motion } from "framer-motion";
 
-const auth = () => {
+const Auth = () => {
 	const [register, setRegister] = useState("register");
 	const [isOn, setIsOn] = useState(false);
 	const toggleSwitch = () => setIsOn(!isOn);
@@ -23,16 +23,16 @@ const auth = () => {
 			<div className="register-area ptb-100">
 				<div className="container">
 					<div className="row align-items-center">
-						<div className="col-lg-6">
-							<div className="register-img">
-								<img
-									src="/images/register-img.png"
-									alt="Image"
-								/>
-							</div>
+						<div className="col-lg-3">
+							{/*<div className="register-img">*/}
+							{/*	<img*/}
+							{/*		src="/images/register-img.png"*/}
+							{/*		alt="Image"*/}
+							{/*	/>*/}
+							{/*</div>*/}
 						</div>
-						<div className="col-lg-6">
-							<div className="register-form">
+						<div className="col-lg-7">
+							<div className="register-form" style={{padding: "0px 103px 0px 0px"}}>
 								{register == "register" ? (
 									<motion.h2
 										initial={{ scale: 0 }}
@@ -47,7 +47,7 @@ const auth = () => {
 										animate={{ scale: 0.9, x: 0 }}
 										exit={{ scale: 1 }}
 									>
-										Sign in to Edmy
+										Sign in
 									</motion.h2>
 								)}
 
@@ -126,4 +126,4 @@ const auth = () => {
 	);
 };
 
-export default auth;
+export default Auth;

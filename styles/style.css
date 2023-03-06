@@ -104,8 +104,9 @@ p:last-child {
 }
 
 img {
-  max-width: 100%;
+  max-width: 94%;
   height: auto;
+
 }
 
 .form-control {
@@ -252,7 +253,7 @@ Default Btn Area Style*/
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(315deg, #9fccfa 0%, #0974f1 100%);
+  background: linear-gradient(315deg, #7A8FD3 0%, #00b4d8 100%);
   opacity: 0;
   -webkit-transition: all ease 0.5s;
   transition: all ease 0.5s;
@@ -488,8 +489,8 @@ Navbar Area Style
   background-color: #ffffff;
   -webkit-box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.05);
           box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.05);
-  padding-top: 10px;
-  padding-bottom: 10px;
+/*  padding-top: 10px;
+  padding-bottom: 10px;*/
 }
 
 .navbar-area.is-sticky {
@@ -511,6 +512,7 @@ Navbar Area Style
   margin: auto;
   padding-left: 30px;
   padding-right: 30px;
+  background-color: #2780e3;
 }
 
 .navbar-area .navbar-brand {
@@ -558,7 +560,7 @@ Navbar Area Style
 
 .desktop-nav .navbar .navbar-nav .nav-item a {
   font-size: 16px;
-  color: #111111;
+  color: #ffffff;
   line-height: 1;
   position: relative;
   font-weight: 600;
@@ -590,7 +592,7 @@ Navbar Area Style
 }
 
 .desktop-nav .navbar .navbar-nav .nav-item a:hover, .desktop-nav .navbar .navbar-nav .nav-item a:focus, .desktop-nav .navbar .navbar-nav .nav-item a.active {
-  color: #0974f1;
+  color: white;
 }
 
 .desktop-nav .navbar .navbar-nav .nav-item a i {
@@ -609,7 +611,7 @@ Navbar Area Style
 }
 
 .desktop-nav .navbar .navbar-nav .nav-item:hover a, .desktop-nav .navbar .navbar-nav .nav-item:focus a, .desktop-nav .navbar .navbar-nav .nav-item.active a {
-  color: #098b99;
+  color: white;
 }
 
 .desktop-nav .navbar .navbar-nav .nav-item .dropdown-menu {
@@ -1289,7 +1291,7 @@ Banner Area Style
   left: -45px;
   width: 719px;
   height: 719px;
-  background: linear-gradient(147.92deg, rgba(255, 255, 255, 0.4) 11.41%, rgba(255, 255, 255, 0) 90.25%);
+  background: linear-gradient(147.92deg, rgba(142, 255, 255, 0.4) 11.41%, rgba(227, 142, 255, 0) 90.25%);
   border-radius: 50%;
   z-index: -1;
 }
@@ -1512,6 +1514,8 @@ Courses Area Style
   position: relative;
   z-index: 1;
   height: 350px;
+  box-shadow: 0.05rem 0.1rem 0.3rem -0.03rem cornflowerblue;
+  border-radius: 0.5rem;
 }
 
 .single-courses .courses-main-img {
@@ -1519,17 +1523,27 @@ Courses Area Style
   display: block;
 }
 .single-courses .courses-main-img img {
-  border-radius: 5px;
+/*  border-radius: 5px;
   width: 100%;
   height: 230px;
+  object-fit: contain;*/
+  border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+  width: 100%;
   object-fit: contain;
+  max-height: max(10rem, 30vh);
+  aspect-ratio: 4/3;
+  margin: 0.5rem;
+  padding: 0.5rem;
 }
+
+
 
 .single-courses .courses-content h3 {
   font-size: 16px;
   margin-bottom: 10px;
   line-height: 30px;
   font-weight: 600;
+  margin-left: 2rem;
 }
 
 .single-courses .courses-content h3 a {
@@ -1540,6 +1554,7 @@ Courses Area Style
   padding-left: 0;
   margin-bottom: 10px;
   list-style-type: none;
+  margin-left: 2rem;
 }
 
 .single-courses .courses-content ul.admin {
@@ -1647,7 +1662,7 @@ Courses Area Style
 }
 
 .single-courses .courses-hover-content {
-  background: linear-gradient(134.32deg, #6CC17E -19.8%, #098B99 100%);
+  background: linear-gradient(134.32deg, #45CDE9 -19.8%, #7A8FD3 100%);
   border-radius: 5px;
   position: absolute;
   top: 0;
@@ -1687,15 +1702,15 @@ Courses Area Style
 }
 
 .single-courses .courses-hover-content h3 a {
-  color: #ffffff;
+  color: #003566;
 }
 
 .single-courses .courses-hover-content p {
   color: #ffffff;
-  font-weight: 400;
+  font-weight: 700;
   font-size: 14px;
   margin-bottom: 20px;
-  color: #DCF6F9;
+  color: #90e0ef;
 }
 
 .single-courses .courses-hover-content ul {
@@ -2638,7 +2653,8 @@ Footer Area Style
 
 .footer-area .shape.shape-2 {
   bottom: 4px;
-  left: 360px;
+  left: 560px;
+
   /* -webkit-animation: off-on 15s infinite linear;
           animation: off-on 15s infinite linear; */
 }
@@ -2763,7 +2779,7 @@ Footer Area Style
 }
 
 .copy-right-area {
-  padding-bottom: 20px;
+  padding-bottom: 0px;
   text-align: center;
 }
 
@@ -2793,7 +2809,7 @@ Pages Banner Area Style
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(248.11deg, rgba(255, 255, 255, 0.3) 92.66%, rgba(255, 255, 255, 0.3) 99.52%);
+  background: linear-gradient(248.11deg, #45CDE9 92.66%, #7A8FD3 99.52%);
   opacity: 0.5;
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg);
@@ -3477,10 +3493,14 @@ Register Area Style
 .register-form h2 {
   font-size: 40px;
   margin-bottom: 40px;
+
+
+
 }
 
 .register-form .form-group {
   margin-bottom: 30px;
+
 }
 
 .register-form .default-btn {
@@ -3511,6 +3531,7 @@ Register Area Style
   border: none;
   border-radius: 50px;
   margin-bottom: 30px;
+
 }
 
 .register-tab .nav-item {
@@ -6272,14 +6293,28 @@ Animation Area Style*/
 .single-courses-box {
   margin-bottom: 30px;
   position: relative;
-  border-radius: 5px;
-  background-color: #fff;
-  -webkit-box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-          box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  z-index: 1;
+  height: 350px;
+  box-shadow: 0.05rem 0.1rem 0.3rem -0.03rem cornflowerblue;
+  border-radius: 0.5rem;
 }
 
 .single-courses-box .courses-image {
   position: relative;
+}
+
+.courses-main-img img {
+  /*  border-radius: 5px;
+    width: 100%;
+    height: 230px;
+    object-fit: contain;*/
+  border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+  width: 100%;
+  /*object-fit: contain;*/
+  max-height: max(10rem, 30vh);
+  aspect-ratio: 4/3;
+  margin: 0.5rem;
+  padding: 0.5rem;
 }
 
 .single-courses-box .courses-content {
@@ -6395,6 +6430,8 @@ Checkout Area CSS
   background-color: #ffffff;
   -webkit-box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
           box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    z-index: 1;
+    height: 550px;
 }
 
 .teacher-courses-box .courses-image {
@@ -6405,10 +6442,16 @@ Checkout Area CSS
 
 .teacher-courses-box .courses-image .image {
   border-radius: 5px 5px 0 0;
+    width: 100%;
+    height: 230px;
+    object-fit: contain;
 }
 
 .teacher-courses-box .courses-image .image img {
   border-radius: 5px 5px 0 0;
+    width: 100%;
+    height: 230px;
+    object-fit: contain;
 }
 
 .teacher-courses-box .courses-image .fav {
@@ -6458,8 +6501,8 @@ Checkout Area CSS
 }
 
 .teacher-courses-box .courses-content .course-author img {
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   margin-right: 10px;
 }
 

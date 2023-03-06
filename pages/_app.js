@@ -31,6 +31,7 @@ import AppContext from './AppContext';
 import {isAuthorized} from "./gobals";
 import Router from "next/router";
 
+
 function MyApp({ Component, pageProps }) {
 	const { charuvidhya_users_token } = parseCookies();
 	const [user, setUser] = React.useState(null);

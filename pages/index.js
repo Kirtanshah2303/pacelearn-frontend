@@ -103,13 +103,13 @@ const index = ({ courses, categories }) => {
 				</div>
 			</div>
 
-			<Categories categories={categories} />
-			<Transform />
+			{/*<Categories categories={categories} />*/}
+{/*			<Transform />
 			<Features />
 			<Testimonials />
 			<Partners />
 			<Teaching />
-			<Business />
+			<Business />*/}
 			<Footer />
 		</>
 	);

@@ -28,13 +28,13 @@ const TopHeader = ({ user }) => {
 						</div>
 					</div>
 
-					<div className="col-lg-4">
+					{/*<div className="col-lg-4">
 						<ul className="header-right-content">
-							{/*<li>
+							<li>
 								<Link href="/become-an-instructor">
 									<a>Become An Instructor</a>
 								</Link>
-							</li>*/}
+							</li>
 							<li className="auth-link">
 								{user ? (
 									<Link href="#">
@@ -58,7 +58,7 @@ const TopHeader = ({ user }) => {
 								)}
 							</li>
 						</ul>
-					</div>
+					</div>*/}
 				</div>
 			</div>
 		</motion.div>

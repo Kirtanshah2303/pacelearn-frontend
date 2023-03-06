@@ -14,7 +14,7 @@ const CourseCard = ({ course: { user, courseLogo, courseTitle, id} }) => {
 					{/*	</Link>*/}
 					{/*	) : (*/}
 						<Link href={`/learning/course/${id}`}>
-							<a className="d-block image">
+							<a className="d-block image courses-main-img">
 								<img src={courseLogo} alt={courseTitle} />
 							</a>
 						</Link>
