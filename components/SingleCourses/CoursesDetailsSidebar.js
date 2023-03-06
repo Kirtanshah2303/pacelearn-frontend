@@ -7,8 +7,10 @@ import { useRouter } from "next/router";
 import BuyCourseBtn from "./BuyCourseBtn";
 import { calculateDiscount } from "@/utils/helper";
 import Cookies from "js-cookie";
+import {MyCourses} from "../../pages/gobals";
+import {router} from "next/client";
 
-const CoursesDetailsSidebar = ({ current_user, course , studentCount }) => {
+const CoursesDetailsSidebar = ({ current_user,course_id, course , studentCount }) => {
 	// console.log(course);
 	// const cartItems = useSelector((state) => state.cart.cartItems);
 	// const dispatch = useDispatch();
@@ -344,17 +346,18 @@ const CoursesDetailsSidebar = ({ current_user, course , studentCount }) => {
 					{/*		course={course}*/}
 					{/*	/>*/}
 					{/*)}*/}
-					{MyCourses.includes(id.toString()) ?<button
-						className="default-btn"
+					{MyCourses.includes(String(course_id)) ?
+					<button
+						className="default-btn buy"
 						onClick={() =>
-							router.push(`/learning/course/${id}`)
+							router.push(`/learning/course/${course_id}`)
 						}
 					>
 						View Course
 					</button>: <button
 						className="default-btn buy"
 						onClick={() =>
-							enroll(id)
+							enroll(course_id)
 						}
 					>
 						Enroll
