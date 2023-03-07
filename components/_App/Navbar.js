@@ -45,7 +45,7 @@ const Navbar = ({ }) => {
 
 	return (
 		<>
-			{/*<TopHeader user={user} />*/}
+			<TopHeader user={user} />
 			<div id="navbar" className="navbar-area">
 				<div className="desktop-nav">
 					<div className="container-fluid">
@@ -119,9 +119,10 @@ const Navbar = ({ }) => {
 											</a>
 										</Link>
 									</motion.li>
-								</ul>
-							</div>
 
+								</ul>
+
+							</div>
 							<div className="others-options">
 								<ul className="d-flex align-items-center">
 									{/*<Cart />*/}
@@ -134,13 +135,15 @@ const Navbar = ({ }) => {
 											<Link href="/auth">
 												<a className="default-btn">
 													<i className="ri-registered-line"></i>
-													<span>Sign in</span>
+													<span>Sign in || Sign Up</span>
 												</a>
 											</Link>
 										</motion.li>
 									)}
 								</ul>
 							</div>
+
+
 						</div>
 					</div>
 				</div>

@@ -142,6 +142,9 @@ const CoursesCard = ({
 							<i className="flaticon-people"></i>{" "}
 							{enrolledUsersLists.length} Students
 						</li>
+						<li>
+							<p style={{color:"#454545",marginLeft : "50px",textAlign:"right", fontSize:"13px"}}> created on: <br/>{courseCreatedOn}</p>
+						</li>
 					</ul>
 				</div>
 			</div>

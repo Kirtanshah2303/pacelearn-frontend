@@ -2655,7 +2655,7 @@ Footer Area Style
   vertical-align: middle;
   align-items: center;
   bottom: 4px;
-  left: 560px;
+  left: 626px;
   justify-content: center;
 
   /*!* -webkit-animation: off-on 15s infinite linear;*/
@@ -6297,7 +6297,7 @@ Animation Area Style*/
   margin-bottom: 30px;
   position: relative;
   z-index: 1;
-  height: 350px;
+  height: 400px;
   box-shadow: 0.05rem 0.1rem 0.3rem -0.03rem cornflowerblue;
   border-radius: 0.5rem;
 }
