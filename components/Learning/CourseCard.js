@@ -24,7 +24,9 @@ const CourseCard = ( { course} ) => {
 				<div className="courses-main-img">
 
 
+          <Link href={`/learning/course/${id}`}>
 					<img src={courseLogo} alt="Image" />
+		  </Link>
 
 				</div>
 				<div className="courses-content">
