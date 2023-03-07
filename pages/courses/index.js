@@ -88,7 +88,7 @@ export default function CoursesPage({  }) {
 					</div>
 
 					{console.log("Courses ---------------------->"+JSON.stringify(courses))}
-					{courses && <CoursesList courses={courses} user={user} />}
+					{courses && <CoursesList courses={courses} user={user} short={short} />}
 					{/*{courses.length > 9 && (*/}
 					{/*	<div className="col-lg-12 col-md-12">*/}
 					{/*		<div className="pagination-area text-center">*/}

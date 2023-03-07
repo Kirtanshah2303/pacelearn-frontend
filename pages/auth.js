@@ -7,7 +7,7 @@ import RegisterForm from "@/components/Authentication/RegisterForm";
 import { motion } from "framer-motion";
 
 const Auth = () => {
-	const [register, setRegister] = useState("register");
+	const [register, setRegister] = useState("login");
 	const [isOn, setIsOn] = useState(false);
 	const toggleSwitch = () => setIsOn(!isOn);
 

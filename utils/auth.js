@@ -1,5 +1,6 @@
 import cookie from "js-cookie";
 import Router from "next/router";
+import toast from "react-hot-toast";
 
 export const handleLogin = (t, routeNext) => {
 
@@ -13,6 +14,17 @@ export const handleLogin = (t, routeNext) => {
 };
 
 export const handleLogout = () => {
+	toast.error("Logged Out", {
+		style: {
+			border: "1px solid #ff0033",
+			padding: "16px",
+			color: "#ff0033",
+		},
+		iconTheme: {
+			primary: "#ff0033",
+			secondary: "#FFFAEE",
+		},
+	});
 	cookie.remove("charuvidhya_users_token");
 	Router.push("/");
 	window.location.reload();

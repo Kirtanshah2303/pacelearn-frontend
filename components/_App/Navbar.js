@@ -121,16 +121,16 @@ const Navbar = ({ }) => {
 										</Link>
 									</motion.li>
 
-									<motion.li
-										className="nav-item"
-										whileHover={{
-											scale: 1.1,
-											transition: { duration: 0.5 },
-										}}
-										whileTap={{ scale: 0.9 }}
-									>
-										<ShowCategories/>
-									</motion.li>
+									{/*<motion.li*/}
+									{/*	className="nav-item"*/}
+									{/*	whileHover={{*/}
+									{/*		scale: 1.1,*/}
+									{/*		transition: { duration: 0.5 },*/}
+									{/*	}}*/}
+									{/*	whileTap={{ scale: 0.9 }}*/}
+									{/*>*/}
+									{/*	<ShowCategories/>*/}
+									{/*</motion.li>*/}
 
 								</ul>
 
@@ -145,7 +145,9 @@ const Navbar = ({ }) => {
 									) : (
 										<motion.li whileTap={{ scale: 0.9 }}>
 											<Link href="/auth">
-												<a className="default-btn">
+												<a className="default-btn"
+												style={{fontSize : "20px"}}
+												>
 													<i className="ri-registered-line"></i>
 													<span>Sign in || Sign Up</span>
 												</a>
