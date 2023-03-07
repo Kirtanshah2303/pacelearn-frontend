@@ -9,6 +9,7 @@ import TopHeader from "./TopHeader";
 import { motion } from "framer-motion";
 import AppContext from "../../pages/AppContext";
 import {fetchUserData} from "../../pages/gobals";
+import ShowCategories from "@/components/_App/ShowCategories";
 
 Router.onRouteChangeStart = () => NProgress.start();
 Router.onRouteChangeComplete = () => NProgress.done();
@@ -118,6 +119,17 @@ const Navbar = ({ }) => {
 												Courses
 											</a>
 										</Link>
+									</motion.li>
+
+									<motion.li
+										className="nav-item"
+										whileHover={{
+											scale: 1.1,
+											transition: { duration: 0.5 },
+										}}
+										whileTap={{ scale: 0.9 }}
+									>
+										<ShowCategories/>
 									</motion.li>
 
 								</ul>
