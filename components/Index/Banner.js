@@ -8,32 +8,32 @@ import baseUrl2 from "@/utils/baseUrl2";
 const Banner = () => {
 
 	const [students,setStudents] = useState(0);
-	const [approvedCourses,setApprovedCourses] = useState(0);
+	const [totalCourses,setTotalCourses] = useState(0);
 
 	const fetchData = async () => {
-		const res = await fetch(`${baseUrl2}/api/admin/coreMetaData`)
+		const res = await fetch(`${baseUrl2}/api/admin/openMetaData`)
 		// console.log("Token is --> "+charuvidhya_users_token)
 		const {
 			students,
-			approvedCourses,
+			totalCourses,
 		} = await res.json();
 		setStudents(students)
-		setApprovedCourses(approvedCourses)
-		console.log("Student : ------------->"+students+"Courses----------------->"+approvedCourses);
-		if (status === "FORBIDDEN"){
-			toast.error("Access Denied, You do not have access to view this page", {
-				style: {
-					border: "1px solid #ff0033",
-					padding: "16px",
-					color: "#ff0033",
-				},
-				iconTheme: {
-					primary: "#ff0033",
-					secondary: "#FFFAEE",
-				},
-			})
-			Router.push("/");
-		}
+		setTotalCourses(totalCourses)
+		console.log("Student : ------------->"+students+"Courses----------------->"+totalCourses);
+		// if (status === "FORBIDDEN"){
+		// 	toast.error("Access Denied, You do not have access to view this page", {
+		// 		style: {
+		// 			border: "1px solid #ff0033",
+		// 			padding: "16px",
+		// 			color: "#ff0033",
+		// 		},
+		// 		iconTheme: {
+		// 			primary: "#ff0033",
+		// 			secondary: "#FFFAEE",
+		// 		},
+		// 	})
+		// 	Router.push("/");
+		// }
 	}
 
 	useEffect(() => {
@@ -100,7 +100,7 @@ const Banner = () => {
 								animate="visible"
 								variants={pVariants}
 							>
-								We have <span>{approvedCourses}+</span> Online courses &{" "}
+								We have <span>{totalCourses}+</span> Online courses &{" "}
 								<span>{students}+</span> Online registered student.
 								Find your desired Courses from them.
 							</motion.p>
