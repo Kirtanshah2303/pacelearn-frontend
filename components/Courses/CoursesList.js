@@ -5,9 +5,8 @@ import toast from "react-hot-toast";
 import CourseSkeletonLoader from "@/utils/CourseSkeletonLoader";
 import baseUrl from "@/utils/baseUrl";
 import CourseCard from "./CourseCard";
-import {fetchMyCourses} from "../../pages/gobals";
 
-const CoursesList = ({ courses, user }) => {
+const CoursesList = ({ courses, user,short }) => {
 	const [loading, setLoading] = useState(true);
 	// const dispatch = useDispatch();
 
@@ -85,20 +84,38 @@ const CoursesList = ({ courses, user }) => {
 				<CourseSkeletonLoader />
 			) : (
 				<>
-					{courses.length > 0 ? (
-						courses.map((course) => (
-							<CourseCard
-								key={course.id}
-								course={course}
-								// onFav={() => handleFav(course.id, true)}
-								// onUnFav={() => handleFav(course.id, false)}
-								userId={user && user.id}
-								// onAddCart={() => addToCart(course)}
-							/>
-						))
-					) : (
-						<h3>Empty</h3>
-					)}
+					{short && short.length > 0 ?
+						courses.length > 0 ? (
+							courses.map((course) => (
+								course.courseCategory.courseCategoryTitle === short.toString() ?
+									<CourseCard
+										key={course.id}
+										course={course}
+										// onFav={() => handleFav(course.id, true)}
+										// onUnFav={() => handleFav(course.id, false)}
+										userId={user && user.id}
+										// onAddCart={() => addToCart(course)}
+									/> : null
+							))
+						) : (
+							<h3>Empty</h3>
+						)
+						:
+						courses.length > 0 ? (
+							courses.map((course) => (
+								<CourseCard
+									key={course.id}
+									course={course}
+									// onFav={() => handleFav(course.id, true)}
+									// onUnFav={() => handleFav(course.id, false)}
+									userId={user && user.id}
+									// onAddCart={() => addToCart(course)}
+								/>
+							))
+						) : (
+							<h3>Empty Hello</h3>
+						)
+					}
 				</>
 			)}
 		</div>

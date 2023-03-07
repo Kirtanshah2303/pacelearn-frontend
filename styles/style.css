@@ -559,7 +559,7 @@ Navbar Area Style
 }
 
 .desktop-nav .navbar .navbar-nav .nav-item a {
-  font-size: 16px;
+  font-size: 20px;
   color: #ffffff;
   line-height: 1;
   position: relative;
@@ -1432,7 +1432,6 @@ Banner Area Style
 .banner-content .client-list {
   padding-left: 0;
   margin-bottom: 0;
-  list-style-type: none;
 }
 
 .banner-content .client-list li {
@@ -1513,7 +1512,7 @@ Courses Area Style
   margin-bottom: 30px;
   position: relative;
   z-index: 1;
-  height: 350px;
+  height: 400px;
   box-shadow: 0.05rem 0.1rem 0.3rem -0.03rem cornflowerblue;
   border-radius: 0.5rem;
 }
@@ -1554,7 +1553,7 @@ Courses Area Style
   padding-left: 0;
   margin-bottom: 10px;
   list-style-type: none;
-  margin-left: 2rem;
+  margin-left: 1rem;
 }
 
 .single-courses .courses-content ul.admin {
@@ -2652,11 +2651,15 @@ Footer Area Style
 }
 
 .footer-area .shape.shape-2 {
+  display: flex;
+  vertical-align: middle;
+  align-items: center;
   bottom: 4px;
-  left: 560px;
+  left: 626px;
+  justify-content: center;
 
-  /* -webkit-animation: off-on 15s infinite linear;
-          animation: off-on 15s infinite linear; */
+  /*!* -webkit-animation: off-on 15s infinite linear;*/
+  /*        animation: off-on 15s infinite linear; *!*/
 }
 
 .single-footer-widget {
@@ -6294,7 +6297,7 @@ Animation Area Style*/
   margin-bottom: 30px;
   position: relative;
   z-index: 1;
-  height: 350px;
+  height: 400px;
   box-shadow: 0.05rem 0.1rem 0.3rem -0.03rem cornflowerblue;
   border-radius: 0.5rem;
 }

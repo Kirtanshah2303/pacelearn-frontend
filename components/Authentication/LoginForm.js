@@ -60,7 +60,7 @@ const LoginForm = () => {
 			// });
 
 			handleLogin(response.data.id_token, router);
-			toast.success(response.data.message, {
+			toast.success("Logged In Successfully", {
 				style: {
 					border: "1px solid #4BB543",
 					padding: "16px",

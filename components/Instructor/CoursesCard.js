@@ -75,14 +75,14 @@ const CoursesCard = ({
 									</a>
 								</Link>
 							</li>
-							<li>
-								<Link href={`/instructor/course/assets/${id}`}>
-									<a className="dropdown-item">
-										<i className="bx bxs-file-plus"></i>{" "}
-										Assets
-									</a>
-								</Link>
-							</li>
+							{/*<li>*/}
+							{/*	<Link href={`/instructor/course/assets/${id}`}>*/}
+							{/*		<a className="dropdown-item">*/}
+							{/*			<i className="bx bxs-file-plus"></i>{" "}*/}
+							{/*			Assets*/}
+							{/*		</a>*/}
+							{/*	</Link>*/}
+							{/*</li>*/}
 							<li>
 								<button
 									onClick={() => onDelete(id)}
@@ -141,6 +141,9 @@ const CoursesCard = ({
 						<li>
 							<i className="flaticon-people"></i>{" "}
 							{enrolledUsersLists.length} Students
+						</li>
+						<li>
+							<p style={{color:"#454545",marginLeft : "50px",textAlign:"right", fontSize:"13px"}}> created on: <br/>{courseCreatedOn}</p>
 						</li>
 					</ul>
 				</div>

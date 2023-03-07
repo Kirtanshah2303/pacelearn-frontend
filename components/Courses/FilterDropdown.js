@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import {Categories} from "../../pages/gobals";
 
 const FilterDropdown = () => {
 	const [short, setShort] = useState("");
@@ -21,9 +22,15 @@ const FilterDropdown = () => {
 				value={short}
 				onChange={(e) => setShort(e.target.value)}
 			>
-				<option value="">Sort By</option>
-				<option value="ASC">Price: low to high</option>
-				<option value="DESC">Price: high to low</option>
+				<option value="">All Categories</option>
+				{/* eslint-disable-next-line react/no-unescaped-entities */}
+				{Categories.map((category) => (
+					category.subCategories.map((subCategory)=>(
+						// eslint-disable-next-line react/jsx-key
+						<option value={subCategory.courseCategoryTitle}>{subCategory.courseCategoryTitle}</option>
+					))
+				))}
+
 			</select>
 		</li>
 	);

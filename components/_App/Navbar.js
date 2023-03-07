@@ -9,6 +9,7 @@ import TopHeader from "./TopHeader";
 import { motion } from "framer-motion";
 import AppContext from "../../pages/AppContext";
 import {fetchUserData} from "../../pages/gobals";
+import ShowCategories from "@/components/_App/ShowCategories";
 
 Router.onRouteChangeStart = () => NProgress.start();
 Router.onRouteChangeComplete = () => NProgress.done();
@@ -45,7 +46,7 @@ const Navbar = ({ }) => {
 
 	return (
 		<>
-			{/*<TopHeader user={user} />*/}
+			<TopHeader user={user} />
 			<div id="navbar" className="navbar-area">
 				<div className="desktop-nav">
 					<div className="container-fluid">
@@ -119,9 +120,21 @@ const Navbar = ({ }) => {
 											</a>
 										</Link>
 									</motion.li>
-								</ul>
-							</div>
 
+									{/*<motion.li*/}
+									{/*	className="nav-item"*/}
+									{/*	whileHover={{*/}
+									{/*		scale: 1.1,*/}
+									{/*		transition: { duration: 0.5 },*/}
+									{/*	}}*/}
+									{/*	whileTap={{ scale: 0.9 }}*/}
+									{/*>*/}
+									{/*	<ShowCategories/>*/}
+									{/*</motion.li>*/}
+
+								</ul>
+
+							</div>
 							<div className="others-options">
 								<ul className="d-flex align-items-center">
 									{/*<Cart />*/}
@@ -132,15 +145,19 @@ const Navbar = ({ }) => {
 									) : (
 										<motion.li whileTap={{ scale: 0.9 }}>
 											<Link href="/auth">
-												<a className="default-btn">
+												<a className="default-btn"
+												style={{fontSize : "20px"}}
+												>
 													<i className="ri-registered-line"></i>
-													<span>Sign in</span>
+													<span>Sign in || Sign Up</span>
 												</a>
 											</Link>
 										</motion.li>
 									)}
 								</ul>
 							</div>
+
+
 						</div>
 					</div>
 				</div>

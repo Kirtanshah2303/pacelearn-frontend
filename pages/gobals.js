@@ -7,7 +7,20 @@ export let isAuthorized = false;
 export let MyCourses=[]
 export const user=null;
 
+export let Categories=[]
+export const fetchCategories = async () => {
+    if(Categories.length==0){
+        const response = await fetch(`${baseUrl2}/api/course-category/parent-categories/sub-categories`);
+        const {categories} = await response.json();
+        Categories=categories;
+        console.log("Categories ---------->"+JSON.stringify(Categories));
+        return Categories;
+    }
+    else
+        return Categories
+};
 export const fetchUserData = async (user,setUser) => {
+    fetchCategories();
     console.log("Cookies ---------------->"+cookie.get("charuvidhya_users_token"));
     if(typeof cookie.get("charuvidhya_users_token") !== 'undefined' && (user === null || (typeof user) === undefined )) {
 
