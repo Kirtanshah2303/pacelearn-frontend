@@ -2,63 +2,72 @@ import React from "react";
 
 const InstructorRow = ({
 	id,
-	first_name,
-	last_name,
+						   firstName,
+						   lastName,
 	email,
-	phone,
+						   activated,
 	instructor_subject,
 	instructor_description,
-	instructor_request_confirmed,
-	onApprove = null,
-	onDeny = null,
+						   make_reviewer,
+						   onMakeReviewer = null,
+						   onRemoveReviewer = null,
 }) => {
 	return (
 		<tr>
-			<td>{`${first_name} ${last_name}`}</td>
+			<td>{`${firstName} ${lastName}`}</td>
 			<td>{email}</td>
-			<td>{phone}</td>
-			<td>{instructor_subject}</td>
+			{
+				activated === true &&
+				<td>Activated</td>
+			}
+			{
+				activated === false &&
+				<td> Not Activated </td>
+			}
+			{/*<td>{instructor_subject}</td>*/}
+			{/*<td>*/}
+			{/*	<div className="max-300px max-height-60">*/}
+			{/*		{instructor_description}*/}
+			{/*	</div>*/}
+			{/*</td>*/}
 			<td>
-				<div className="max-300px max-height-60">
-					{instructor_description}
-				</div>
-			</td>
-			<td>
-				{instructor_request_confirmed ? (
+				{make_reviewer ? (
 					<button
 						type="button"
 						className="btn btn-success btn-sm fs-12 ms-2"
+						onClick={() => onMakeReviewer(id)}
 					>
-						Approved
+						Make Reviewer
 					</button>
 				) : (
 					<button
 						type="button"
-						className="btn btn-warning btn-sm fs-12"
+						className="btn btn-success btn-sm fs-12 ms-2"
+						onClick={() => onRemoveReviewer(id)}
 					>
-						Pending
+						Remove Reviewer
 					</button>
 				)}
 			</td>
-			{!instructor_request_confirmed && (
-				<td>
-					<button
-						type="button"
-						className="btn btn-success btn-sm fs-12 ms-2"
-						onClick={() => onApprove(id)}
-					>
-						Approve Now
-					</button>
+			{/*{!make_reviewer && (*/}
+			{/*	<td>*/}
+			{/*		<button*/}
+			{/*			type="button"*/}
+			{/*			className="btn btn-success btn-sm fs-12 ms-2"*/}
+			{/*			onClick={() => onApprove(id)}*/}
+			{/*		>*/}
+			{/*			Approve Now*/}
+			{/*		</button>*/}
 
-					<button
-						type="button"
-						className="btn btn-danger btn-sm fs-12 ms-2"
-						onClick={() => onDeny(id)}
-					>
-						Decline
-					</button>
-				</td>
-			)}
+			{/*		<button*/}
+			{/*			type="button"*/}
+			{/*			className="btn btn-danger btn-sm fs-12 ms-2"*/}
+			{/*			onClick={() => onDeny(id)}*/}
+			{/*		>*/}
+			{/*			Decline*/}
+			{/*		</button>*/}
+			{/*	</td>*/}
+			{/*)}*/}
 		</tr>
 	);
 };

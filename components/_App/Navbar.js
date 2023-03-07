@@ -9,6 +9,7 @@ import TopHeader from "./TopHeader";
 import { motion } from "framer-motion";
 import AppContext from "../../pages/AppContext";
 import {fetchUserData} from "../../pages/gobals";
+import ShowCategories from "@/components/_App/ShowCategories";
 
 Router.onRouteChangeStart = () => NProgress.start();
 Router.onRouteChangeComplete = () => NProgress.done();
@@ -55,7 +56,7 @@ const Navbar = ({ }) => {
 									onClick={toggleNavbar}
 									className="navbar-brand"
 								>
-									<img src="/images/tmp-logo.png" alt="logo" />
+									<img src="/images/logo_charuvidya.png" alt="logo" />
 								</a>
 							</Link>
 
@@ -108,7 +109,7 @@ const Navbar = ({ }) => {
 										whileTap={{ scale: 0.9 }}
 									>
 										<Link
-											href="/"
+											href="/courses"
 											activeClassName="active"
 										>
 											<a
@@ -120,56 +121,20 @@ const Navbar = ({ }) => {
 										</Link>
 									</motion.li>
 
-									{/*{user ? (
-										!user.instructor_request && (
-											<motion.li
-												className="nav-item"
-												whileHover={{
-													scale: 1.1,
-													transition: {
-														duration: 0.5,
-													},
-												}}
-												whileTap={{ scale: 0.9 }}
-											>
-												<Link
-													href="/become-an-instructor"
-													activeClassName="active"
-												>
-													<a
-														onClick={toggleNavbar}
-														className="nav-link"
-													>
-														Become An Instructor
-													</a>
-												</Link>
-											</motion.li>
-										)
-									) : (
-										<motion.li
-											className="nav-item"
-											whileHover={{
-												scale: 1.1,
-												transition: { duration: 0.5 },
-											}}
-											whileTap={{ scale: 0.9 }}
-										>
-											<Link
-												href="/become-an-instructor"
-												activeClassName="active"
-											>
-												<a
-													onClick={toggleNavbar}
-													className="nav-link"
-												>
-													Become An Instructor
-												</a>
-											</Link>
-										</motion.li>
-									)}*/}
-								</ul>
-							</div>
+									{/*<motion.li*/}
+									{/*	className="nav-item"*/}
+									{/*	whileHover={{*/}
+									{/*		scale: 1.1,*/}
+									{/*		transition: { duration: 0.5 },*/}
+									{/*	}}*/}
+									{/*	whileTap={{ scale: 0.9 }}*/}
+									{/*>*/}
+									{/*	<ShowCategories/>*/}
+									{/*</motion.li>*/}
 
+								</ul>
+
+							</div>
 							<div className="others-options">
 								<ul className="d-flex align-items-center">
 									{/*<Cart />*/}
@@ -180,15 +145,19 @@ const Navbar = ({ }) => {
 									) : (
 										<motion.li whileTap={{ scale: 0.9 }}>
 											<Link href="/auth">
-												<a className="default-btn">
+												<a className="default-btn"
+												style={{fontSize : "20px"}}
+												>
 													<i className="ri-registered-line"></i>
-													<span>Register Now</span>
+													<span>Sign in || Sign Up</span>
 												</a>
 											</Link>
 										</motion.li>
 									)}
 								</ul>
 							</div>
+
+
 						</div>
 					</div>
 				</div>

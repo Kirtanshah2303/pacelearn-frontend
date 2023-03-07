@@ -1,10 +1,44 @@
 import Link from "next/link";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import SearchForm from "@/components/_App/SearchForm";
 import AnimatedCharacters from "./BannerText";
 import { motion } from "framer-motion";
+import baseUrl2 from "@/utils/baseUrl2";
 
 const Banner = () => {
+
+	const [students,setStudents] = useState(0);
+	const [totalCourses,setTotalCourses] = useState(0);
+
+	const fetchData = async () => {
+		const res = await fetch(`${baseUrl2}/api/admin/openMetaData`)
+		// console.log("Token is --> "+charuvidhya_users_token)
+		const {
+			students,
+			totalCourses,
+		} = await res.json();
+		setStudents(students)
+		setTotalCourses(totalCourses)
+		console.log("Student : ------------->"+students+"Courses----------------->"+totalCourses);
+		// if (status === "FORBIDDEN"){
+		// 	toast.error("Access Denied, You do not have access to view this page", {
+		// 		style: {
+		// 			border: "1px solid #ff0033",
+		// 			padding: "16px",
+		// 			color: "#ff0033",
+		// 		},
+		// 		iconTheme: {
+		// 			primary: "#ff0033",
+		// 			secondary: "#FFFAEE",
+		// 		},
+		// 	})
+		// 	Router.push("/");
+		// }
+	}
+
+	useEffect(() => {
+		fetchData();
+	}, []);
 	const headingText = [
 		{
 			type: "heading",
@@ -61,15 +95,15 @@ const Banner = () => {
 									<AnimatedCharacters {...item} key={index} />
 								);
 							})}
-							{/*<motion.p
+							<motion.p
 								initial="hidden"
 								animate="visible"
 								variants={pVariants}
 							>
-								We have <span>40k+</span> Online courses &{" "}
-								<span>500K+</span> Online registered student.
+								We have <span>{totalCourses}+</span> Online courses &{" "}
+								<span>{students}+</span> Online registered student.
 								Find your desired Courses from them.
-							</motion.p>*/}
+							</motion.p>
 
 							<SearchForm
 								formClass="search-form"
@@ -78,14 +112,14 @@ const Banner = () => {
 							/>
 
 							<ul className="client-list">
-								{/*<li>
+								<li>
 									<img
 										src="/images/banner/client-1.jpg"
 										alt="banner"
 									/>
 									<img
 										src="/images/banner/client-2.jpg"
-										className="client"
+											className="client"
 										alt="banner"
 									/>
 									<img
@@ -93,10 +127,10 @@ const Banner = () => {
 										className="client"
 										alt="banner"
 									/>
-								</li>*/}
-								{/*<li>
+								</li>
+								<li>
 									<p>
-										500K+ People already trusted us.{" "}
+										{students}+ People already trusted us.{" "}
 										<Link href="/courses">
 											<a className="read-more">
 												View Courses{" "}
@@ -104,7 +138,7 @@ const Banner = () => {
 											</a>
 										</Link>
 									</p>
-								</li>*/}
+								</li>
 							</ul>
 						</motion.div>
 					</div>

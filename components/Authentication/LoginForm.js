@@ -60,7 +60,7 @@ const LoginForm = () => {
 			// });
 
 			handleLogin(response.data.id_token, router);
-			toast.success(response.data.message, {
+			toast.success("Logged In Successfully", {
 				style: {
 					border: "1px solid #4BB543",
 					padding: "16px",
@@ -103,6 +103,7 @@ const LoginForm = () => {
 			initial={{ scale: 0 }}
 			animate={{ scale: 1 }}
 			exit={{ scale: 0 }}
+
 		>
 			<div className="form-group">
 				<input
@@ -112,6 +113,7 @@ const LoginForm = () => {
 					name="username"
 					value={user.username}
 					onChange={handleChange}
+					autoFocus
 				/>
 			</div>
 			<div className="form-group">

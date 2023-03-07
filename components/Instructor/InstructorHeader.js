@@ -16,8 +16,8 @@ const InstructorHeader = () => {
 							<div className="text-end">
 								<Link href="/instructor/course/create">
 									<a className="default-btn">
-										<i className="flaticon-user"></i> Create
-										Your Course <span></span>
+										<i className="flaticon-user"></i>&nbsp;&nbsp;&nbsp;
+										<span>Create Your Course </span>
 									</a>
 								</Link>
 							</div>

@@ -1,9 +1,13 @@
 import React, { useEffect} from "react";
 import { parseCookies } from "nookies";
+//import { config } from '@fortawesome/fontawesome-svg-core'
+//import '@fortawesome/fontawesome-svg-core/styles.css'
+//config.autoAddCss = false
 import "../styles/bootstrap.min.css";
 import "../styles/animate.min.css";
 import "../styles/boxicons.min.css";
 import "../styles/flaticon.css";
+//import '@fortawesome/fontawesome-svg-core/styles.css';
 import "../styles/remixicon.css";
 import "../styles/nprogress.css";
 import "react-accessible-accordion/dist/fancy-example.css";
@@ -26,6 +30,7 @@ import cookies from "js-cookie";
 import AppContext from './AppContext';
 import {isAuthorized} from "./gobals";
 import Router from "next/router";
+
 
 function MyApp({ Component, pageProps }) {
 	const { charuvidhya_users_token } = parseCookies();

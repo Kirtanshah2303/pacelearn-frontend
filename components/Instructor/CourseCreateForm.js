@@ -147,14 +147,14 @@ const CourseCreateForm = ({ btnText, is_class , parentCategories , level }) => {
 		setCourse((prevState) => ({ ...prevState, [name]: value }));
 		//
 		const payload = {
-			headers: { Authorization: charuvidhya_users_token },
+			headers: { Authorization: "Bearer" + charuvidhya_users_token },
 		};
 		// const response3 = axios.get(
 		// 	`${baseUrl2}/api/course-category/sub-categories/${value}`,
 		// 	payload
 		// );
 		fetch(`${baseUrl2}/api/course-category/sub-categories/${value}`,{
-			headers: { Authorization: charuvidhya_users_token },
+			headers: { Authorization:"Bearer " + charuvidhya_users_token },
 		}).then(response => response.json().then(result => {
 			// console.log(result.subcategory)
 			setCategories(result.subcategory);
@@ -180,22 +180,23 @@ const CourseCreateForm = ({ btnText, is_class , parentCategories , level }) => {
 			// console.log("Inside handle image upload")
 			const contentType = course.image.type;
 			const bucket = new S3({
-				accessKeyId: 'AKIAUAPPTOSJ4XNUJ2D5',
-				secretAccessKey: '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',
-				region: 'ap-south-1',
+				accessKeyId: process.env.AWS_ACCESSKEY_ID,
+				secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+				region: process.env.AWS_REGION,
 			});
 			fileName = '_' + Math.random().toString(36).substr(2, 9);
 			const params = {
-				Bucket: 'charuvidya-charusat',
+				Bucket: process.env.AWS_BUCKET_NAME,
 				Key: fileName,
 				Body: course.image,
-				ACL: 'public-read',
+				ACL: process.env.AWS_ACL,
 				ContentType: contentType,
 			};
 
 			try {
 				const res = (await bucket.upload(params).promise()).Location;
 				course.courseLogo = res;
+				console.log("Location --> "+course.courseLogo)
 				fileName = res;
 			} catch (e) {
 				window.alert(e);
@@ -211,14 +212,17 @@ const CourseCreateForm = ({ btnText, is_class , parentCategories , level }) => {
 		try {
 			setLoading(true);
 			let photo;
-			if (course.image) {
-				// console.log("Insisde image part")
-				photo = await handleImageUpload();
-				course.courseLogo = photo
-				// console.log(course.courseLogo)
-				// course.courseLogo = photo;
-				// photo = photo.replace(/^http:\/\//i, "https://");
-			}
+			// if (course.image) {
+			// 	// console.log("Insisde image part")
+			// 	photo = await handleImageUpload();
+			// 	console.log("Inside course.image")
+			// 	// course.courseLogo = photo
+			// 	// console.log(course.courseLogo)
+			// 	// course.courseLogo = photo;
+			// 	// photo = photo.replace(/^http:\/\//i, "https://");
+			// }
+
+			await handleImageUpload()
 
 			// const {
 			// 	title,
@@ -244,7 +248,6 @@ const CourseCreateForm = ({ btnText, is_class , parentCategories , level }) => {
 				courseObjectives,
 				courseLogo,
 				courseSubTitle,
-				courseLength,
 				courseLevel,
 				courseCategory,
 			} = course;
@@ -295,7 +298,7 @@ const CourseCreateForm = ({ btnText, is_class , parentCategories , level }) => {
 			// 		data: { e },
 			// 	},
 			// } = err;
-			toast.error("Something went wrong", {
+			toast.error(err, {
 				style: {
 					border: "1px solid #ff0033",
 					padding: "16px",

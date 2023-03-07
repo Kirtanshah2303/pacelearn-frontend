@@ -112,7 +112,7 @@ const AdminSideNav = ({ }) => {
 									damping: 10,
 								}}
 							>
-								{/*<Link href="/admin/instructor/">
+								<Link href="/admin/instructor/">
 									<a
 										className={
 											currentRoute === "/admin/instructor"
@@ -122,7 +122,7 @@ const AdminSideNav = ({ }) => {
 									>
 										Instructors
 									</a>
-								</Link>*/}
+								</Link>
 							</motion.li>
 							<motion.li
 								whileHover={{

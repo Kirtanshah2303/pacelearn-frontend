@@ -99,6 +99,7 @@ const Index = ({  }) => {
 			setLoading(false);
 		}
 	};
+
 	return (
 		<>
 			<Navbar user={user} />
@@ -113,43 +114,43 @@ const Index = ({  }) => {
 					{loading ? (
 						<GeneralLoader />
 					) : (
-						<table className="table align-middle table-hover fs-14">
-							<div className="create-course-form">
+						<div className="table-responsive">
+							<table className="table align-middle table-hover fs-14" style={{padding:'1em'}}>
+								<div className="create-course-form">
 
 
-								<thead className="videoDetailrows">
-								<tr >
-									<th scope="col" style={{width: "12rem"}}>session order</th>
-									<th scope="col" style={{width: "12rem"}}>session Title</th>
+									<thead className="videoDetailrows" style={{padding:'1em'}}>
+									<tr style={{backgroundColor: '#f2f2f2'}}>
+										<th  style={{padding:'1em'}}>session order</th>
+										<th  style={{padding:'1em'}}>session Title</th>
 
-									<th scope="col" style={{width: "12rem"}}>
-										session Duration
-									</th>
-									<th scope="col" style={{width: "12rem"}}>Is preview</th>
-									<th scope="col" style={{width: "12rem"}}>
-										Is published</th>
-									<th scope="col" style={{width: "12rem"}}>
-										Buttons</th>
-								</tr>
-								</thead>
+										<th  style={{padding:'1em'}}>
+											session Duration
+										</th>
+										<th style={{padding:'1em'}} >Is preview</th>
+										<th  style={{padding:'1em'}}>
+											Is published</th>
+										<th  style={{padding:'1em'}}>
+											Buttons</th>
+									</tr>
+									</thead>
 
-								{videos.length > 0
-									? videos.map((videos) => (
-										<CourseVideos
-											key={videos.id}
-											{...videos}
-											onDelete={() =>
-												confirmDelete(videos.id)
-											}
-										/>
-									))
-									: "Empty"}
-
-
-							</div>
-						</table>
-
-
+									<tbody style={{padding:'1em'}}>
+									{videos.length > 0
+										? videos.map((videos) => (
+											<CourseVideos
+												key={videos.id}
+												{...videos}
+												onDelete={() =>
+													confirmDelete(videos.id)
+												}
+											/>
+										))
+										: "Empty"}
+									</tbody>
+								</div>
+							</table>
+						</div>
 					)}
 				</div>
 			</div>

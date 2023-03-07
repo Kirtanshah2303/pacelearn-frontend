@@ -48,68 +48,69 @@ const index = ({ courses, categories }) => {
 						whileInView="visible"
 						variants={variants}
 					>
-						<span className="top-title">Popular Courses</span>
-						<h2>Expand Your Career Opportunity With Our Courses</h2>
+						<span className="top-title">Newly Added Courses</span>
+						{/*<h2>Expand Your Career Opportunity With Our Courses</h2>*/}
+						<h2>Our Latest Courses</h2>
 					</motion.div>
 					<CoursesList courses={courses} user={user} />
 				</div>
 			</div>
 
-			<div className="feature-dcourses-area bg-color-f6fafb pt-100 pb-70">
-				<div className="container">
-					<div className="title-btn d-flex justify-content-between align-items-center">
-						<motion.div
-							className="section-title left-title"
-							initial="hidden"
-							whileInView="visible"
-							variants={variants}
-						>
-							<span className="top-title">Featured Courses</span>
-							<h2>Find Yours From The Featured</h2>
-						</motion.div>
-						<Link href="/courses">
-							<a className="default-btn">View All</a>
-						</Link>
-					</div>
-					<CoursesList courses={courses} user={user} />
-				</div>
+			{/*<div className="feature-dcourses-area bg-color-f6fafb pt-100 pb-70">*/}
+			{/*	<div className="container">*/}
+			{/*		<div className="title-btn d-flex justify-content-between align-items-center">*/}
+			{/*			<motion.div*/}
+			{/*				className="section-title left-title"*/}
+			{/*				initial="hidden"*/}
+			{/*				whileInView="visible"*/}
+			{/*				variants={variants}*/}
+			{/*			>*/}
+			{/*				<span className="top-title">Featured Courses</span>*/}
+			{/*				<h2>Find Yours From The Featured</h2>*/}
+			{/*			</motion.div>*/}
+			{/*			<Link href="/courses">*/}
+			{/*				<a className="default-btn">View All</a>*/}
+			{/*			</Link>*/}
+			{/*		</div>*/}
+			{/*		<CoursesList courses={courses} user={user} />*/}
+			{/*	</div>*/}
 
-				<img
-					src="/images/courses-shape.png"
-					className="courses-shape"
-					alt="Image"
-				/>
-			</div>
+			{/*	<img*/}
+			{/*		src="/images/courses-shape.png"*/}
+			{/*		className="courses-shape"*/}
+			{/*		alt="Image"*/}
+			{/*	/>*/}
+			{/*</div>*/}
 
-			<div className="feature-dcourses-area bg-color-f6fafb pb-70">
-				<div className="container">
-					<div className="title-btn d-flex justify-content-between align-items-center wow animate__animated animate__fadeInUp delay-0-2s">
-						<motion.div
-							className="section-title left-title"
-							initial="hidden"
-							whileInView="visible"
-							variants={variants}
-						>
-							<span className="top-title">
-								Most Viewed Courses
-							</span>
-							<h2>Students Are Also Viewing</h2>
-						</motion.div>
-						<Link href="/courses">
-							<a className="default-btn">View All</a>
-						</Link>
-					</div>
-					<CoursesList courses={courses} user={user} />
-				</div>
-			</div>
+			{/*<div className="feature-dcourses-area bg-color-f6fafb pb-70">*/}
+			{/*	<div className="container">*/}
+			{/*		<div className="title-btn d-flex justify-content-between align-items-center wow animate__animated animate__fadeInUp delay-0-2s">*/}
+			{/*			<motion.div*/}
+			{/*				className="section-title left-title"*/}
+			{/*				initial="hidden"*/}
+			{/*				whileInView="visible"*/}
+			{/*				variants={variants}*/}
+			{/*			>*/}
+			{/*				<span className="top-title">*/}
+			{/*					Most Viewed Courses*/}
+			{/*				</span>*/}
+			{/*				<h2>Students Are Also Viewing</h2>*/}
+			{/*			</motion.div>*/}
+			{/*			<Link href="/courses">*/}
+			{/*				<a className="default-btn">View All</a>*/}
+			{/*			</Link>*/}
+			{/*		</div>*/}
+			{/*		<CoursesList courses={courses} user={user} />*/}
+			{/*	</div>*/}
+			{/*</div>*/}
 
-			<Categories categories={categories} />
-			<Transform />
+			{/*<Categories categories={categories} />*/}
+{/*			<Transform />
 			<Features />
 			<Testimonials />
 			<Partners />
 			<Teaching />
-			<Business />
+			<Business />*/}
 			<Footer />
 		</>
 	);
