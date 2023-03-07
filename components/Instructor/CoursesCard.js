@@ -75,14 +75,14 @@ const CoursesCard = ({
 									</a>
 								</Link>
 							</li>
-							<li>
-								<Link href={`/instructor/course/assets/${id}`}>
-									<a className="dropdown-item">
-										<i className="bx bxs-file-plus"></i>{" "}
-										Assets
-									</a>
-								</Link>
-							</li>
+							{/*<li>*/}
+							{/*	<Link href={`/instructor/course/assets/${id}`}>*/}
+							{/*		<a className="dropdown-item">*/}
+							{/*			<i className="bx bxs-file-plus"></i>{" "}*/}
+							{/*			Assets*/}
+							{/*		</a>*/}
+							{/*	</Link>*/}
+							{/*</li>*/}
 							<li>
 								<button
 									onClick={() => onDelete(id)}

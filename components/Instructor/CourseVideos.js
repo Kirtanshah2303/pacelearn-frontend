@@ -1,12 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 //import "@fontawsome/~font-awesome/scss/font-awesome.scss";
 import CourseRow from "@/components/Admin/CourseRow";
+import FsLightbox from "fslightbox-react";
 //import { FontAwesomeIcon } from '@fontawesome/react-fontawesome';
 //import {faBars} from '@fontawesome/free-solid-svg-icons';
 //import { faFaceRelieved } from '@fontawesome/pro-solid-svg-icons'
 
 
-const CourseVideos = ({ id:videoId,sessionOrder, sessionTitle, isPreview, isPublished, onDelete }) => {
+const CourseVideos = ({ id:videoId,sessionOrder, sessionTitle, isPreview, isPublished, onDelete ,sessionVideo }) => {
+
+	const [preview, setPreview] = useState("");
+	const [toggler, setToggler] = useState(false);
 
 	return (
 
@@ -20,7 +24,11 @@ const CourseVideos = ({ id:videoId,sessionOrder, sessionTitle, isPreview, isPubl
 				<div className="btn-group">
 					<button style={{background:"rgb(68 198 87)" }} //onClick={() => onDelete(videoId)}
 							className="btn btn-danger" >
-						<img src="/view.png" height={27} width={27}/>
+						<img src="/view.png" height={27} width={27} onClick={() => {
+							setPreview(sessionVideo);
+							// {preview && <FsLightbox toggler={toggler} sources={[preview]} />}
+							setToggler(!toggler);
+						}}/>
 
 					</button>
 					<button style={{background:"#59a5e4"}} //onClick={() => onDelete(videoId)}
@@ -28,6 +36,7 @@ const CourseVideos = ({ id:videoId,sessionOrder, sessionTitle, isPreview, isPubl
 					<button onClick={() => onDelete(videoId)}
 							className="btn btn-danger"> <img src="/trash-solid.svg" height={17} width={17}/></button>
 				</div>
+				{preview && <FsLightbox toggler={toggler} sources={[preview]} />}
 			</td>
 		</tr>
 
