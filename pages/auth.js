@@ -1,15 +1,25 @@
-import React, { useState } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import PageBanner from "@/components/Common/PageBanner";
 import Footer from "@/components/_App/Footer";
 import Navbar from "@/components/_App/Navbar";
 import LoginForm from "@/components/Authentication/LoginForm";
 import RegisterForm from "@/components/Authentication/RegisterForm";
 import { motion } from "framer-motion";
+import {fetchUserData, isAuthorized} from "./gobals";
+import AppContext from "./AppContext";
 
 const Auth = () => {
 	const [register, setRegister] = useState("login");
 	const [isOn, setIsOn] = useState(false);
+	const { user, setUser } = useContext(AppContext);
+
 	const toggleSwitch = () => setIsOn(!isOn);
+	useEffect(() => {
+		if(isAuthorized==false && user!=null){
+			setUser(null);
+		}
+	}, []);
+
 
 	return (
 		<>

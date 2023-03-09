@@ -33,7 +33,8 @@ export const fetchUserData = async (user,setUser) => {
         const response = await fetch(`${baseUrl2}/api/account`, options);
         const jsonData = await response.json();
         if(typeof jsonData.firstName ==="undefined"){
-            handleLogout()
+            console.log("Logout NOw ------------------>");
+            await handleLogout(user, setUser);
         }
         else {
             isAuthorized = true;
@@ -43,7 +44,6 @@ export const fetchUserData = async (user,setUser) => {
     }
 };
 export const fetchMyCourses=async () =>{
-    console.log("Authorize ------------------>"+isAuthorized);
     if(isAuthorized){
         const { charuvidhya_users_token } = parseCookies();
         let bearer = 'Bearer ';
