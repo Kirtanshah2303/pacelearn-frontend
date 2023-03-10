@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, {useContext, useState} from "react";
 import { motion } from "framer-motion";
 import Link from "@/utils/ActiveLink";
 import { handleLogout } from "@/utils/auth";
+import AppContext from "../../pages/AppContext";
 
 const ProfileDropdown = ({
 	id,
@@ -18,6 +19,7 @@ const ProfileDropdown = ({
 	const isAdmin = authorities.includes("ROLE_ADMIN");
 	const isInstructor = authorities.includes("ROLE_FACULTY");
 	const isStudent = authorities.includes("ROLE_STUDENT");
+	const { user, setUser } = useContext(AppContext);
 
 	const subMenuAnimate = {
 		enter: {
@@ -165,8 +167,11 @@ const ProfileDropdown = ({
 				<li>
 					<button
 						type="submit"
-						onClick={handleLogout}
 						className="dropdown-item"
+						onClick={(e) => {
+							e.preventDefault();
+							handleLogout(user,setUser,);
+						}}
 					>
 						<i className="bx bx-log-out"></i> Log out
 					</button>

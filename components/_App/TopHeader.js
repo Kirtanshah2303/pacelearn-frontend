@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, {useContext, useState} from "react";
 import Link from "next/link";
 import { handleLogout } from "@/utils/auth";
 import { motion } from "framer-motion";
+import AppContext from "../../pages/AppContext";
 
-const TopHeader = ({ user }) => {
+const TopHeader = ({}) => {
+	const { user, setUser } = useContext(AppContext);
+
 	return (
 		<motion.div
 			className="top-header-area bg-color-0f6c76"
@@ -41,7 +44,7 @@ const TopHeader = ({ user }) => {
 										<a
 											onClick={(e) => {
 												e.preventDefault();
-												handleLogout();
+												handleLogout(user,setUser);
 											}}
 										>
 											<i className="bx bx-log-out"></i>{" "}

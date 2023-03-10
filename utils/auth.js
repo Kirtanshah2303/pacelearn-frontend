@@ -13,7 +13,7 @@ export const handleLogin = (t, routeNext) => {
 	}
 };
 
-export const handleLogout = () => {
+export const handleLogout = (user,setUser) =>  {
 	toast.error("Logged Out", {
 		style: {
 			border: "1px solid #ff0033",
@@ -26,8 +26,9 @@ export const handleLogout = () => {
 		},
 	});
 	cookie.remove("charuvidhya_users_token");
-	Router.push("/");
-	window.location.reload();
+	setUser(null);
+	Router.push("/auth");
+	// window.location.reload();
 };
 
 export const destroyCookie = () => {
