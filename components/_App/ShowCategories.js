@@ -1,19 +1,39 @@
-import React, { useRef, useState } from 'react';
-import { ControlledMenu,SubMenu, MenuItem, useHover, useMenuState } from '@szhsin/react-menu';
-import {Categories} from "../../pages/gobals";
+import React, { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Link from "@/utils/ActiveLink";
-import '@szhsin/react-menu/dist/index.css';
+import {motion} from "framer-motion";
+import {Categories} from "../../pages/gobals";
 
 const ShowCategories = () => {
-    const ref = useRef(null);
-    const [menuState, toogle] = useMenuState({ transition: true });
-    const { anchorProps, hoverProps } = useHover(menuState.state, toogle);
+    const [isHovered, setIsHovered] = useState(false);
+    const [selectedCategory, setSelectedCategory] = useState(null);
+
+    const handleHover = (Categories) => {
+        setIsHovered(true);
+        setSelectedCategory(Categories);
+    };
+
+    const handleLeave = () => {
+        setIsHovered(false);
+        setSelectedCategory(null);
+    };
 
     return (
         <>
-            <div ref={ref} {...anchorProps}>
+            <motion.li
+                className="nav-item"
+                whileHover={{
+                    scale: 1.1,
+                    transition: { duration: 0.5 },
+                }}
+                whileTap={{ scale: 0.9 }}
+                key={Categories.courseCategoryTitle}
+                onMouseEnter={() => handleHover(Categories)}
+                onMouseLeave={handleLeave}
+            >
+
                 <Link
-                    href="/"
+                    href="#"
                     activeClassName="active"
                 >
                     <a
@@ -22,31 +42,31 @@ const ShowCategories = () => {
                         Categories
                     </a>
                 </Link>
-            </div>
+                {isHovered  && (<ul className="submenu dropdown-menu">
+                {Categories.map((Categories) => (
 
-            <ControlledMenu
-                {...hoverProps}
-                {...menuState}
-                anchorRef={ref}
-                onClose={() => toogle(false)}
-            >
-
-                {
-                    Categories.map((category)=>(
-                        category.subCategories.length > 0?
-                            // eslint-disable-next-line react/jsx-key
-                            <SubMenu label={category.courseCategoryTitle}>
-                                {category.subCategories.map((subCategory)=>(
-                                    // eslint-disable-next-line react/jsx-key
-                                    <MenuItem  href={"/category/"+subCategory.id+"/"}>{subCategory.courseCategoryTitle}</MenuItem>
+                    <li key={Categories.courseCategoryTitle}>
+                        <a className="dropdown-item" style={{"white-space": "normal"}} href="#">
+                            {Categories.courseCategoryTitle}
+                        </a>
+                        {Categories.subCategories && (
+                            <ul className="sub-submenu dropdown-menu" >
+                                {Categories.subCategories.map((subSubcategory) => (
+                                    <li key={subSubcategory.courseCategoryTitle}>
+                                        <a className="dropdown-item" href="#">
+                                            {subSubcategory.courseCategoryTitle}
+                                        </a>
+                                    </li>
                                 ))}
-                            </SubMenu>:
-                            <MenuItem>{category.courseCategoryTitle}</MenuItem>
-                    ))
-                }
+                            </ul>
+                        )}
+                    </li>
+                ))}
+                    </ul>)}
 
-            </ControlledMenu>
+            </motion.li>
         </>
     );
 };
+
 export default ShowCategories;
