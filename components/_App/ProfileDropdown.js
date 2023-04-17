@@ -144,14 +144,14 @@ const ProfileDropdown = ({
 				{/*		</a>*/}
 				{/*	</Link>*/}
 				{/*</li>*/}
-				{/*<li>*/}
-				{/*	<Link href="/learning/wishlist/">*/}
-				{/*		<a className="dropdown-item">*/}
-				{/*			<i className="bx bxs-heart"></i>*/}
-				{/*			Wishlist*/}
-				{/*		</a>*/}
-				{/*	</Link>*/}
-				{/*</li>*/}
+				<li>
+					<Link href="/changePassword">
+						<a className="dropdown-item">
+							<i className="bx bxs-heart"></i>
+							Change Password
+						</a>
+					</Link>
+				</li>
 
 				{/*<li>*/}
 				{/*	<Link href="/profile/basic-information/">*/}

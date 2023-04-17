@@ -46,7 +46,7 @@ const Navbar = ({ }) => {
 
 	return (
 		<>
-			<TopHeader user={user} />
+			{/*<TopHeader user={user} />*/}
 			<div id="navbar" className="navbar-area">
 				<div className="desktop-nav">
 					<div className="container-fluid">
@@ -121,16 +121,18 @@ const Navbar = ({ }) => {
 										</Link>
 									</motion.li>
 
-									{/*<motion.li*/}
-									{/*	className="nav-item"*/}
-									{/*	whileHover={{*/}
-									{/*		scale: 1.1,*/}
-									{/*		transition: { duration: 0.5 },*/}
-									{/*	}}*/}
-									{/*	whileTap={{ scale: 0.9 }}*/}
-									{/*>*/}
-									{/*	<ShowCategories/>*/}
-									{/*</motion.li>*/}
+									<motion.li
+										className="nav-item"
+										whileHover={{
+											scale: 1.1,
+											transition: { duration: 0.5 },
+										}}
+										whileTap={{ scale: 0.9 }}
+
+									>
+
+										<ShowCategories />
+									</motion.li>
 
 								</ul>
 

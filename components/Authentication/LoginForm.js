@@ -6,6 +6,7 @@ import baseUrl2 from "@/utils/baseUrl2";
 import { useRouter } from "next/router";
 import Button from "../../utils/Button";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const INITIAL_USER = {
 	username: "",
@@ -126,12 +127,21 @@ const LoginForm = () => {
 					onChange={handleChange}
 				/>
 			</div>
+
 			<Button
 				loading={loading}
 				// disabled={disabled}
 				btnText="Login Now"
 				btnClass="default-btn"
 			/>
+			<p style={{textAlign:"right" , marginTop:"30px"}}>
+				<Link href="/forgetpassword">
+					<a className="read-more">
+						Forgot Your Password?
+					</a>
+				</Link>
+			</p>
+
 		</motion.form>
 	);
 };

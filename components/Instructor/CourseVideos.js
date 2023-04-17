@@ -1,4 +1,8 @@
 import React, {useState} from "react";
+import {BsFillEyeFill} from 'react-icons/bs';
+import {AiFillEdit,AiFillDelete} from 'react-icons/ai';
+
+
 //import "@fontawsome/~font-awesome/scss/font-awesome.scss";
 import CourseRow from "@/components/Admin/CourseRow";
 import FsLightbox from "fslightbox-react";
@@ -23,18 +27,32 @@ const CourseVideos = ({ id:videoId,sessionOrder, sessionTitle, isPreview, isPubl
 			<td  style={{padding:'1em'}}>
 				<div className="btn-group">
 					<button style={{background:"rgb(68 198 87)" }} //onClick={() => onDelete(videoId)}
-							className="btn btn-danger" >
-						<img src="/view.png" height={27} width={27} onClick={() => {
-							setPreview(sessionVideo);
-							// {preview && <FsLightbox toggler={toggler} sources={[preview]} />}
-							setToggler(!toggler);
-						}}/>
+							className="btn btn-danger"
+							onClick={() => {
+								setPreview(sessionVideo);
+								// {preview && <FsLightbox toggler={toggler} sources={[preview]} />}
+								setToggler(!toggler);
+							}}><BsFillEyeFill  width={11} style={{color:"black" , fontSize:"20px"}}
+																		 />
+
+						{/*<img height={27} width={27} onClick={() => {*/}
+						{/*	setPreview(sessionVideo);*/}
+						{/*	// {preview && <FsLightbox toggler={toggler} sources={[preview]} />}*/}
+						{/*	setToggler(!toggler);*/}
+						{/*}}/>*/}
 
 					</button>
 					<button style={{background:"#59a5e4"}} //onClick={() => onDelete(videoId)}
-							className="btn btn-danger"> <img src="/edit-solid.svg" height={23} width={23}/></button>
+							className="btn btn-danger">
+						<AiFillEdit style={{color:"black",  fontSize:"20px" }}/>
+						{/*<img src="/edit-solid.svg" height={23} width={23}/>*/}
+					</button>
 					<button onClick={() => onDelete(videoId)}
-							className="btn btn-danger"> <img src="/trash-solid.svg" height={17} width={17}/></button>
+							className="btn btn-danger">
+						<AiFillDelete style={{color:"black" , fontSize:"20px"}}/>
+						{/*<img src="/trash-solid.svg" height={17} width={17}/>*/}
+
+					</button>
 				</div>
 				{preview && <FsLightbox toggler={toggler} sources={[preview]} />}
 			</td>

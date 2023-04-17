@@ -50,6 +50,7 @@ function MyApp({ Component, pageProps }) {
 			Router.pathname === "/learning/wishlist";
 		if (!charuvidhya_users_token && isProtectedRoute) {
 			Router.push('/auth');
+
 		}
 	}, []);
 	return (

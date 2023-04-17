@@ -217,10 +217,12 @@ const CourseCard = ({ course, onFav, onUnFav, userId, onAddCart }) => {
 							</p>
 						</li>
 							<li>
-								<p style={{marginLeft : "50px",textAlign:"right", fontSize:"14px"}}> created on: <br/>{courseCreatedOn}</p>
+								<p style={{textAlign:'justify',marginLeft:"70px", fontSize:"14px"}}> created on: <br/>{courseCreatedOn}</p>
 							</li>
 
+
 					</ul>
+
 
 				</div>
 
