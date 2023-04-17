@@ -21,6 +21,7 @@
 		"@mantine/core": "^5.10.3",
 		"@mantine/hooks": "^5.10.3",
 		"@mantine/rte": "^5.1.1",
+		"@szhsin/react-menu": "^3.5.2",
 		"axios": "^0.27.2",
 		"bcrypt": "^5.0.1",
 		"framer-motion": "^7.3.4",
