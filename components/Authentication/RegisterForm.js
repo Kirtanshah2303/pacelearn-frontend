@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import Button from "../../utils/Button";
 import { motion } from "framer-motion";
 import Router from "next/router";
+import * as S3 from "aws-sdk/clients/s3";
 
 // const INITIAL_USER = {
 // 	first_name: "",
@@ -22,7 +23,8 @@ const INITIAL_USER = {
 	email : "",
 	imageUrl : "",
 	langKey : "en",
-	// authorities : [""]
+	// authorities : [""],
+	image : {}
 
 };
 
@@ -39,20 +41,95 @@ const RegisterForm = () => {
 	}, [registerUser]);
 
 	const handleChange = (e) => {
-		const { name, value } = e.target;
-		setRegisterUser((prevState) => ({ ...prevState, [name]: value }));
+		const { name, value , files } = e.target;
+
+		if (name === "imageUrl") {
+			const image = files[0].size / 1024 / 1024;
+			if (image > 2) {
+				toast.error(
+					"The photo size greater than 2 MB. Make sure less than 2 MB.",
+					{
+						style: {
+							border: "1px solid #ff0033",
+							padding: "16px",
+							color: "#ff0033",
+						},
+						iconTheme: {
+							primary: "#ff0033",
+							secondary: "#FFFAEE",
+						},
+					}
+				);
+				e.target.value = null;
+				return;
+			}
+			setRegisterUser((prevState) => ({
+				...prevState,
+				image: files[0],
+			}));
+			// setImagePreview(window.URL.createObjectURL(files[0]));
+		}
+		else{
+			setRegisterUser((prevState) => ({ ...prevState, [name]: value }));
+		}
+
+
 	};
-	
+
 	const handleChangeROLE = (event) => {
 
 		setValue(event.target.value);
-	 
-	  };
+
+	};
+
+	const handleImageUpload = async () => {
+		// const data = new FormData();
+		// data.append("file", course.courseLogo);
+		// data.append("upload_preset", process.env.UPLOAD_PRESETS);
+		// data.append("cloud_name", process.env.CLOUD_NAME);
+		// let response;
+		// if (course.image) {
+		// 	response = await axios.post(process.env.CLOUDINARY_URL, data);
+		// }
+		let fileName = '';
+		if (registerUser.image!=null){
+			// console.log("Inside handle image upload")
+			const contentType = registerUser.image.type;
+			const bucket = new S3({
+				accessKeyId: process.env.AWS_ACCESSKEY_ID,
+				secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+				region: process.env.AWS_REGION,
+			});
+			fileName = '_' + Math.random().toString(36).substr(2, 9);
+			const params = {
+				Bucket: process.env.AWS_BUCKET_NAME,
+				Key: fileName,
+				Body: registerUser.image,
+				ACL: process.env.AWS_ACL,
+				ContentType: contentType,
+			};
+
+			try {
+				const res = (await bucket.upload(params).promise()).Location;
+				registerUser.imageUrl = res;
+				console.log("Location --> "+registerUser.imageUrl)
+				fileName = res;
+			} catch (e) {
+				window.alert(e);
+			}
+		}
+		// const imageUrl = response.data.url;
+
+		return fileName;
+	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
 			setLoading(true);
+
+			await handleImageUpload()
+
 			const url = `${baseUrl2}/api/register`;
 			const payload = { ...registerUser };
 			const response = await axios.post(url, payload);
@@ -144,14 +221,27 @@ const RegisterForm = () => {
 				/>
 			</div>
 			<div className="form-group">
+				{/*<input*/}
+				{/*	type="text"*/}
+				{/*	className="form-control"*/}
+				{/*	placeholder="imageUrl"*/}
+				{/*	name="imageUrl"*/}
+				{/*	value={registerUser.imageUrl}*/}
+				{/*	onChange={handleChange}*/}
+				{/*/>*/}
+				<label className="form-label fw-semibold">
+					Profile Image
+				</label>
 				<input
-					type="text"
-					className="form-control"
-					placeholder="imageUrl"
+					type="file"
+					className="form-control file-control"
 					name="imageUrl"
-					value={registerUser.imageUrl}
 					onChange={handleChange}
+					required={true}
 				/>
+				<div className="form-text">
+					Upload image size 750x500!
+				</div>
 			</div>
 			<div className="form-group">
 				<input
@@ -163,7 +253,7 @@ const RegisterForm = () => {
 					onChange={handleChange}
 				/>
 			</div>
-			
+
 			{/*<div className="form-group">*/}
 			{/*	/!* <input*/}
 			{/*		type="select"*/}
@@ -187,7 +277,7 @@ const RegisterForm = () => {
 
 			<Button
 				loading={loading}
-				disabled={disabled}
+				// disabled={disabled}
 				btnText="Register Now"
 				btnClass="default-btn"
 			/>
