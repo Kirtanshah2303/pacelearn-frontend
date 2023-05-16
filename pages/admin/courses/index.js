@@ -283,7 +283,7 @@ const Index = ({  }) => {
 
 									<li>
 										<Link href="/admin/courses/new-arrival/">
-											<a>New Arrival</a>
+											<a>Pending Courses</a>
 										</Link>
 									</li>
 									<li>
