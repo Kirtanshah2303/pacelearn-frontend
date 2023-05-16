@@ -9,6 +9,7 @@ import { calculateDiscount } from "@/utils/helper";
 import Cookies from "js-cookie";
 import {MyCourses} from "../../pages/gobals";
 import {router} from "next/client";
+import baseUrl2 from "@/utils/baseUrl2";
 
 const CoursesDetailsSidebar = ({ current_user,course_id, course , studentCount }) => {
 	// console.log(course);
@@ -25,7 +26,7 @@ const CoursesDetailsSidebar = ({ current_user,course_id, course , studentCount }
 	// })
 
 	const enroll = (courseID) => {
-
+		fecten
 		const cookies = Cookies.get("charuvidhya_users_token")
 
 		if(cookies){
@@ -34,7 +35,7 @@ const CoursesDetailsSidebar = ({ current_user,course_id, course , studentCount }
 			// console.log("Token is -->" + token);
 			bearer = bearer+token;
 
-			fetch(`http://localhost:8080/api/courses/enroll`, {
+			fetch(`${baseUrl2}/api/courses/enroll`, {
 				method: 'POST',
 				headers: {
 					accept: '*/*',

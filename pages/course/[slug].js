@@ -31,7 +31,7 @@ const courseDeatails = ({  }) => {
 				};
 				const url = `${baseUrl2}/api/courses/${slug}`;
 
-				fetch(`http://localhost:8080/api/courses/${slug}/student-count`, {
+				fetch(`${baseUrl2}/api/courses/${slug}/student-count`, {
 					method: 'GET',
 					headers: {
 						accept: '*/*',

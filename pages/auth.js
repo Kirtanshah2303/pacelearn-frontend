@@ -3,6 +3,7 @@ import PageBanner from "@/components/Common/PageBanner";
 import Footer from "@/components/_App/Footer";
 import Navbar from "@/components/_App/Navbar";
 import LoginForm from "@/components/Authentication/LoginForm";
+import ForgotPassword from "@/components/Authentication/ForgotPasswordForm";
 import RegisterForm from "@/components/Authentication/RegisterForm";
 import { motion } from "framer-motion";
 import {fetchUserData, isAuthorized} from "./gobals";
@@ -122,8 +123,9 @@ const Auth = () => {
 									{register == "register" ? (
 										<RegisterForm />
 									) : (
-										<LoginForm />
+										<LoginForm/>
 									)}
+
 								</div>
 							</div>
 						</div>

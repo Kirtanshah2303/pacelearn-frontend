@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import Cookies from 'js-cookie'
 import toast from "react-hot-toast";
 import {MyCourses} from "../../pages/gobals";
+import baseUrl2 from "@/utils/baseUrl2";
 
 const CourseCard = ({ course, onFav, onUnFav, userId, onAddCart }) => {
 	const router = useRouter();
@@ -51,7 +52,7 @@ const CourseCard = ({ course, onFav, onUnFav, userId, onAddCart }) => {
 			/*console.log("Token is -->" + token);*/
 			bearer = bearer+token;
 
-			fetch(`http://localhost:8080/api/courses/enroll`, {
+			fetch(`${baseUrl2}/api/courses/enroll`, {
 				method: 'POST',
 				headers: {
 					accept: '*/*',
@@ -217,10 +218,12 @@ const CourseCard = ({ course, onFav, onUnFav, userId, onAddCart }) => {
 							</p>
 						</li>
 							<li>
-								<p style={{marginLeft : "50px",textAlign:"right", fontSize:"14px"}}> created on: <br/>{courseCreatedOn}</p>
+								<p style={{textAlign:'justify',marginLeft:"70px", fontSize:"14px"}}> created on: <br/>{courseCreatedOn}</p>
 							</li>
 
+
 					</ul>
+
 
 				</div>
 

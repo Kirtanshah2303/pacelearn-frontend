@@ -508,7 +508,8 @@ Navbar Area Style
 }
 
 .navbar-area .container-fluid {
-  max-width: 1780px;
+  max-width: 30000px;
+
   margin: auto;
   padding-left: 30px;
   padding-right: 30px;
@@ -711,7 +712,8 @@ Navbar Area Style
   border-radius: 5px;
 }
 
-.desktop-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li a {
+.desktop-nav .navbar .navbar-nav .nav-item .
+-menu li .dropdown-menu li .dropdown-menu li a {
   color: #000000;
 }
 
@@ -1512,7 +1514,7 @@ Courses Area Style
   margin-bottom: 30px;
   position: relative;
   z-index: 1;
-  height: 400px;
+  height: 450px;
   box-shadow: 0.05rem 0.1rem 0.3rem -0.03rem cornflowerblue;
   border-radius: 0.5rem;
 }
@@ -2663,7 +2665,8 @@ Footer Area Style
 }
 
 .single-footer-widget {
-  margin-bottom: 30px;
+  margin-bottom: 0px;
+  margin-left: 0px;
 }
 
 .single-footer-widget .logo {
@@ -6882,3 +6885,4 @@ Checkout Area CSS
   padding: 0 15px;
 }
 /*# sourceMappingURL=style.css.map */
+

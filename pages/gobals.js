@@ -1,7 +1,7 @@
 import cookie from "js-cookie";
 import baseUrl2 from "@/utils/baseUrl2";
-import {handleLogout} from "@/utils/auth";
-import {parseCookies} from "nookies";
+import {destroyCookie, handleLogout} from "@/utils/auth";
+import { parseCookies} from "nookies";
 
 export let isAuthorized = false;
 export let MyCourses=[]
@@ -34,7 +34,7 @@ export const fetchUserData = async (user,setUser) => {
         const jsonData = await response.json();
         if(typeof jsonData.firstName ==="undefined"){
             console.log("Logout NOw ------------------>");
-            await handleLogout(user, setUser);
+            await destroyCookie(user, setUser);
         }
         else {
             isAuthorized = true;

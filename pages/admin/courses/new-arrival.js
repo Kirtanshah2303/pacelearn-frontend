@@ -232,7 +232,7 @@ const Index = ({ user }) => {
 									<li>
 										<Link href="/admin/courses/new-arrival/">
 											<a className="active">
-												New Arrival
+												Pending Courses
 											</a>
 										</Link>
 									</li>

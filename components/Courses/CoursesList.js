@@ -86,9 +86,13 @@ const CoursesList = ({ courses, user,short }) => {
 				<>
 					{short && short.length > 0 ?
 						courses.length > 0 ? (
-							courses.map((course) => (
+							courses.sort( (a,b) => a.courseCreatedOn < b.courseCreatedOn ? 1: -1)
+							.map((course) => (
+
 								course.courseCategory.courseCategoryTitle === short.toString() ?
+
 									<CourseCard
+
 										key={course.id}
 										course={course}
 										// onFav={() => handleFav(course.id, true)}
@@ -102,7 +106,10 @@ const CoursesList = ({ courses, user,short }) => {
 						)
 						:
 						courses.length > 0 ? (
-							courses.map((course) => (
+
+							courses.sort( (a,b) => a.courseCreatedOn < b.courseCreatedOn ? 1: -1)
+								.map((course) => (
+
 								<CourseCard
 									key={course.id}
 									course={course}
@@ -113,7 +120,7 @@ const CoursesList = ({ courses, user,short }) => {
 								/>
 							))
 						) : (
-							<h3>Empty Hello</h3>
+							<h3>Empty </h3>
 						)
 					}
 				</>

@@ -58,17 +58,17 @@ const PageNavigation = ({ courseId, activeClassname }) => {
 						</a>
 					</Link>
 				</li>
-				<li>
-					<Link href={`/instructor/course/EditCourseSection/${courseId}`}>
-						<a
-							className={
-								activeClassname == "EditSection" ? "active" : ""
-							}
-						>
-							Edit Course Section
-						</a>
-					</Link>
-				</li>
+				{/*<li>*/}
+				{/*	<Link href={`/instructor/course/EditCourseSection/${courseId}`}>*/}
+				{/*		<a*/}
+				{/*			className={*/}
+				{/*				activeClassname == "EditSection" ? "active" : ""*/}
+				{/*			}*/}
+				{/*		>*/}
+				{/*			Edit Course Section*/}
+				{/*		</a>*/}
+				{/*	</Link>*/}
+				{/*</li>*/}
 				<li>
 					<Link href={`/instructor/course/upload/${courseId}`}>
 						<a
@@ -77,6 +77,17 @@ const PageNavigation = ({ courseId, activeClassname }) => {
 							}
 						>
 							Upload Video
+						</a>
+					</Link>
+				</li>
+				<li>
+					<Link href={`/instructor/course/video/${courseId}`}>
+						<a
+							className={
+								activeClassname == "editVideo" ? "active" : ""
+							}
+						>
+							Edit Video
 						</a>
 					</Link>
 				</li>
