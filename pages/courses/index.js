@@ -24,6 +24,10 @@ export default function CoursesPage({  }) {
 
 	const { user, setUser } = useContext(AppContext);
 
+	const course = courses.sort((a, b) => new Date(b.courseCreatedOn) - new Date(a.courseCreatedOn));
+
+
+
 	// eslint-disable-next-line react-hooks/rules-of-hooks
 
 	const fetchCourses = async () => {
