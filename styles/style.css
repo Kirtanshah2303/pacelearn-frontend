@@ -712,7 +712,8 @@ Navbar Area Style
   border-radius: 5px;
 }
 
-.desktop-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li a {
+.desktop-nav .navbar .navbar-nav .nav-item .
+-menu li .dropdown-menu li .dropdown-menu li a {
   color: #000000;
 }
 
@@ -6884,3 +6885,4 @@ Checkout Area CSS
   padding: 0 15px;
 }
 /*# sourceMappingURL=style.css.map */
+

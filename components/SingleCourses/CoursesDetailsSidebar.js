@@ -26,7 +26,7 @@ const CoursesDetailsSidebar = ({ current_user,course_id, course , studentCount }
 	// })
 
 	const enroll = (courseID) => {
-
+		fecten
 		const cookies = Cookies.get("charuvidhya_users_token")
 
 		if(cookies){
