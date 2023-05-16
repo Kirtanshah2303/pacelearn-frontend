@@ -106,7 +106,7 @@ const RegisterForm = () => {
 				<input
 					type="text"
 					className="form-control"
-					placeholder="login"
+					placeholder="Login Username"
 					name="login"
 					value={registerUser.login}
 					onChange={handleChange}
