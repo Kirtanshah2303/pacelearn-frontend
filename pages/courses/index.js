@@ -11,6 +11,7 @@ import axios from "axios";
 import baseUrl2 from "@/utils/baseUrl2";
 import AppContext from "../AppContext";
 import {fetchUserData} from "../gobals";
+import CourseCard from "@/components/Courses/CourseCard";
 
 export default function CoursesPage({  }) {
 	const [courses, setCourses] = useState([]);
@@ -37,9 +38,24 @@ export default function CoursesPage({  }) {
 			},
 		};
 		const response = await axios.get(`${baseUrl2}/api/courses`, payload);
-		setCourses(response.data.courses);
 
+
+		// {console.log("URL:"+baseUrl2+"/api/courses"+"-----------Token:")}
 		// console.log(response.data);
+		let courseList =[]
+		short && short.length > 0 ?
+			courses.length > 0 ? (
+				courses.map((course) => (
+					course.courseCategory.courseCategoryTitle === short.toString() ?
+						courseList.push(course) : null
+				))
+
+			) : null
+			: null
+		short && short.length > 0 ?
+			setCourses(courseList)
+			:
+			setCourses(response.data.courses);
 		setLoading(false);
 	};
 	useEffect(() => {

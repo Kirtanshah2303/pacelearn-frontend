@@ -113,7 +113,7 @@ const CoursesList = ({ courses, user,short }) => {
 								/>
 							))
 						) : (
-							<h3>Empty Hello</h3>
+							<h3>Empty </h3>
 						)
 					}
 				</>

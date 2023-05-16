@@ -14,16 +14,17 @@ export const handleLogin = (t, routeNext) => {
 };
 
 export const handleLogout = (user,setUser) =>  {
-	toast.error("Logged Out", {
+	toast.success("Logged Out Successfully", {
 		style: {
-			border: "1px solid #ff0033",
+			border: "1px solid #4BB543",
 			padding: "16px",
-			color: "#ff0033",
+			color: "#4BB543",
 		},
 		iconTheme: {
-			primary: "#ff0033",
+			primary: "#4BB543",
 			secondary: "#FFFAEE",
 		},
+
 	});
 	cookie.remove("charuvidhya_users_token");
 	setUser(null);
@@ -31,9 +32,10 @@ export const handleLogout = (user,setUser) =>  {
 	// window.location.reload();
 };
 
-export const destroyCookie = () => {
+export const destroyCookie = async (user,setUser) => {
 	cookie.remove("charuvidhya_users_token");
-	Router.reload("/");
+	setUser(null);
+	await Router.push("/auth");
 };
 
 export const redirectUser = (ctx, location) => {
