@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 import Link from "@/utils/ActiveLink";
 import {motion} from "framer-motion";
 import {Categories} from "../../pages/gobals";

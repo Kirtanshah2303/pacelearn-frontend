@@ -6,6 +6,7 @@ import Link from "next/link";
 import {router} from "next/router";
 import baseUrl2 from "@/utils/baseUrl2";
 import toast from "react-hot-toast";
+import {use} from "bcrypt/promises";
 
 const INITIAL_USER = {
     newPassword: "",
@@ -14,14 +15,37 @@ const INITIAL_USER = {
 const ChangePasswordForm = ()=>{
 
     const [user, setUser] = React.useState(INITIAL_USER);
+    const [confirmPass, setConfirmPass] = React.useState('');
+    //const [passwordMatchError, setPasswordMatchError] = useState('');
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setUser((prevState) => ({ ...prevState, [name]: value }));
+
     };
+    const handleConfirmPassChange = (e) =>{
+        const { name, value } = e.target;
+        setConfirmPass((prevState) => ({ ...prevState, [name]: value }));
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (user.trim() !== confirmPass.trim()) {
+            //setPasswordMatchError("New password and confirm password must match!");
+            toast.error("New password and confirm password must match!", {
+                style: {
+                    border: "1px solid #ff0033",
+                    padding: "16px",
+                    color: "#ff0033",
+                },
+                iconTheme: {
+                    primary: "#ff0033",
+                    secondary: "#FFFAEE",
+                },
+            });
+            return;
+        }
         try {
             const url = `${baseUrl2}/api/account/reset-password/finish`;
             const {
@@ -59,6 +83,7 @@ const ChangePasswordForm = ()=>{
         }
     }
 
+
     return (
         <motion.form
             onSubmit={handleSubmit}
@@ -89,16 +114,17 @@ const ChangePasswordForm = ()=>{
                 />
             </div>
 
-            {/*<div className="form-group">*/}
-            {/*    <input*/}
-            {/*        type="password"*/}
-            {/*        className="form-control"*/}
-            {/*        placeholder="Confirm New Password"*/}
-            {/*        name="confirmPassword"*/}
-            {/*        // value={user.username}*/}
-            {/*        //onChange={handleChange}*/}
-            {/*    />*/}
-            {/*</div>*/}
+            <div className="form-group">
+                <input
+                    type="password"
+                    className="form-control"
+                    placeholder="Confirm New Password"
+                    name="confirmPassword"
+                     value={confirmPass.username}
+                    onChange={handleConfirmPassChange}
+                />
+            </div>
+            {/*{passwordMatchError && <p>{passwordMatchError}</p>}*/}
 
             <Button
                 //  loading={loading}
