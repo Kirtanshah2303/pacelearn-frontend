@@ -28,8 +28,9 @@ const LoginForm = () => {
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setUser((prevState) => ({ ...prevState, [name]: value }));
-	};
 
+	};
+	//console.log(user);
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {

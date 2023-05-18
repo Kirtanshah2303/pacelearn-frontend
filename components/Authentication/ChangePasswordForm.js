@@ -10,22 +10,24 @@ import {use} from "bcrypt/promises";
 
 const INITIAL_USER = {
     newPassword: "",
+    username: "",
 };
 
 const ChangePasswordForm = ()=>{
 
     const [user, setUser] = React.useState(INITIAL_USER);
-    const [confirmPass, setConfirmPass] = React.useState('');
+    const [confirmPass, setConfirmPass] = React.useState(INITIAL_USER);
     //const [passwordMatchError, setPasswordMatchError] = useState('');
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setUser((prevState) => ({ ...prevState, [name]: value }));
-
+        console.log(user);
     };
     const handleConfirmPassChange = (e) =>{
         const { name, value } = e.target;
         setConfirmPass((prevState) => ({ ...prevState, [name]: value }));
+
     }
 
     const handleSubmit = async (e) => {
@@ -120,8 +122,8 @@ const ChangePasswordForm = ()=>{
                     className="form-control"
                     placeholder="Confirm New Password"
                     name="confirmPassword"
-                     value={confirmPass.username}
-                    onChange={handleConfirmPassChange}
+                     value={user.username}
+                    onChange={handleChange}
                 />
             </div>
             {/*{passwordMatchError && <p>{passwordMatchError}</p>}*/}

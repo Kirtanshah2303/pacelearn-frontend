@@ -43,7 +43,7 @@ const Auth = () => {
 							{/*</div>*/}
 						</div>
 						<div className="col-lg-7">
-							<div className="register-form" style={{padding: "0px 103px 0px 0px"}}>
+							<div className="register-form" style={{padding: "-1px 103px 0px 0px"}}>
 								{register == "register" ? (
 									<motion.h2
 										initial={{ scale: 0 }}
